@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=WorldObject
+comment1.params=x\ y
+comment1.target=WorldObject(double,\ double)
+comment2.params=camX\ camY\ screenWidth\ screenHeight
+comment2.target=void\ updateScreenPosition(double,\ double,\ int,\ int)
+comment3.params=dx\ dy
+comment3.target=void\ moveBy(double,\ double)
+comment4.params=
+comment4.target=double\ getWorldX()
+comment5.params=
+comment5.target=double\ getWorldY()
+numComments=6
