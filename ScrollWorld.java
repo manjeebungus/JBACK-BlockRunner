@@ -37,8 +37,8 @@ public class ScrollWorld extends World {
 
         // The tile at (0,0) is part of the grid and will appear naturally
         
-        player = new Player();
-        player.setLocation(200, 300);
+        Cube.cube = new Cube();
+        addObject(Cube.cube, 200, 300);
         
         int startRow = 5;
         int startCol = 5;
@@ -46,7 +46,7 @@ public class ScrollWorld extends World {
         int startX = startCol * TILE_SIZE;
         int startY = startRow * TILE_SIZE;
         
-        addObject(player, -100, -100); // will be placed correctly by updateScreenPosition
+        //addObject(player, -100, -100); // will be placed correctly by updateScreenPosition
     }
 
     public void act() {
