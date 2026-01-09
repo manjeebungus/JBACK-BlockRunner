@@ -16,12 +16,17 @@ public class Cube extends Player
     private boolean spacePressed = false;
     private double speedY = 0;
     private final int groundHeight = ScrollWorld.SCREEN_HEIGHT - ScrollWorld.GROUND_OFFSET + ScrollWorld.TILE_SIZE;
+    private GreenfootImage image;
 
     
     public Cube()
     {
         cube = this;
         isGrounded = false;
+        
+        image = new GreenfootImage("images/Player/cubePlaceholder.png");
+        image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
+        setImage(image);
     }
     
     public void act()
@@ -30,7 +35,7 @@ public class Cube extends Player
         {
             isGrounded = true;
             spacePressed = false;
-            setLocation(getX(), groundHeight - getImage().getHeight());
+            setLocation(getX(), groundHeight - getImage().getHeight()/2);
             speedY = 0;
         }
         
