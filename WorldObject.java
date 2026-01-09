@@ -1,5 +1,11 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * Write a description of class WorldObject here.
+ * 
+ * @author Kelton Kuan
+ * @version (a version number or a date)
+ */
 public abstract class WorldObject extends SuperSmoothMover {
 
     // World coordinates (pixels)

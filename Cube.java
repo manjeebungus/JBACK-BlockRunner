@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Abithan Paskaranathan
  * @version (a version number or a date)
  */
-public class Cube extends SuperSmoothMover
+public class Cube extends Player
 {
     public static final int jumpHeight = 0;
     
