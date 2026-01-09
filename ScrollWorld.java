@@ -4,17 +4,17 @@ public class ScrollWorld extends World {
     private static ScrollWorld world;
     private Player player;
     
-    public static final int TILE_SIZE = 32;
+    public static final int TILE_SIZE = 48;
     public static final int ROWS = 20;
     public static final int COLS = 200;
-    public static final int SCREEN_WIDTH = 800;
+    public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 600;
     public static final int GROUND_OFFSET = 200;
     
     private WorldObject[][] grid;
     private double camX = 0;
     private double camY = 0;
-    private final int SCROLL_SPEED = 4;
+    private final double SCROLL_SPEED = 5.5;
     private double scrollMultiplier = 1.00;
     private final double SPRINT_SPEED = 1.75;
 
