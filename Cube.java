@@ -13,6 +13,7 @@ public class Cube extends Player
     public static final int jumpHeight = 100;
     
     private boolean isGrounded = true;
+    private boolean spacePressed = false;
     private double speedY = 0;
     private final int groundHeight = ScrollWorld.SCREEN_HEIGHT - ScrollWorld.GROUND_OFFSET + ScrollWorld.TILE_SIZE;
 
@@ -25,15 +26,17 @@ public class Cube extends Player
     
     public void act()
     {
-        if (getY() > groundHeight)
+        if (getY() - speedY > groundHeight)
         {
             isGrounded = true;
+            spacePressed = false;
             setLocation(getX(), groundHeight - getImage().getHeight());
             speedY = 0;
         }
         
-        if (Greenfoot.isKeyDown("space"))
+        if (Greenfoot.isKeyDown("space") && !spacePressed)
         {
+            spacePressed = true;
             jump();
         }
         
@@ -47,7 +50,7 @@ public class Cube extends Player
     
     private void jump()
     {        
-        speedY = 8;
+        speedY = 10;
         isGrounded = false;
     }
 }
