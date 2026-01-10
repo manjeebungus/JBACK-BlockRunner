@@ -53,6 +53,8 @@ public class Cube extends Player
             speedY-= 0.5; //Keep decreasing below zero so speed is negative and cube goes down
             
             //Makes sure the cube doesn't turn when initialy falling
+            //Using a count variable this if statement runs 40 times for one jump
+            //airtime so turn a total of 90 degrees throughout 40 acts(90/40)
             if (firstJumpMade) turn(2.25); 
         }
     }
