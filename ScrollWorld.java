@@ -10,7 +10,8 @@ public class ScrollWorld extends World {
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 600;
     public static final int GROUND_OFFSET = 200;
-    
+    public static final int GROUND_HEIGHT = ScrollWorld.SCREEN_HEIGHT - ScrollWorld.GROUND_OFFSET + ScrollWorld.TILE_SIZE;
+
     private WorldObject[][] grid;
     private double camX = 0;
     private double camY = 0;

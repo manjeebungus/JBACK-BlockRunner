@@ -10,52 +10,63 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Cube extends Player
 {
     public static Cube cube;
-    public static final int jumpHeight = 100;
     
     private boolean isGrounded = true;
     private boolean spacePressed = false;
+    private boolean firstJumpMade = false;
     private double speedY = 0;
-    private final int groundHeight = ScrollWorld.SCREEN_HEIGHT - ScrollWorld.GROUND_OFFSET + ScrollWorld.TILE_SIZE;
     private GreenfootImage image;
-
     
     public Cube()
     {
         cube = this;
         isGrounded = false;
         
-        image = new GreenfootImage("images/Player/cubePlaceholder.png");
-        image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
-        setImage(image);
+        cubeImage();
     }
     
     public void act()
     {
-        if (getY() - speedY > groundHeight)
+        //if the y distance between the ground an the cube is small enough, set the y
+        //position to the ground
+        if (ScrollWorld.GROUND_HEIGHT - getY() < getImage().getHeight()/2 + 10)
         {
             isGrounded = true;
             spacePressed = false;
-            setLocation(getX(), groundHeight - getImage().getHeight()/2);
+            setLocation(getX(), ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
             speedY = 0;
         }
         
+        //Makes sure you can't hold space to "fly"
         if (Greenfoot.isKeyDown("space") && !spacePressed)
         {
             spacePressed = true;
             jump();
         }
         
+        //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getX(), getY() - speedY);
         
+        //keep decreasing speed while midair
         if (!isGrounded)
         {
-            speedY-= 0.5;
+            speedY-= 0.5; //Keep decreasing below zero so speed is negative and cube goes down
+            
+            //Makes sure the cube doesn't turn when initialy falling
+            if (firstJumpMade) turn(2.25); 
         }
+    }
+    
+    private void cubeImage(){
+        image = new GreenfootImage("images/Player/cubePlaceholder.png");
+        image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
+        setImage(image);
     }
     
     private void jump()
     {        
         speedY = 10;
         isGrounded = false;
+        firstJumpMade = true;
     }
 }
