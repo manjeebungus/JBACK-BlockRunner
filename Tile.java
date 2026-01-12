@@ -10,7 +10,7 @@ public class Tile extends WorldObject {
     private static final Color borderColor = new Color(30, 30, 30, 30);
     
     public Tile(double row, double col) {
-        super(col * ScrollWorld.TILE_SIZE, row * ScrollWorld.TILE_SIZE);
+        super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.ROWS-row-1) * ScrollWorld.TILE_SIZE);
         
         // Ask region for the color
         Color tileColor = new Color(150, 150, 150);
@@ -27,7 +27,7 @@ public class Tile extends WorldObject {
     }
     
     public Tile (double row, double col, GreenfootImage image) {
-        super(col * ScrollWorld.TILE_SIZE, row * ScrollWorld.TILE_SIZE);
+        super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.ROWS-row-1) * ScrollWorld.TILE_SIZE);
         
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         

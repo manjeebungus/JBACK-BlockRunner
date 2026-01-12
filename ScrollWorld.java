@@ -12,8 +12,8 @@ public class ScrollWorld extends World {
     private Player player;
     
     public static final int TILE_SIZE = 48;
-    public static final int ROWS = 20;
-    public static final int COLS = 200;
+    public static int ROWS = 20;
+    public static int COLS = 200;
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 600;
     public static final int GROUND_OFFSET = 200;
@@ -26,22 +26,26 @@ public class ScrollWorld extends World {
     private double scrollMultiplier = 1.00;
     private final double SPRINT_SPEED = 1.75;
     
-    private ArrayList<WorldObject> worldObjects = new ArrayList<WorldObject>();
+    private int[][] objects = new int[ROWS][COLS];
 
     public ScrollWorld() {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
         
         world = this;
         
-        
         grid = new WorldObject[ROWS][COLS];
-
+        
         // Create all tiles
         for (int r = 0; r < ROWS; r++) {
             for (int c = 0; c < COLS; c++) {
-                Tile t = new Tile(r, c);
-                grid[r][c] = t;
-                addObject(t, -100, -100); // initially hide
+                WorldObject worldObject = null;
+                if (objects[r][c] != 0) {
+                    worldObject = new TestBlock(r, c);
+                } else {
+                    worldObject = new Tile(r, c);
+                }
+                grid[r][c] = worldObject;
+                addObject(worldObject, -100, -100); // initially hide
             }
         }
 
