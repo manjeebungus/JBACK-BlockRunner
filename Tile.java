@@ -1,5 +1,11 @@
 import greenfoot.*;
 
+/**
+ * Write a description of class TestBlock here.
+ * 
+ * @author Kelton Kuan
+ * @version (a version number or a date)
+ */
 public class Tile extends WorldObject {
     private static final Color borderColor = new Color(30, 30, 30, 30);
     
@@ -18,5 +24,13 @@ public class Tile extends WorldObject {
         img.drawRect(0, 0, ScrollWorld.TILE_SIZE - 1, ScrollWorld.TILE_SIZE - 1);
 
         setImage(img);
+    }
+    
+    public Tile (double row, double col, GreenfootImage image) {
+        super(col * ScrollWorld.TILE_SIZE, row * ScrollWorld.TILE_SIZE);
+        
+        image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
+        
+        setImage(image);
     }
 }

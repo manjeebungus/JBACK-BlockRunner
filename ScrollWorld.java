@@ -1,5 +1,12 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
+/**
+ * Write a description of class TestBlock here.
+ * 
+ * @author Kelton Kuan
+ * @version (a version number or a date)
+ */
 public class ScrollWorld extends World {
     private static ScrollWorld world;
     private Player player;
@@ -18,6 +25,8 @@ public class ScrollWorld extends World {
     private final double SCROLL_SPEED = 5.5;
     private double scrollMultiplier = 1.00;
     private final double SPRINT_SPEED = 1.75;
+    
+    private ArrayList<WorldObject> worldObjects = new ArrayList<WorldObject>();
 
     public ScrollWorld() {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
