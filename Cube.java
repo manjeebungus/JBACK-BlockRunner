@@ -27,6 +27,8 @@ public class Cube extends Player
     
     public void act()
     {
+        if (isGrounded) roundToClosestRotation();
+        
         //if the y distance between the ground an the cube is small enough, set the y
         //position to the ground
         if (ScrollWorld.GROUND_HEIGHT - getY() < getImage().getHeight()/2 + 10)
@@ -70,5 +72,40 @@ public class Cube extends Player
         speedY = 10;
         isGrounded = false;
         firstJumpMade = true;
+    }
+    
+    /**
+     * This method rounds to the closest degree rotation to make sure the cube does not 
+     * land on a wrong angle(not flat on the ground)
+     */
+    private void roundToClosestRotation()
+    {
+        int rotation = getRotation();
+        
+        if (rotation < 45)
+        {
+            setRotation(0);
+            return;
+        }
+        
+        if (rotation < 135)
+        {
+            setRotation(90);
+            return;
+        }
+        
+        if (rotation < 225)
+        {
+            setRotation(180);
+            return;
+        }
+        
+        if (rotation < 315)
+        {
+            setRotation(270);
+            return;
+        }
+        
+        setRotation(0);
     }
 }
