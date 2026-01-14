@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Cube here.
@@ -29,11 +30,20 @@ public class Cube extends Player
     {
         if (isGrounded) roundToClosestRotation();
         
+        List<Tile> tilesTouching = getIntersectingObjects(Tile.class);
+        for (Tile tile : tilesTouching) {
+            if (getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
+                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE);
+            }
+        }
+        
         //if the y distance between the ground an the cube is small enough, set the y
         //position to the ground
         if (ScrollWorld.GROUND_HEIGHT - getY() < getImage().getHeight()/2 + 10)
         {
             setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
+        } else if (tilesTouching.size() == 0){
+            isGrounded = false;
         }
         
         //Makes sure you can't hold space to "fly"
