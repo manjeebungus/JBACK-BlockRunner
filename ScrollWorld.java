@@ -35,6 +35,9 @@ public class ScrollWorld extends World {
         
         grid = new WorldObject[ROWS][COLS];
         
+        objects[0][20] = 1;
+        objects[1][20] = 1;
+        
         // Create all tiles
         for (int r = 0; r < ROWS; r++) {
             for (int c = 0; c < COLS; c++) {
@@ -42,10 +45,10 @@ public class ScrollWorld extends World {
                 if (objects[r][c] != 0) {
                     worldObject = new TestBlock(r, c);
                 } else {
-                    worldObject = new Tile(r, c);
+                    //worldObject = new Tile(r, c);
                 }
                 grid[r][c] = worldObject;
-                addObject(worldObject, -100, -100); // initially hide
+                if (worldObject != null) addObject(worldObject, -100, -100); // initially hide
             }
         }
 
@@ -91,7 +94,9 @@ public class ScrollWorld extends World {
     private void updateWorldObjects() {
         for (int r = 0; r < ROWS; r++) {
             for (int c = 0; c < COLS; c++) {
-                grid[r][c].updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
+                if (grid[r][c] != null) {
+                    grid[r][c].updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
+                }
             }
         }
     }
