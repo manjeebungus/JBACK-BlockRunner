@@ -33,14 +33,11 @@ public class Cube extends Player
         //position to the ground
         if (ScrollWorld.GROUND_HEIGHT - getY() < getImage().getHeight()/2 + 10)
         {
-            isGrounded = true;
-            spacePressed = false;
-            setLocation(getX(), ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
-            speedY = 0;
+            setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
         }
         
         //Makes sure you can't hold space to "fly"
-        if (Greenfoot.isKeyDown("space") && !spacePressed)
+        if (Greenfoot.isKeyDown("space") && !spacePressed && isGrounded)
         {
             spacePressed = true;
             jump();
@@ -75,8 +72,20 @@ public class Cube extends Player
     }
     
     /**
+     * Sets all variables necessary in order to land the cube on a platform  
+     * @param yPos the y position of the platform to land on
+     */
+    public void setToGround(double yPos)
+    {
+        isGrounded = true;
+        spacePressed = false;
+        setLocation(getX(), yPos);
+        speedY = 0;
+    }
+    
+    /**
      * This method rounds to the closest degree rotation to make sure the cube does not 
-     * land on a wrong angle(not flat on the ground)
+     * land on a wrong angle(makes sure its flat on the ground)
      */
     private void roundToClosestRotation()
     {
