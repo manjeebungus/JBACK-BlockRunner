@@ -30,16 +30,16 @@ public class Cube extends Player
     {
         if (isGrounded) roundToClosestRotation();
         
-        List<Tile> tilesTouching = getIntersectingObjects(Tile.class);
+        List<TestBlock> tilesTouching = getIntersectingObjects(TestBlock.class);
         for (Tile tile : tilesTouching) {
             if (getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
-                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE);
+                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+0.1);
             }
         }
         
         //if the y distance between the ground an the cube is small enough, set the y
         //position to the ground
-        if (ScrollWorld.GROUND_HEIGHT - getY() < getImage().getHeight()/2 + 10)
+        if (ScrollWorld.GROUND_HEIGHT - getExactY() < getImage().getHeight()/2 + 10)
         {
             setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
         } else if (tilesTouching.size() == 0){
@@ -54,7 +54,7 @@ public class Cube extends Player
         }
         
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
-        setLocation(getX(), getY() - speedY);
+        setLocation(getExactX(), getExactY() - speedY);
         
         //keep decreasing speed while midair
         if (!isGrounded)
@@ -89,8 +89,9 @@ public class Cube extends Player
     {
         isGrounded = true;
         spacePressed = false;
-        setLocation(getX(), yPos);
+        setLocation(getExactX(), yPos);
         speedY = 0;
+        roundToClosestRotation();
     }
     
     /**

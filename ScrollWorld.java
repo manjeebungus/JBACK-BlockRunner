@@ -38,6 +38,15 @@ public class ScrollWorld extends World {
         objects[0][20] = 1;
         objects[1][20] = 1;
         
+        objects[0][30] = 1;
+        objects[0][31] = 1;
+        objects[0][36] = 1;
+        
+        objects[0][42] = 1;
+        objects[1][42] = 1;
+        objects[0][43] = 1;
+        objects[0][44] = 1;
+        
         // Create all tiles
         for (int r = 0; r < ROWS; r++) {
             for (int c = 0; c < COLS; c++) {
@@ -45,7 +54,7 @@ public class ScrollWorld extends World {
                 if (objects[r][c] != 0) {
                     worldObject = new TestBlock(r, c);
                 } else {
-                    //worldObject = new Tile(r, c);
+                    worldObject = new Tile(r, c);
                 }
                 grid[r][c] = worldObject;
                 if (worldObject != null) addObject(worldObject, -100, -100); // initially hide
