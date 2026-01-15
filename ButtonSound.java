@@ -3,16 +3,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class ButtonSound here.
  * 
- * @author Josh Ye 
+ * @author Josh Ye asst. by Kelton Kuan
  * @version (a version number or a date)
- * Jump sound effect credit to Zapsplat
+ * Button sound effect credit to Zapsplat
  */
-public class JumpSound extends Sound
+public class ButtonSound extends Sound
 {
     private static GreenfootSound[] sounds; // hold copies of the sound
-    private static final String soundFile = "jump.wav";
+    private static final String soundFile = "buttonpress.wav";
     
-    public JumpSound(int count, int volume) {
+    public ButtonSound(int count, int volume) {
         sounds = new GreenfootSound[count];
         for (int i = 0; i < count; i++) {
             sounds[i] = new GreenfootSound(soundFile);
@@ -37,3 +37,4 @@ public class JumpSound extends Sound
         }
     }
 }
+
