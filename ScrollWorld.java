@@ -69,8 +69,8 @@ public class ScrollWorld extends World {
 
         // The tile at (0,0) is part of the grid and will appear naturally
         
-        Cube.cube = new Cube();
-        addObject(Cube.cube, 200, 300);
+        player = new Cube();
+        addObject(player, 200, 300);
         
         int startRow = 5;
         int startCol = 5;
