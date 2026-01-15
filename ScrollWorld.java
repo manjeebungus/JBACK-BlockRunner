@@ -72,6 +72,11 @@ public class ScrollWorld extends World {
         player = new Cube();
         addObject(player, 200, 300);
         
+        GreenfootImage ground = new GreenfootImage(SCREEN_WIDTH, 4);
+        ground.setColor(new Color(0,0,0));
+        ground.fill();
+        getBackground().drawImage(ground, 0, GROUND_HEIGHT);
+        
         int startRow = 5;
         int startCol = 5;
         
