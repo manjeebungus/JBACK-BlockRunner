@@ -12,8 +12,8 @@ public class ScrollWorld extends World {
     private Player player;
     
     public static final int TILE_SIZE = 48;
-    public static int ROWS = 20;
-    public static int COLS = 200;
+    public static int rows = 20;
+    public static int cols = 200;
     public static final int SCREEN_WIDTH = 1000;
     public static final int SCREEN_HEIGHT = 600;
     public static final int GROUND_OFFSET = 200;
@@ -26,30 +26,26 @@ public class ScrollWorld extends World {
     private double scrollMultiplier = 1.00;
     private final double SPRINT_SPEED = 1.75;
     
-    private int[][] objects = new int[ROWS][COLS];
+    private int[][] objects;
 
     public ScrollWorld() {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
         
         world = this;
         
-        grid = new WorldObject[ROWS][COLS];
+        Greenfoot.setSpeed(50);
         
-        objects[0][20] = 1;
-        objects[1][20] = 1;
+        int[][] level = Levels.level1();
+        objects = level;
         
-        objects[0][30] = 1;
-        objects[0][31] = 1;
-        objects[0][36] = 1;
+        rows = objects.length;
+        cols = objects[0].length;
         
-        objects[0][42] = 1;
-        objects[1][42] = 1;
-        objects[0][43] = 1;
-        objects[0][44] = 1;
+        grid = new WorldObject[rows][cols];
         
         // Create all tiles
-        for (int r = 0; r < ROWS; r++) {
-            for (int c = 0; c < COLS; c++) {
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
                 WorldObject worldObject = null;
                 if (objects[r][c] != 0) {
                     worldObject = new TestBlock(r, c);
@@ -93,16 +89,16 @@ public class ScrollWorld extends World {
         camX += SCROLL_SPEED * scrollMultiplier;
     
         // Clamp camera so it doesn't go past world
-        camX = Math.min(camX, COLS * TILE_SIZE - SCREEN_WIDTH);
-        int groundRow = ROWS - 1;
+        camX = Math.min(camX, cols * TILE_SIZE - SCREEN_WIDTH);
+        int groundRow = rows - 1;
         int groundWorldY = groundRow * TILE_SIZE;
         
         camY = groundWorldY - (SCREEN_HEIGHT - GROUND_OFFSET);
     }
 
     private void updateWorldObjects() {
-        for (int r = 0; r < ROWS; r++) {
-            for (int c = 0; c < COLS; c++) {
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
                 if (grid[r][c] != null) {
                     grid[r][c].updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
                 }
