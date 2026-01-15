@@ -17,13 +17,15 @@ public class Cube extends Player
     private boolean firstJumpMade = false;
     private double speedY = 0;
     private GreenfootImage image;
-    
+    private static JumpSound jumpSound;
     public Cube()
     {
         cube = this;
         isGrounded = false;
         
         cubeImage();
+        jumpSound = new JumpSound(5, 100);
+        jumpSound.stop();
     }
     
     public void act()
@@ -51,6 +53,7 @@ public class Cube extends Player
         {
             spacePressed = true;
             jump();
+            jumpSound.play();
         }
         
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
