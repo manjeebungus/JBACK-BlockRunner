@@ -47,11 +47,16 @@ public class ScrollWorld extends World {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
                 WorldObject worldObject = null;
-                if (objects[r][c] != 0) {
-                    worldObject = new TestBlock(r, c);
-                } else {
-                    worldObject = new Tile(r, c);
+                
+                switch (objects[r][c]) {
+                    case 1:
+                        worldObject = new TestBlock(r, c);
+                        break;
+                    default:
+                        worldObject = new Tile(r, c);
+                        break;
                 }
+                
                 grid[r][c] = worldObject;
                 if (worldObject != null) addObject(worldObject, -100, -100); // initially hide
             }
