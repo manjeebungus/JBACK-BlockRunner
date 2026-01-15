@@ -17,7 +17,6 @@ public class ButtonSound extends Sound
         for (int i = 0; i < count; i++) {
             sounds[i] = new GreenfootSound(soundFile);
             sounds[i].setVolume(volume);
-            sounds[i].play();
         }
         
         index = 0;
