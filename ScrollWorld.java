@@ -49,9 +49,13 @@ public class ScrollWorld extends World {
                 WorldObject worldObject = null;
                 
                 switch (objects[r][c]) {
+                    // blocks
                     case 1:
                         worldObject = new TestBlock(r, c);
                         break;
+                    // spikes
+                    case 10:
+                        //worldObject = new Spike
                     default:
                         worldObject = new Tile(r, c);
                         break;

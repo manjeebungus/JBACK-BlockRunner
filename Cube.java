@@ -35,7 +35,7 @@ public class Cube extends Player
         List<TestBlock> tilesTouching = getIntersectingObjects(TestBlock.class);
         for (Tile tile : tilesTouching) {
             if (getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
-                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+0.1);
+                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+2);
             }
         }
         
@@ -67,7 +67,7 @@ public class Cube extends Player
             //Makes sure the cube doesn't turn when initialy falling
             //Using a count variable this if statement runs 40 times for one jump
             //airtime so turn a total of 180 degrees throughout 40 acts(180/40)
-            if (firstJumpMade) turn(4.5); 
+            if (firstJumpMade && tilesTouching.size() == 0) turn(4.5); 
         }
     }
     

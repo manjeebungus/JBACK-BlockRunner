@@ -6,9 +6,12 @@
  */
 public class Levels  
 {
-    // Tile meanings for now:
+    // Tile ids for now:
     // 0 blank tile
     // 1 test block
+    
+    // Spike ids for now:
+    // 10 placeholder
     
     private static int levelRows = 20;
     private static int levelCols = 200;
@@ -22,6 +25,7 @@ public class Levels
         emptyLevel();
         
         level[0][20] = 1;
+        level[0][21] = 1;
         
         return level;
     }
