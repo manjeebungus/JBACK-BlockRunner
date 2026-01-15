@@ -26,6 +26,7 @@ public class Levels
         
         level[0][20] = 1;
         level[0][21] = 1;
+        level[0][22] = 10;
         
         return level;
     }
