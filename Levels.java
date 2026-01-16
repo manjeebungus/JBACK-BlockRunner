@@ -23,22 +23,19 @@ public class Levels
     
     public static int[][] levelTest() {
         emptyLevel();
-        
-        level[0][20] = 1;
-        level[0][21] = 1;
-        level[0][22] = 10;
-        
-        level[0][31] = 10;
-        level[0][32] = 1;
-        level[0][36] = 1;
-        level[1][36] = 1;
-        
+        level[0][20] = 10;
+        level[0][21] = 10;
+        level[0][25] = 1;
+        level[1][25] = 10;
+        level[0][34] = 10;
+        level[0][35] = 1;
+        level[0][38] = 1;
+        level[1][38] = 1;
         return level;
     }
     
     public static int[][] level1() {
         emptyLevel();
-        
         level[0][20] = 1;
         level[0][21] = 1;
         level[0][22] = 10;
@@ -47,6 +44,7 @@ public class Levels
         level[0][32] = 1;
         level[0][36] = 1;
         level[1][36] = 1;
+        
         
         return level;
     }
