@@ -4,6 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class ButtonSound here.
  * 
  * @author Josh Ye asst. by Kelton Kuan
+ * Class is taken from Binding of Issac
  * @version (a version number or a date)
  * Button sound effect credit to Zapsplat
  */
