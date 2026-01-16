@@ -33,8 +33,8 @@ public class ScrollWorld extends World {
     public ScrollWorld() {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
         addObject(new StaticImage("Enviroment/bg1.png"),500,300);
-        ground1 = new Ground("Enviroment/fg1.png");
-        ground2 = new Ground("Enviroment/fg1.png");
+        ground1 = new Ground("Enviroment/fg1.png",0);
+        ground2 = new Ground("Enviroment/fg1.png",1000);
         addObject(ground1,500,300);
         addObject(ground2,1500,300);
         world = this;

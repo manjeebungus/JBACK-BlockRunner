@@ -41,7 +41,7 @@ public abstract class WorldObject extends SuperSmoothMover {
             setLocation(-100, -100); // hide off-screen
         } else {
             setLocation(screenX + getImage().getWidth() / 2,
-                        screenY + getImage().getHeight() / 2);
+                    screenY + getImage().getHeight() / 2);
         }
     }
 
