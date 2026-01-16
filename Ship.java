@@ -12,7 +12,7 @@ public class Ship extends Player
     
     public Ship()
     {
-        
+        super();
     }
     
     public void act()
