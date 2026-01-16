@@ -8,16 +8,23 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Ship extends Player
 {
-    public void act()
-    {
-        followCube();
+    public Ship() {
+        
     }
     
-    private void followCube()
-    {
-        double cubeX = Cube.cube.getExactX();
-        double cubeY = Cube.cube.getExactY();
-        
-        setLocation(cubeX, cubeY);
+    protected void move() {
+        if (Greenfoot.isKeyDown("space"))
+        {
+            speedY += 0.5;
+        }
+        else
+        {
+            speedY += -0.4;
+        }
+
+        if (speedY > 6) speedY = 6;
+        if (speedY < -6) speedY = -6;
+
+        if (speedY > 0) isGrounded = false;
     }
 }
