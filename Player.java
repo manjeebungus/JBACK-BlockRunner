@@ -26,6 +26,10 @@ public abstract class Player extends SuperSmoothMover
     protected Hitbox hitbox;
     protected Mode currentMode = Mode.CUBE;
     
+    final double TOLERANCE = 6;
+    protected double prevX;
+    protected double prevY;
+    
     public Player() {
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0);
         
@@ -37,6 +41,9 @@ public abstract class Player extends SuperSmoothMover
      */
     public void act()
     {
+        prevX = getExactX();
+        prevY = getExactY();
+        
         move();
         
         switch(currentMode)
@@ -56,7 +63,7 @@ public abstract class Player extends SuperSmoothMover
 
             if (!shipsInWorld.isEmpty())
             {
-                ScrollWorld.getWorld().removeObject(shipsInWorld.get(0));
+                ScrollWorld.getWorld().addObject(new Cube(), getX(), getY());
                 ScrollWorld.getWorld().removeObject(this);
                 return;
             }
@@ -75,12 +82,13 @@ public abstract class Player extends SuperSmoothMover
 
         if (isGrounded) roundToClosestRotation();
 
+        //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
+        setLocation(getExactX(), getExactY() - speedY);
         
         checkCollisions();
         spawnGroundDust();
         
-        //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
-        setLocation(getExactX(), getExactY() - speedY);
+        
     
     }
     
@@ -88,10 +96,55 @@ public abstract class Player extends SuperSmoothMover
     
     protected void checkCollisions()
     {
+        
+        
         tilesTouching = getIntersectingObjects(Tile.class);
-        for (Tile tile : tilesTouching) {
-            if (speedY <= 0 && getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
-                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+2);
+        for (Tile tile : getIntersectingObjects(Tile.class)) {
+            double pxLeft   = getExactX() - getImage().getWidth() / 2;
+            double pxRight  = getExactX() + getImage().getWidth() / 2;
+            double pxTop    = getExactY() - getImage().getHeight() / 2;
+            double pxBottom = getExactY() + getImage().getHeight() / 2;
+            
+            double txLeft   = tile.getExactX() - ScrollWorld.TILE_SIZE / 2;
+            double txRight  = tile.getExactX() + ScrollWorld.TILE_SIZE / 2;
+            double txTop    = tile.getExactY() - ScrollWorld.TILE_SIZE / 2;
+            double txBottom = tile.getExactY() + ScrollWorld.TILE_SIZE / 2;
+            
+            double overlapLeft   = pxRight - txLeft;
+            double overlapRight  = txRight - pxLeft;
+            double overlapTop    = pxBottom - txTop;
+            double overlapBottom = txBottom - pxTop;
+            
+            double minOverlap = Math.min(
+                Math.min(overlapLeft, overlapRight),
+                Math.min(overlapTop, overlapBottom)
+            );
+            
+            // ----- TOP (landing) -----
+            if (minOverlap == overlapTop && speedY < 0)
+            {
+                setToGround(txTop - getImage().getHeight() / 2);
+                continue;
+            }
+            
+            // ----- BOTTOM (head hit) -----
+            if (minOverlap == overlapBottom)
+            {
+                Greenfoot.stop();
+                continue;
+            }
+            
+            // ----- LEFT / RIGHT (side hit) -----
+            if (minOverlap == overlapLeft || minOverlap == overlapRight)
+            {
+                if (minOverlap > TOLERANCE)
+                {
+                    Greenfoot.stop();
+                }
+                else
+                {
+                    
+                }
             }
         }
 

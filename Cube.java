@@ -58,27 +58,6 @@ public class Cube extends Player
         }
     }
 
-    private void handleShipMovement()
-    {
-        if (Greenfoot.isKeyDown("space"))
-        {
-            speedY += 1.0;
-            setRotation(-10);
-        }
-        else
-        {
-            speedY += -1.0;
-            setRotation(10);
-        }
-
-        if (speedY > 6) speedY = 6;
-        if (speedY < -6) speedY = -6;
-
-        setLocation(getExactX(), getExactY() - speedY);
-
-        if (speedY > 0) isGrounded = false;
-    }
-
     private void cubeImage(){
         image = new GreenfootImage(cubeImageString);
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
