@@ -74,7 +74,10 @@ public class Cube extends Player
         
         if (isGrounded) roundToClosestRotation();
         
+
+        
         checkCollsions();
+        spawnGroundDust();
     }
     
     private void checkCollsions()
@@ -103,6 +106,9 @@ public class Cube extends Player
         {
             spacePressed = true;
             jump();
+            for(int i = 0; i<10;i++){
+                spawnJumpParticles();
+            }
             jumpSound.play();
         }
         
@@ -141,7 +147,7 @@ public class Cube extends Player
     }
     
     private void cubeImage(){
-        image = new GreenfootImage("images/Player/cubePlaceholder.png");
+        image = new GreenfootImage("images/Player/cube1.png");
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         setImage(image);
     }
@@ -211,5 +217,29 @@ public class Cube extends Player
         }
         
         setRotation(0);
+    }
+    
+    /**
+     * @Author Chase Coulter
+     */
+    private void spawnGroundDust()
+    {
+        if (!isGrounded) return;//only run code if grounded
+        ScrollWorld.getWorld().spawnParticle(200, 25, 6, 8, 30,new Color(0, 0, 0),getX()-20, getY() + 20);
+    }
+    
+    private void spawnJumpParticles() {
+        if (isGrounded) return;
+    
+        ScrollWorld world = ScrollWorld.getWorld();
+        int baseX = getX();
+        int baseY = getY();
+        int direction = 90;
+        int spread = 30;
+        double speed = 2.0 + Greenfoot.getRandomNumber(4);
+        int size = 12;
+        int life = 30 + Greenfoot.getRandomNumber(20) - 5;
+        Color color = new Color(200, 200, 200);
+        world.spawnParticle(direction, spread, speed, size, life, color, baseX - 20, baseY + 20);
     }
 }

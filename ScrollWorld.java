@@ -122,6 +122,15 @@ public class ScrollWorld extends World {
         }
     }
     
+    /**
+     * @Author Chase Coulter
+     */
+    public void spawnParticle(int direction,int spread,double speed,int size,int life,Color color,int x, int y)
+    {
+        addObject(new Particle(direction,spread,speed,size,life,color),x, y);
+    }
+
+    
     public static ScrollWorld getWorld() {
         return world;
     }
