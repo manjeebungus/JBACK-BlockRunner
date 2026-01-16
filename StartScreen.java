@@ -9,7 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StartScreen extends World
 {
     private GreenfootImage title;
-    private MouseClickBox playButton;
+    private ActorImage playButton;
     private static ButtonSound buttonSound;
     public StartScreen()
     {    
@@ -42,9 +42,7 @@ public class StartScreen extends World
     
     private void addImage()
     {
-        playButton = new MouseClickBox();
-        playButton.setImage("playButton.gif");
-        playButton.getImage().scale(80, 80);
+        playButton = new ActorImage("playButton.gif", 80, 80);
         addObject(playButton, 300, 220);
     }
 }
