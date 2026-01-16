@@ -10,18 +10,30 @@ import java.util.List;
  */
 public class Cube extends Player
 {
+    //Enum is a class type for fixed constants that do not allow for other values
+    ///than what is inside it
+    public enum Mode {
+        CUBE, SHIP
+    }
+    
     public static Cube cube;
+    
+    private static JumpSound jumpSound;
     
     private boolean isGrounded = true;
     private boolean spacePressed = false;
     private boolean firstJumpMade = false;
-    private double speedY = 0;
+    private double speedY;
     private GreenfootImage image;
-    private static JumpSound jumpSound;
+    private List<TestBlock> tilesTouching;
+    private Mode currentMode = Mode.CUBE;
+    
     public Cube()
     {
         cube = this;
         isGrounded = false;
+        speedY = 0;
+        currentMode = Mode.CUBE;
         
         cubeImage();
         jumpSound = new JumpSound(5, 100);
@@ -30,24 +42,62 @@ public class Cube extends Player
     
     public void act()
     {
+        switch(currentMode)
+        {
+            case CUBE:
+                handleCubeMovement();
+                break;
+            case SHIP:
+                handleShipMovement();
+                break;
+        }
+        
+        List<Ship> shipsInWorld = ScrollWorld.getWorld().getObjects(Ship.class);
+        if (Greenfoot.isKeyDown("c"))
+        {
+            currentMode = Mode.CUBE;
+            
+            if (!shipsInWorld.isEmpty())
+            {
+                ScrollWorld.getWorld().removeObject(shipsInWorld.getFirst());
+            }
+        }
+        
+        if (Greenfoot.isKeyDown("s"))
+        {
+            currentMode = Mode.SHIP;
+            if (shipsInWorld.isEmpty())
+            {
+                ScrollWorld.getWorld().addObject(new Ship(), getX(), getY());
+            }
+        }
+        
         if (isGrounded) roundToClosestRotation();
         
-        List<TestBlock> tilesTouching = getIntersectingObjects(TestBlock.class);
+        checkCollsions();
+    }
+    
+    private void checkCollsions()
+    {
+        tilesTouching = getIntersectingObjects(TestBlock.class);
         for (Tile tile : tilesTouching) {
-            if (getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
+            if (speedY <= 0 && getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
                 setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+2);
             }
         }
         
-        //if the y distance between the ground an the cube is small enough, set the y
+        //If the y distance between the ground an the cube is small enough, set the y
         //position to the ground
-        if (ScrollWorld.GROUND_HEIGHT - getExactY() < getImage().getHeight()/2 + 10)
+        if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < getImage().getHeight()/2 + 10)
         {
             setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
         } else if (tilesTouching.size() == 0){
             isGrounded = false;
         }
-        
+    }
+    
+    private void handleCubeMovement()
+    {
         //Makes sure you can't hold space to "fly"
         if (Greenfoot.isKeyDown("space") && !spacePressed && isGrounded)
         {
@@ -62,13 +112,32 @@ public class Cube extends Player
         //keep decreasing speed while midair
         if (!isGrounded)
         {
-            speedY-= 0.5; //Keep decreasing below zero so speed is negative and cube goes down
+            speedY-= 0.5; //Acts like gravity
             
             //Makes sure the cube doesn't turn when initialy falling
             //Using a count variable this if statement runs 40 times for one jump
             //airtime so turn a total of 180 degrees throughout 40 acts(180/40)
             if (firstJumpMade && tilesTouching.size() == 0) turn(4.5); 
         }
+    }
+    
+    private void handleShipMovement()
+    {
+        if (Greenfoot.isKeyDown("space"))
+        {
+            speedY += 1.0;
+        }
+        else
+        {
+            speedY += -1.0;
+        }
+        
+        if (speedY > 6) speedY = 6;
+        if (speedY < -6) speedY = -6;
+        
+        setLocation(getExactX(), getExactY() - speedY);
+        
+        if (speedY > 0) isGrounded = false;
     }
     
     private void cubeImage(){
@@ -94,7 +163,19 @@ public class Cube extends Player
         spacePressed = false;
         setLocation(getExactX(), yPos);
         speedY = 0;
-        roundToClosestRotation();
+        if (currentMode == Mode.CUBE) roundToClosestRotation();
+    }
+    
+    public void setMode(Mode newMode)
+    {
+        currentMode = newMode;
+        speedY = 0;
+        
+        //Makes sure cube starts upright
+        if (newMode == Mode.CUBE)
+        {
+            setRotation(0);
+        }
     }
     
     /**

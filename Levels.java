@@ -26,6 +26,12 @@ public class Levels
         
         level[0][20] = 1;
         level[0][21] = 1;
+        level[0][22] = 10;
+        
+        level[0][31] = 10;
+        level[0][32] = 1;
+        level[0][35] = 1;
+        level[1][35] = 1;
         
         return level;
     }

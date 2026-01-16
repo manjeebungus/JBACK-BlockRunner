@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * Write a description of class TestBlock here.
  * 
- * @author (your name) 
+ * @author Kelton Kuan
  * @version (a version number or a date)
  */
 public class TestBlock extends Tile

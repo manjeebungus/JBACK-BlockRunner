@@ -55,9 +55,10 @@ public class ScrollWorld extends World {
                         break;
                     // spikes
                     case 10:
-                        //worldObject = new Spike
+                        worldObject = new Spike(r, c);
+                        break;
                     default:
-                        worldObject = new Tile(r, c);
+                        //worldObject = new Tile(r, c);
                         break;
                 }
                 
@@ -68,8 +69,14 @@ public class ScrollWorld extends World {
 
         // The tile at (0,0) is part of the grid and will appear naturally
         
-        Cube.cube = new Cube();
-        addObject(Cube.cube, 200, 300);
+        player = new Cube();
+        addObject(player, 200, 300);
+        
+        
+        GreenfootImage ground = new GreenfootImage(SCREEN_WIDTH, 4);
+        ground.setColor(new Color(0,0,0));
+        ground.fill();
+        getBackground().drawImage(ground, 0, GROUND_HEIGHT);
         
         int startRow = 5;
         int startCol = 5;
