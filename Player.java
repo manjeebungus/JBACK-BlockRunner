@@ -128,9 +128,19 @@ public abstract class Player extends SuperSmoothMover
             }
             
             // ----- BOTTOM (head hit) -----
-            if (minOverlap == overlapBottom)
+            // ----- BOTTOM (ceiling / head hit) -----
+            if (minOverlap == overlapBottom && speedY > 0)
             {
-                Greenfoot.stop();
+                if (overlapBottom > TOLERANCE)
+                {
+                    Greenfoot.stop(); // real head collision
+                }
+                else
+                {
+                    // Small overlap → push player down instead of killing
+                    //setLocation(getExactX(), prevY);
+                    //speedY = 0;
+                }
                 continue;
             }
             
