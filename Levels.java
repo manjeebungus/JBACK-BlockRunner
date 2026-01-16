@@ -50,6 +50,7 @@ public class Levels
         level[3][53] = 1;
         level[4][57] = 1;
         level[5][61] = 1;
+        level[6][65] = 1;
         level[0][46] = 10;
         level[0][47] = 10;
         level[0][48] = 10;
@@ -66,7 +67,33 @@ public class Levels
         level[0][59] = 10;
         level[0][60] = 10;
         level[0][61] = 10;
-
+        level[7][65] = 10;
+        level[3][75] = 1;
+        level[3][76] = 1;
+        level[3][77] = 1;
+        level[3][78] = 1;
+        level[3][79] = 1;
+        level[3][80] = 1;
+        level[3][81] = 1;
+        level[3][82] = 1;
+        level[3][83] = 1;
+        level[3][84] = 1;
+        level[3][85] = 1;
+        level[3][86] = 1;
+        level[3][87] = 1;
+        level[3][88] = 1;
+        level[3][89] = 1;
+        level[3][90] = 1;
+        
+        level[4][79] = 10;
+        level[4][80] = 10;
+        level[4][84] = 10;
+        level[4][85] = 10;
+        level[4][86] = 10;
+        level[0][79] = 10;
+        level[0][82] = 10;
+        level[0][83] = 10;
+        
         return level;
     }
 }
