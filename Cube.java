@@ -69,6 +69,7 @@ public class Cube extends Player
             if (shipsInWorld.isEmpty())
             {
                 ScrollWorld.getWorld().addObject(new Ship(), getX(), getY());
+                setRotation(0);
             }
         }
 
@@ -130,10 +131,12 @@ public class Cube extends Player
         if (Greenfoot.isKeyDown("space"))
         {
             speedY += 1.0;
+            setRotation(-10);
         }
         else
         {
             speedY += -1.0;
+            setRotation(10);
         }
 
         if (speedY > 6) speedY = 6;
