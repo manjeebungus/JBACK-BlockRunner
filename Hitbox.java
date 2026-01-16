@@ -13,19 +13,19 @@ public class Hitbox
     private int sizeX, sizeY;
     private int offsetX, offsetY;
     
-    //These static variables are public so every class can refer to the same labels
-    public static final int SOLID   = 0;
-    public static final int HAZARD  = 1;
-    public static final int TRIGGER = 2;
-    public static final int PLAYER  = 3;
+    //These are labels for what the hitbox is expected to work with
+    //Enum explained in Cube class
+    public enum HitboxType { 
+        SOLID, HAZARD, TRIGGER, PLAYER 
+    }
     
-    private int type;
+    private HitboxType type;
     
     private static boolean hitboxVisible = true;
     private Color boxColor = Color.RED; //default color
     
     //Hitbox constructor, requires size and offsets
-    public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY, int type)
+    public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY, HitboxType type)
     {
         this.owner = owner;
         this.sizeX = sizeX;
