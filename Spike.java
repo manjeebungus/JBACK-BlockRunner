@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Spike extends WorldObject
 {
     private static final Color borderColor = new Color(0, 0, 0, 255);
+    private Hitbox hitbox;
     
     public Spike(double row, double col) {
         super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.rows-row-1) * ScrollWorld.TILE_SIZE);
@@ -35,6 +36,8 @@ public class Spike extends WorldObject
         int[] yInner = {size - margin/2, margin, size - margin/2};
         img.fillPolygon(xInner, yInner, 3);
         
+        hitbox = new Hitbox(this, 20, 25, 0, 0);
+        
         setImage(img);
     }
     
@@ -43,6 +46,10 @@ public class Spike extends WorldObject
         
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         
+        hitbox = new Hitbox(this, 20, 25, 0, 0);
+        
         setImage(image);
     }
+    
+    public Hitbox getHitbox() { return hitbox; } //for the cube
 }

@@ -12,7 +12,7 @@ public class Ship extends Player
     
     public Ship()
     {
-        
+        super();
     }
     
     public void act()
@@ -33,10 +33,12 @@ public class Ship extends Player
         if (Greenfoot.isKeyDown("space"))
         {
             speedY += 0.5;
+            setRotation(-5);
         }
         else
         {
             speedY += -0.4;
+            setRotation(5);
         }
 
         if (speedY > 6) speedY = 6;

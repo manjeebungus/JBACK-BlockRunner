@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StartScreen extends World
 {
     private GreenfootImage title;
-    private MouseClickBox playButton;
+    private ActorImage playButton;
     private static ButtonSound buttonSound;
     public StartScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(1000, 600, 1); 
         buttonSound = new ButtonSound(5, 100);
         buttonSound.stop();
         addText();
@@ -34,17 +34,15 @@ public class StartScreen extends World
     {
         Color textColor = Color.BLACK;
         Color clear = new Color(0, 0, 0, 0);
-        int fontSize = 80;
+        int fontSize = 100;
         
         title = new GreenfootImage("Block Runner", fontSize, textColor, clear);
-        getBackground().drawImage(title, 95, 70);
+        getBackground().drawImage(title, 250, 90);
     }
     
     private void addImage()
     {
-        playButton = new MouseClickBox();
-        playButton.setImage("playButton.gif");
-        playButton.getImage().scale(80, 80);
-        addObject(playButton, 300, 220);
+        playButton = new ActorImage("playButton.gif", 150, 150);
+        addObject(playButton, 500, 320);
     }
 }
