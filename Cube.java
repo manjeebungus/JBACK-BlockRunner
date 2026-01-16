@@ -25,45 +25,10 @@ public class Cube extends Player
         jumpSound = new JumpSound(5, 100);
         jumpSound.stop();
     }
-
-    public void act()
-    {
-        switch(currentMode)
-        {
-            case CUBE:
-                handleCubeMovement();
-                break;
-            case SHIP:
-                handleShipMovement();
-                break;
-        }
-
-        List<Ship> shipsInWorld = ScrollWorld.getWorld().getObjects(Ship.class);
-        if (Greenfoot.isKeyDown("c"))
-        {
-            currentMode = Mode.CUBE;
-
-            if (!shipsInWorld.isEmpty())
-            {
-                ScrollWorld.getWorld().removeObject(shipsInWorld.getFirst());
-            }
-        }
-
-        if (Greenfoot.isKeyDown("s"))
-        {
-            currentMode = Mode.SHIP;
-            if (shipsInWorld.isEmpty())
-            {
-                ScrollWorld.getWorld().addObject(new Ship(), getX(), getY());
-                setRotation(0);
-            }
-        }
-
-        if (isGrounded) roundToClosestRotation();
-
-        
-        checkCollsions();
-        spawnGroundDust();
+    
+    public void act() {
+        super.act();
+        cubeImage();
     }
 
     private void checkCollsions()

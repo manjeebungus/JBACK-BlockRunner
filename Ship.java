@@ -17,6 +17,7 @@ public class Ship extends Player
     
     public void act()
     {
+        super.act();
         shipImage();
     }
 
