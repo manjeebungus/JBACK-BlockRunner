@@ -73,9 +73,9 @@ public class Cube extends Player
         }
         
         if (isGrounded) roundToClosestRotation();
+        if(!isGrounded) spawnJumpTrail();
         
 
-        
         checkCollsions();
         spawnGroundDust();
     }
@@ -227,7 +227,9 @@ public class Cube extends Player
         if (!isGrounded) return;//only run code if grounded
         ScrollWorld.getWorld().spawnParticle(200, 25, 6, 8, 30,new Color(0, 0, 0),getX()-20, getY() + 20);
     }
-    
+    /**
+     * @Author Chase Coulter
+     */
     private void spawnJumpParticles() {
         if (isGrounded) return;
     
@@ -242,4 +244,8 @@ public class Cube extends Player
         Color color = new Color(200, 200, 200);
         world.spawnParticle(direction, spread, speed, size, life, color, baseX - 20, baseY + 20);
     }
+    private void spawnJumpTrail() {
+        ScrollWorld.getWorld().spawnParticle(200, 1, 6, 2, 30, new Color(0, 0, 0), getX(), getY());
+    }
+
 }
