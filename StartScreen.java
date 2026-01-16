@@ -25,8 +25,8 @@ public class StartScreen extends World
     {
         if (Greenfoot.mouseClicked(playButton))
         {
-            Greenfoot.setWorld(new ScrollWorld());
             buttonSound.play();
+            Greenfoot.setWorld(new ScrollWorld());
         }
     }
     
