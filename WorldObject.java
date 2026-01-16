@@ -11,15 +11,23 @@ public abstract class WorldObject extends SuperSmoothMover {
     // World coordinates (pixels)
     protected double worldX;
     protected double worldY;
+    protected int preload;
 
     public WorldObject(double x, double y) {
         this.worldX = x;
         this.worldY = y;
+        this.preload = 64;
+    }
+    
+    public WorldObject(double x, double y, int preload) {
+        this.worldX = x;
+        this.worldY = y;
+        this.preload = preload;
     }
 
     // Update screen position based on camera
     public void updateScreenPosition(double camX, double camY, int screenWidth, int screenHeight) {
-        int preload = 64; // load tiles earlier
+        
     
         double screenX = worldX - camX;
         double screenY = worldY - camY;

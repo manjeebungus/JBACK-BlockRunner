@@ -9,12 +9,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StartScreen extends World
 {
     private GreenfootImage title;
-    private MouseClickBox playButton;
+    private ActorImage playButton;
     private static ButtonSound buttonSound;
     public StartScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(1000, 600, 1); 
         buttonSound = new ButtonSound(5, 100);
         buttonSound.stop();
         addText();
@@ -42,9 +42,7 @@ public class StartScreen extends World
     
     private void addImage()
     {
-        playButton = new MouseClickBox();
-        playButton.setImage("playButton.gif");
-        playButton.getImage().scale(80, 80);
+        playButton = new ActorImage("playButton.gif", 80, 80);
         addObject(playButton, 300, 220);
     }
 }

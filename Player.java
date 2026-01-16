@@ -27,7 +27,7 @@ public abstract class Player extends SuperSmoothMover
     protected Mode currentMode = Mode.CUBE;
     
     public Player() {
-        //hitbox = new Hitbox (this, TILE_SIZE, TILE_SIZE, 0, 0, Hitbox.PLAYER);
+        hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0);
         
     }
     
@@ -81,6 +81,7 @@ public abstract class Player extends SuperSmoothMover
         
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
+    
     }
     
     protected abstract void move();
@@ -101,6 +102,16 @@ public abstract class Player extends SuperSmoothMover
             setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
         } else if (tilesTouching.size() == 0){
             isGrounded = false;
+        }
+        
+        List<Spike> spikes = getWorld().getObjects(Spike.class);
+        
+        for (Spike s : spikes)
+        {
+            if (hitbox.intersects(s.getHitbox()))
+            {
+                Greenfoot.stop(); //placeholder for death
+            }
         }
     }
     
@@ -157,6 +168,18 @@ public abstract class Player extends SuperSmoothMover
         speedY = speed;
         isGrounded = false;
         firstJumpMade = true;
+    }
+    
+    protected void setMode(Mode newMode)
+    {
+        currentMode = newMode;
+        speedY = 0;
+
+        //Makes sure cube starts upright
+        if (newMode == Mode.CUBE)
+        {
+            setRotation(0);
+        }
     }
     
     /**

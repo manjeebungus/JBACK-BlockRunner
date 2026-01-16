@@ -27,10 +27,16 @@ public class ScrollWorld extends World {
     private final double SPRINT_SPEED = 1.75;
     
     private int[][] objects;
+    
+    private Ground ground1,ground2;
 
     public ScrollWorld() {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
-        
+        addObject(new StaticImage("Enviroment/bg1.png"),500,300);
+        ground1 = new Ground("Enviroment/fg1.png");
+        ground2 = new Ground("Enviroment/fg1.png");
+        addObject(ground1,500,300);
+        addObject(ground2,1500,300);
         world = this;
         
         Greenfoot.setSpeed(50);
@@ -120,6 +126,8 @@ public class ScrollWorld extends World {
                 }
             }
         }
+        ground1.updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
+        ground2.updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     
     /**

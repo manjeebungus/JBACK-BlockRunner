@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class Cube extends Player
 {
-    
-
     public static Cube cube;
+    
+    private static String cubeImageString = "images/Player/cube1.png";
     
     public Cube()
     {
@@ -31,30 +31,6 @@ public class Cube extends Player
     public void act() {
         super.act();
         cubeImage();
-    }
-
-    private void checkCollsions()
-    {
-        tilesTouching = getIntersectingObjects(Tile.class);
-        for (Tile tile : tilesTouching) {
-            if (speedY <= 0 && getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
-                setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+2);
-            }
-        }
-
-        //If the y distance between the ground an the cube is small enough, set the y
-        //position to the ground
-        if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < getImage().getHeight()/2 + 10)
-        {
-            setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
-        } else if (tilesTouching.size() == 0){
-            isGrounded = false;
-        }
-    }
-
-    private void handleCubeMovement()
-    {
-        
     }
 
     protected void move()
@@ -104,26 +80,18 @@ public class Cube extends Player
     }
 
     private void cubeImage(){
-        image = new GreenfootImage("images/Player/cube1.png");
+        image = new GreenfootImage(cubeImageString);
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         setImage(image);
     }
 
-    public void setMode(Mode newMode)
+    public static String getImageString()
     {
-        currentMode = newMode;
-        speedY = 0;
-
-        //Makes sure cube starts upright
-        if (newMode == Mode.CUBE)
-        {
-            setRotation(0);
-        }
+        return cubeImageString;
     }
 
-    
-
-    private void spawnJumpParticles() {
+    private void spawnJumpParticles()
+    {
         if (isGrounded) return;
 
         ScrollWorld world = ScrollWorld.getWorld();
