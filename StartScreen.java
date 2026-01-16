@@ -34,15 +34,15 @@ public class StartScreen extends World
     {
         Color textColor = Color.BLACK;
         Color clear = new Color(0, 0, 0, 0);
-        int fontSize = 80;
+        int fontSize = 100;
         
         title = new GreenfootImage("Block Runner", fontSize, textColor, clear);
-        getBackground().drawImage(title, 95, 70);
+        getBackground().drawImage(title, 250, 70);
     }
     
     private void addImage()
     {
-        playButton = new ActorImage("playButton.gif", 80, 80);
-        addObject(playButton, 300, 220);
+        playButton = new ActorImage("playButton.gif", 150, 150);
+        addObject(playButton, 500, 300);
     }
 }
