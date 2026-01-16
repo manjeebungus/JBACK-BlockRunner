@@ -156,7 +156,7 @@ public abstract class Player extends SuperSmoothMover
     /**
      * @Author Chase Coulter
      */
-    private void spawnGroundDust()
+    protected void spawnGroundDust()
     {
         if (!isGrounded) return;//only run code if grounded
         ScrollWorld.getWorld().spawnParticle(200, 25, 6, 8, 30,new Color(0, 0, 0),getX()-20, getY() + 20);

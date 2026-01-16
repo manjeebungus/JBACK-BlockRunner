@@ -10,10 +10,13 @@ public class Ship extends Player
 {
     private GreenfootImage image;
     
+    public Ship()
+    {
+        
+    }
+    
     public void act()
     {
-        followCube();
-        
         shipImage();
     }
 
@@ -24,12 +27,20 @@ public class Ship extends Player
         setImage(image);
     }
     
-    private void followCube()
+    protected void move()
     {
-        double cubeX = Cube.cube.getExactX();
-        double cubeY = Cube.cube.getExactY();
-        
-        setLocation(cubeX - 12, cubeY + 24);
-        setRotation(Cube.cube.getPreciseRotation());
+        if (Greenfoot.isKeyDown("space"))
+        {
+            speedY += 0.5;
+        }
+        else
+        {
+            speedY += -0.4;
+        }
+
+        if (speedY > 6) speedY = 6;
+        if (speedY < -6) speedY = -6;
+
+        if (speedY > 0) isGrounded = false;
     }
 }

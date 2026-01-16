@@ -68,7 +68,7 @@ public class Cube extends Player
 
     private void checkCollsions()
     {
-        tilesTouching = getIntersectingObjects(TestBlock.class);
+        tilesTouching = getIntersectingObjects(Tile.class);
         for (Tile tile : tilesTouching) {
             if (speedY <= 0 && getExactY() + ScrollWorld.TILE_SIZE > tile.getExactY()) {
                 setToGround(tile.getExactY() - ScrollWorld.TILE_SIZE+2);
@@ -86,6 +86,9 @@ public class Cube extends Player
     }
 
     private void handleCubeMovement()
+    {
+        
+    }
 
     protected void move()
     {
