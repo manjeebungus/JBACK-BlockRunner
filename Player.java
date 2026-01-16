@@ -23,7 +23,13 @@ public abstract class Player extends SuperSmoothMover
     protected double speedY;
     protected GreenfootImage image;
     protected List<Tile> tilesTouching;
+    protected Hitbox hitbox;
     protected Mode currentMode = Mode.CUBE;
+    
+    public Player() {
+        //hitbox = new Hitbox (this, TILE_SIZE, TILE_SIZE, 0, 0, Hitbox.PLAYER);
+        
+    }
     
     /**
      * Act - do whatever the Player wants to do. This method is called whenever

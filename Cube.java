@@ -16,13 +16,15 @@ public class Cube extends Player
     
     public Cube()
     {
+        super();
+        
         cube = this;
         isGrounded = false;
         speedY = 0;
         currentMode = Mode.CUBE;
 
         cubeImage();
-        jumpSound = new JumpSound(5, 100);
+        jumpSound = new JumpSound(5, 60);
         jumpSound.stop();
     }
     
@@ -127,7 +129,7 @@ public class Cube extends Player
         ScrollWorld world = ScrollWorld.getWorld();
         int baseX = getX();
         int baseY = getY();
-        int direction = 90;
+        int direction = 130;
         int spread = 30;
         double speed = 2.0 + Greenfoot.getRandomNumber(4);
         int size = 12;

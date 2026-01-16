@@ -21,6 +21,21 @@ public class Levels
         level = new int[levelRows][levelCols];
     }
     
+    public static int[][] levelTest() {
+        emptyLevel();
+        
+        level[0][20] = 1;
+        level[0][21] = 1;
+        level[0][22] = 10;
+        
+        level[0][31] = 10;
+        level[0][32] = 1;
+        level[0][36] = 1;
+        level[1][36] = 1;
+        
+        return level;
+    }
+    
     public static int[][] level1() {
         emptyLevel();
         
