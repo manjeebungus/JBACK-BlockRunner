@@ -25,8 +25,8 @@ public class StartScreen extends World
     {
         if (Greenfoot.mouseClicked(playButton))
         {
-            Greenfoot.setWorld(new ScrollWorld());
             buttonSound.play();
+            Greenfoot.setWorld(new ScrollWorld());
         }
     }
     
@@ -37,12 +37,12 @@ public class StartScreen extends World
         int fontSize = 100;
         
         title = new GreenfootImage("Block Runner", fontSize, textColor, clear);
-        getBackground().drawImage(title, 250, 70);
+        getBackground().drawImage(title, 250, 90);
     }
     
     private void addImage()
     {
         playButton = new ActorImage("playButton.gif", 150, 150);
-        addObject(playButton, 500, 300);
+        addObject(playButton, 500, 320);
     }
 }
