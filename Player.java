@@ -159,6 +159,18 @@ public abstract class Player extends SuperSmoothMover
         firstJumpMade = true;
     }
     
+    protected void setMode(Mode newMode)
+    {
+        currentMode = newMode;
+        speedY = 0;
+
+        //Makes sure cube starts upright
+        if (newMode == Mode.CUBE)
+        {
+            setRotation(0);
+        }
+    }
+    
     /**
      * @Author Chase Coulter
      */

@@ -85,24 +85,13 @@ public class Cube extends Player
         setImage(image);
     }
 
-    public void setMode(Mode newMode)
-    {
-        currentMode = newMode;
-        speedY = 0;
-
-        //Makes sure cube starts upright
-        if (newMode == Mode.CUBE)
-        {
-            setRotation(0);
-        }
-    }
-
     public static String getImageString()
     {
         return cubeImageString;
     }
 
-    private void spawnJumpParticles() {
+    private void spawnJumpParticles()
+    {
         if (isGrounded) return;
 
         ScrollWorld world = ScrollWorld.getWorld();
