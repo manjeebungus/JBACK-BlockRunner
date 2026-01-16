@@ -15,7 +15,7 @@ public class Hitbox
     
     //These are labels for what the hitbox is expected to work with
     //Enum explained in Cube class
-    public enum HitboxType { 
+    public static enum HitboxType { 
         SOLID, HAZARD, TRIGGER, PLAYER 
     }
     
@@ -25,14 +25,14 @@ public class Hitbox
     private Color boxColor = Color.RED; //default color
     
     //Hitbox constructor, requires size and offsets
-    public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY, HitboxType type)
+    public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY)
     {
         this.owner = owner;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-        this.type = type;
+        //this.type = type;
     }
     
     //Collision (with math)
@@ -81,6 +81,7 @@ public class Hitbox
     public int getWidth() { return sizeX; }
     public int getHeight() { return sizeY; }
     public static boolean isBoxVisible() { return hitboxVisible; }
+    public HitboxType getType() { return type; }
 
     public int left()   { return getX() - sizeX / 2; } //X coordinate of left edge of hitbox
     public int right()  { return getX() + sizeX / 2; } //X coordinate of right edge
