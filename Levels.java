@@ -30,8 +30,8 @@ public class Levels
         
         level[0][31] = 10;
         level[0][32] = 1;
-        level[0][35] = 1;
-        level[1][35] = 1;
+        level[0][36] = 1;
+        level[1][36] = 1;
         
         return level;
     }

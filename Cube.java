@@ -10,24 +10,10 @@ import java.util.List;
  */
 public class Cube extends Player
 {
-    //Enum is a class type for fixed constants that do not allow for other values
-    ///than what is inside it
-    public enum Mode {
-        CUBE, SHIP
-    }
+    
 
     public static Cube cube;
-
-    private static JumpSound jumpSound;
-
-    private boolean isGrounded = true;
-    private boolean spacePressed = false;
-    private boolean firstJumpMade = false;
-    private double speedY;
-    private GreenfootImage image;
-    private List<TestBlock> tilesTouching;
-    private Mode currentMode = Mode.CUBE;
-
+    
     public Cube()
     {
         cube = this;
@@ -100,19 +86,19 @@ public class Cube extends Player
     }
 
     private void handleCubeMovement()
+
+    protected void move()
     {
         //Makes sure you can't hold space to "fly"
         if (Greenfoot.isKeyDown("space") && !spacePressed && isGrounded)
         {
             spacePressed = true;
             jumpSound.play();
-            jump();
+            jump(10);
             for(int i = 0; i<10;i++){
                 spawnJumpParticles();
             }
         }
-        //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
-        setLocation(getExactX(), getExactY() - speedY);
 
         //keep decreasing speed while midair
         if (!isGrounded)
@@ -153,26 +139,6 @@ public class Cube extends Player
         setImage(image);
     }
 
-    private void jump()
-    {        
-        speedY = 10;
-        isGrounded = false;
-        firstJumpMade = true;
-    }
-
-    /**
-     * Sets all variables necessary in order to land the cube on a platform  
-     * @param yPos the y position of the platform to land on
-     */
-    public void setToGround(double yPos)
-    {
-        isGrounded = true;
-        spacePressed = false;
-        setLocation(getExactX(), yPos);
-        speedY = 0;
-        if (currentMode == Mode.CUBE) roundToClosestRotation();
-    }
-
     public void setMode(Mode newMode)
     {
         currentMode = newMode;
@@ -185,49 +151,7 @@ public class Cube extends Player
         }
     }
 
-    /**
-     * This method rounds to the closest degree rotation to make sure the cube does not 
-     * land on a wrong angle(makes sure its flat on the ground)
-     */
-    private void roundToClosestRotation()
-    {
-        int rotation = getRotation();
-
-        if (rotation < 45)
-        {
-            setRotation(0);
-            return;
-        }
-
-        if (rotation < 135)
-        {
-            setRotation(90);
-            return;
-        }
-
-        if (rotation < 225)
-        {
-            setRotation(180);
-            return;
-        }
-
-        if (rotation < 315)
-        {
-            setRotation(270);
-            return;
-        }
-
-        setRotation(0);
-    }
-
-    /**
-     * @Author Chase Coulter
-     */
-    private void spawnGroundDust()
-    {
-        if (!isGrounded) return;//only run code if grounded
-        ScrollWorld.getWorld().spawnParticle(200, 25, 6, 8, 30,new Color(0, 0, 0),getX()-20, getY() + 20);
-    }
+    
 
     private void spawnJumpParticles() {
         if (isGrounded) return;
