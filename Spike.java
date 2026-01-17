@@ -36,7 +36,7 @@ public class Spike extends WorldObject
         int[] yInner = {size - margin/2, margin, size - margin/2};
         img.fillPolygon(xInner, yInner, 3);
         
-        hitbox = new Hitbox(this, 20, 25, 0, 0);
+        hitbox = new Hitbox(this, 20, 25, 0, 0, Hitbox.HitboxType.HAZARD);
         
         setImage(img);
     }
@@ -46,7 +46,7 @@ public class Spike extends WorldObject
         
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         
-        hitbox = new Hitbox(this, 20, 25, 0, 0);
+        hitbox = new Hitbox(this, 20, 25, 0, 0, Hitbox.HitboxType.HAZARD);
         
         setImage(image);
     }

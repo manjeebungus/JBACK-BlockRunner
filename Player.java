@@ -5,6 +5,7 @@ import java.util.List;
  * Write a description of class Player here.
  * 
  * @author Kelton Kuan and Abithan
+ * Hitbox interactions by Brian
  * @version (a version number or a date)
  */
 public abstract class Player extends SuperSmoothMover
@@ -31,7 +32,7 @@ public abstract class Player extends SuperSmoothMover
     protected double prevY;
     
     public Player() {
-        hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0);
+        hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
         
     }
     

@@ -16,7 +16,7 @@ public class Hitbox
     //These are labels for what the hitbox is expected to work with
     //Enum explained in Cube class
     public static enum HitboxType { 
-        SOLID, HAZARD, TRIGGER, PLAYER 
+        SOLID, HAZARD, INTERACT, PLAYER 
     }
     
     private HitboxType type;
@@ -24,15 +24,34 @@ public class Hitbox
     private static boolean hitboxVisible = true;
     private Color boxColor = Color.RED; //default color
     
+    /**
+     *Visuals:
+     *RED for cube and hazards, 
+     *BLUE for inner hitbox and blocks, 
+     *GREEN for interactions (Portals, Orbs, etc)
+     */
+    
     //Hitbox constructor, requires size and offsets
-    public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY)
+    public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY, HitboxType type)
     {
         this.owner = owner;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         this.offsetX = offsetX;
         this.offsetY = offsetY;
-        //this.type = type;
+        this.type = type;
+        
+        //Hitbox color change
+        switch (type)
+        {
+            case SOLID:
+                boxColor = Color.BLUE;
+                break;
+    
+            case INTERACT:
+                boxColor = Color.GREEN;
+                break;
+        }
     }
     
     //Collision (with math)
@@ -49,15 +68,6 @@ public class Hitbox
      * Colors can be switched between red and blue (Red is for interactions, blue is for blocks)
      */
     
-    /**
-     *Visuals:
-     *RED for cube and obstacles, 
-     *BLUE for inner hitbox and blocks, 
-     *GREEN for interactions (Portals, Orbs, etc)
-     */
-    public void setBoxRed()   { boxColor = Color.RED; }   
-    public void setBoxBlue()  { boxColor = Color.BLUE; }
-    public void setBoxGreen() { boxColor = Color.GREEN; }
     
     public void draw(GreenfootImage canvas)
     {
