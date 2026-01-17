@@ -40,7 +40,7 @@ public class Cube extends Player
         {
             spacePressed = true;
             jumpSound.play();
-            jump(10);
+            jump(9);
             for(int i = 0; i<10;i++){
                 spawnJumpParticles();
             }
@@ -49,7 +49,7 @@ public class Cube extends Player
         //keep decreasing speed while midair
         if (!isGrounded)
         {
-            speedY-= 0.5; //Acts like gravity
+            speedY-= 0.42; //Acts like gravity
 
             //Makes sure the cube doesn't turn when initialy falling
             //Using a count variable this if statement runs 40 times for one jump
