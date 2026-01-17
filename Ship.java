@@ -26,8 +26,8 @@ public class Ship extends Player
 
     private void shipImage()
     {
-        image = new GreenfootImage("images/Player/ship1.png");
-        image.scale(120, 90);
+        image = new GreenfootImage("images/Player/shipPlayer.png");
+        image.scale((int)(ScrollWorld.TILE_SIZE * 1.5), (int)(ScrollWorld.TILE_SIZE * 1.5));
         setImage(image);
     }
     

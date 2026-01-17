@@ -90,6 +90,17 @@ public class Levels
         level[1][95] = 1;
         level[1][96] = 1;
         level[1][97] = 1;
+        level[2][98] = 1;
+        level[3][98] = 1;
+        level[5][98] = 1;
+        level[1][99] = 1;
+        level[1][100] = 1;
+        level[1][101] = 1;
+        level[1][102] = 1;
+        level[1][103] = 1;
+        level[2][104] = 1;
+        level[3][104] = 1;
+        level[5][104] = 1;
         
         return level;
     }
