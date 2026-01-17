@@ -7,8 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ScreenChangeButton extends Button
 {
     public ScreenChangeButton(String staticName, String pressedName,String sound){
-        super(staticName, pressedName);
-        
+        super(staticName, pressedName,sound);
     }
     public ScreenChangeButton(String staticName, String pressedName){
         super(staticName, pressedName);

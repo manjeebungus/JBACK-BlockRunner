@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Visual here.
+ * @Author Chase Coulter
+ * @Version v1.0
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * as of writing, just meant to categorize subclasses
  */
 public class Visual extends SuperSmoothMover
 {

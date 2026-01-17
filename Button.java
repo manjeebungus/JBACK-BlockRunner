@@ -1,5 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * @Author Chase Coulter
+ * @Version v1.1
+ */
 public abstract class Button extends SuperSmoothMover
 {
     private GreenfootImage staticImage,pressedImage;
