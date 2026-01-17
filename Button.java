@@ -4,12 +4,21 @@ public abstract class Button extends SuperSmoothMover
 {
     private GreenfootImage staticImage,pressedImage;
     private boolean isPressed = false;
+    private GreenfootSound sound;
 
+    public Button(String staticName, String pressedName, String soundName)
+    {
+        staticImage = new GreenfootImage(staticName);
+        pressedImage = new GreenfootImage(pressedName);
+        sound = new GreenfootSound(soundName);
+        setImage(staticImage);
+    }
     public Button(String staticName, String pressedName)
     {
         staticImage = new GreenfootImage(staticName);
         pressedImage = new GreenfootImage(pressedName);
         setImage(staticImage);
+        sound = new GreenfootSound("buttonpress.wav");
     }
     /**
      * defaults to having the same image for both
@@ -19,6 +28,7 @@ public abstract class Button extends SuperSmoothMover
         staticImage = new GreenfootImage(fileName);
         pressedImage = staticImage;
         setImage(staticImage);
+        sound = new GreenfootSound("buttonpress.wav");
     }
 
     public void act()
@@ -27,17 +37,23 @@ public abstract class Button extends SuperSmoothMover
         {
             isPressed = true;
             setImage(pressedImage);
+            sound.play();
         }
-        if (isPressed && Greenfoot.mouseDragEnded(null))
+        if (isPressed && Greenfoot.mouseClicked(this))
         {
             isPressed = false;
             setImage(staticImage);
-            if (Greenfoot.mouseClicked(this))
-            {
-                behaviour();
-            }
+            behaviour();
+            sound.stop();
+        }
+        if (isPressed && Greenfoot.mouseClicked(null))
+        {
+            isPressed = false;
+            setImage(staticImage);
+            sound.stop();
         }
     }
+
 
     protected abstract void behaviour();
 }

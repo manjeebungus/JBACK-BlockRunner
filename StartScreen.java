@@ -15,10 +15,16 @@ public class StartScreen extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1000, 600, 1); 
-        buttonSound = new ButtonSound(5, 100);
-        buttonSound.stop();
+        GreenfootImage bg = new GreenfootImage(getWidth(), getHeight());
+        bg.setColor(Color.GRAY);
+        bg.fill();
+        setBackground(bg);
+
+        //buttonSound = new ButtonSound(5, 100);
+        //buttonSound.stop();
         addText();
         addImage();
+        addObject(new ScreenChangeButton("Menu/play1.png","Menu/play2.png"),470,330);
     }
     
     public void act()

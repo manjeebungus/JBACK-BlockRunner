@@ -6,6 +6,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class ScreenChangeButton extends Button
 {
+    public ScreenChangeButton(String staticName, String pressedName,String sound){
+        super(staticName, pressedName);
+        
+    }
     public ScreenChangeButton(String staticName, String pressedName){
         super(staticName, pressedName);
     }
@@ -14,6 +18,6 @@ public class ScreenChangeButton extends Button
         super.act();
     }
     protected void behaviour(){
-        
+        Greenfoot.setWorld(new ScrollWorld());
     }
 }
