@@ -3,6 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * @Author Chase Coulter
  * @Version v1.0
+ * 
+ * ScreenChangeButton is an extension of Button, its behaviour is setting world to ScrollWorld
  */
 public class ScreenChangeButton extends Button
 {

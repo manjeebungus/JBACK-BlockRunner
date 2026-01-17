@@ -3,6 +3,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * @Author Chase Coulter
  * @Version v1.1
+ * 
+ * Button is an abstract superclass, meant to supply the basic framework
+ * for the behaviour of any button
+ * 
  */
 public abstract class Button extends SuperSmoothMover
 {
@@ -10,6 +14,11 @@ public abstract class Button extends SuperSmoothMover
     private boolean isPressed = false;
     private GreenfootSound sound;
 
+    /**
+     * @Param String staticName, name of unpressed Image
+     * @Param String pressedName, name of pressed Image
+     * @Param String soundName, name of sound effect when clicking
+     */
     public Button(String staticName, String pressedName, String soundName)
     {
         staticImage = new GreenfootImage(staticName);
@@ -17,6 +26,10 @@ public abstract class Button extends SuperSmoothMover
         sound = new GreenfootSound(soundName);
         setImage(staticImage);
     }
+    /**
+     * @Param String staticName, name of unpressed Image
+     * @Param String pressedName, name of pressed Image
+     */
     public Button(String staticName, String pressedName)
     {
         staticImage = new GreenfootImage(staticName);
@@ -25,7 +38,7 @@ public abstract class Button extends SuperSmoothMover
         sound = new GreenfootSound("buttonpress.wav");
     }
     /**
-     * defaults to having the same image for both
+     * @Param String fileName, name of unpressed AND pressed Images
      */
     public Button(String fileName)
     {
@@ -35,6 +48,9 @@ public abstract class Button extends SuperSmoothMover
         sound = new GreenfootSound("buttonpress.wav");
     }
 
+    /**
+     * check if clicked and change images accordingly
+     */
     public void act()
     {
         if (Greenfoot.mousePressed(this))
@@ -58,6 +74,8 @@ public abstract class Button extends SuperSmoothMover
         }
     }
 
-
+    /**
+     * behaviour is to be defined by subclasses
+     */
     protected abstract void behaviour();
 }
