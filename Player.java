@@ -60,7 +60,7 @@ public abstract class Player extends SuperSmoothMover
         List<Ship> shipsInWorld = ScrollWorld.getWorld().getObjects(Ship.class);
         if (Greenfoot.isKeyDown("c"))
         {
-            currentMode = Mode.CUBE;
+            setMode(Mode.CUBE);
 
             if (!shipsInWorld.isEmpty())
             {
@@ -72,7 +72,7 @@ public abstract class Player extends SuperSmoothMover
 
         if (Greenfoot.isKeyDown("s"))
         {
-            currentMode = Mode.SHIP;
+            setMode(Mode.SHIP);
             if (shipsInWorld.isEmpty())
             {
                 ScrollWorld.getWorld().addObject(new Ship(), getX(), getY());
@@ -88,17 +88,12 @@ public abstract class Player extends SuperSmoothMover
         
         checkCollisions();
         spawnGroundDust();
-        
-        
-    
     }
     
     protected abstract void move();
     
     protected void checkCollisions()
     {
-        
-        
         tilesTouching = getIntersectingObjects(Tile.class);
         for (Tile tile : getIntersectingObjects(Tile.class)) {
             double pxLeft   = getExactX() - getImage().getWidth() / 2;
@@ -227,6 +222,10 @@ public abstract class Player extends SuperSmoothMover
         setRotation(0);
     }
     
+    /**
+     * Sets variables nessesary in order to jump properly
+     * @param speed the jump speed/height
+     */
     protected void jump(double speed)
     {        
         speedY = speed;
@@ -234,12 +233,16 @@ public abstract class Player extends SuperSmoothMover
         firstJumpMade = true;
     }
     
+    /**
+     * Sets the current mode for the player
+     * @param newMode the new mode for the cube
+     */
     protected void setMode(Mode newMode)
     {
         currentMode = newMode;
         speedY = 0;
 
-        //Makes sure cube starts upright
+        //Makes sure cube starts upright after changing modes
         if (newMode == Mode.CUBE)
         {
             setRotation(0);

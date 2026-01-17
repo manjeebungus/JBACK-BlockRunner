@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class StartScreen extends World
 {
     private GreenfootImage title;
-    private ActorImage playButton;
     private static ButtonSound buttonSound;
     public StartScreen()
     {    
@@ -23,17 +22,7 @@ public class StartScreen extends World
         //buttonSound = new ButtonSound(5, 100);
         //buttonSound.stop();
         addText();
-        addImage();
         addObject(new ScreenChangeButton("Menu/play1.png","Menu/play2.png"),470,330);
-    }
-    
-    public void act()
-    {
-        if (Greenfoot.mouseClicked(playButton))
-        {
-            buttonSound.play();
-            Greenfoot.setWorld(new ScrollWorld());
-        }
     }
     
     private void addText()
@@ -44,11 +33,5 @@ public class StartScreen extends World
         
         title = new GreenfootImage("Block Runner", fontSize, textColor, clear);
         getBackground().drawImage(title, 250, 90);
-    }
-    
-    private void addImage()
-    {
-        playButton = new ActorImage("playButton.gif", 150, 150);
-        addObject(playButton, 500, 320);
     }
 }

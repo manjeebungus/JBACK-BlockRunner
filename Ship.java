@@ -13,18 +13,21 @@ public class Ship extends Player
     public Ship()
     {
         super();
+        shipImage();
     }
     
     public void act()
     {
         super.act();
-        shipImage();
+        
+        //Rotates the ship based on speed & since speed changes overtime, so does the rotation
+        setRotation(speedY * -3.0);
     }
 
     private void shipImage()
     {
         image = new GreenfootImage("images/Player/ship1.png");
-        image.scale(120, 100);
+        image.scale(120, 90);
         setImage(image);
     }
     
@@ -33,12 +36,10 @@ public class Ship extends Player
         if (Greenfoot.isKeyDown("space"))
         {
             speedY += 0.5;
-            setRotation(-5);
         }
         else
         {
-            speedY += -0.4;
-            setRotation(5);
+            speedY -= 0.35;
         }
 
         if (speedY > 6) speedY = 6;
