@@ -114,7 +114,7 @@ public abstract class Player extends SuperSmoothMover
                     break;
     
                 case HAZARD:
-                    Greenfoot.stop(); // death
+                    Greenfoot.setWorld(new ScrollWorld()); //Respawns
                     break;
     
                 case INTERACT:
@@ -168,7 +168,7 @@ public abstract class Player extends SuperSmoothMover
         {
             if (overlapBottom > TOLERANCE)
             {
-                Greenfoot.stop(); // real head collision
+                Greenfoot.setWorld(new ScrollWorld()); // real head collision
             }
             else
             {
@@ -184,7 +184,7 @@ public abstract class Player extends SuperSmoothMover
         {
             if (minOverlap > TOLERANCE)
             {
-                Greenfoot.stop();
+                Greenfoot.setWorld(new ScrollWorld());
             }
             else
             {
