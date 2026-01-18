@@ -18,10 +18,11 @@ public class ScrollWorld extends World {
     public static final int SCREEN_HEIGHT = 600;
     public static final int GROUND_OFFSET = 200;
     public static final int GROUND_HEIGHT = ScrollWorld.SCREEN_HEIGHT - ScrollWorld.GROUND_OFFSET + ScrollWorld.TILE_SIZE;
-
+    
     private WorldObject[][] grid;
     private double camX = 0;
     private double camY = 0;
+    
     private final double SCROLL_SPEED = 5.5;
     private double scrollMultiplier = 1.00;
     private final double SPRINT_SPEED = 1.75;
@@ -96,6 +97,10 @@ public class ScrollWorld extends World {
         int startX = startCol * TILE_SIZE;
         int startY = startRow * TILE_SIZE;
         
+        int groundRow = rows - 1;
+        int groundWorldY = groundRow * TILE_SIZE;
+        camY = groundWorldY - (SCREEN_HEIGHT - GROUND_OFFSET);
+        
         //addObject(player, -100, -100); // will be placed correctly by updateScreenPosition
         
         // Hitboxes always on top
@@ -104,7 +109,7 @@ public class ScrollWorld extends World {
 
     public void act() {
         handleSprintKey();
-        autoScroll();
+        autoScroll(); // horizontal scrolling
         updateWorldObjects();
     }
     
@@ -121,12 +126,11 @@ public class ScrollWorld extends World {
     
         // Clamp camera so it doesn't go past world
         camX = Math.min(camX, cols * TILE_SIZE - SCREEN_WIDTH);
-        int groundRow = rows - 1;
-        int groundWorldY = groundRow * TILE_SIZE;
         
-        camY = groundWorldY - (SCREEN_HEIGHT - GROUND_OFFSET);
+        
+        //camY = groundWorldY - (SCREEN_HEIGHT - GROUND_OFFSET);
     }
-
+    
     private void updateWorldObjects() {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
@@ -146,7 +150,14 @@ public class ScrollWorld extends World {
     {
         addObject(new Particle(direction,spread,speed,size,life,color),x, y);
     }
-
+    
+    public void moveCameraY(double amount) {
+        camY += amount;
+    }
+    
+    public double getCameraY() {
+        return camY;
+    }
     
     public static ScrollWorld getWorld() {
         return world;
