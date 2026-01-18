@@ -18,7 +18,12 @@ public class ScreenChangeButton extends Button
     {
         super.act();
     }
-    protected void behaviour(){
+    protected void behaviour() {
+        World currentWorld = getWorld();
+        if (currentWorld != null) {
+            currentWorld.addObject(new ScreenWipe(1), 0, 300);
+        }
         Greenfoot.setWorld(new ScrollWorld());
     }
+
 }
