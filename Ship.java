@@ -14,6 +14,7 @@ public class Ship extends Player
     {
         super();
         shipImage();
+        this.hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
     }
     
     public void act()

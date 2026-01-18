@@ -15,7 +15,7 @@ public abstract class Player extends SuperSmoothMover
     protected boolean isGrounded = true;
     protected boolean spacePressed = false;
     protected boolean firstJumpMade = false;
-    protected double speedY;
+    protected static double speedY;
     protected GreenfootImage image;
     protected Hitbox hitbox;
     
@@ -24,6 +24,9 @@ public abstract class Player extends SuperSmoothMover
     protected double prevY;
     
     public Player() {
+        isGrounded = true;
+        speedY = 0;
+        
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
         
     }
@@ -36,8 +39,16 @@ public abstract class Player extends SuperSmoothMover
      */
     public void act()
     {
+        // HARD GROUND CLAMP (prevents going through the ground on mode switch)
+        if (getExactY() > ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2)
+        {
+            setToGround(ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2);
+        }
+        
         prevX = getExactX();
         prevY = getExactY();
+        
+        checkCollisions();
         
         move();
 
@@ -46,7 +57,7 @@ public abstract class Player extends SuperSmoothMover
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
         
-        checkCollisions();
+        
         
         if (getWorld() == null) return;
         
@@ -91,7 +102,7 @@ public abstract class Player extends SuperSmoothMover
     
         //If the y distance between the ground an the cube is small enough, set the y
         //position to the ground
-        if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < getImage().getHeight()/2 + 10)
+        if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < ScrollWorld.TILE_SIZE/2 + 10)
         {
             setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
         } else if (!touchingSolid){
@@ -101,10 +112,10 @@ public abstract class Player extends SuperSmoothMover
     
     protected void checkSolid(Hitbox tile)
     {
-        double pxLeft   = getExactX() - getImage().getWidth() / 2;
-        double pxRight  = getExactX() + getImage().getWidth() / 2;
-        double pxTop    = getExactY() - getImage().getHeight() / 2;
-        double pxBottom = getExactY() + getImage().getHeight() / 2;
+        double pxLeft   = getExactX() - ScrollWorld.TILE_SIZE / 2;
+        double pxRight  = getExactX() + ScrollWorld.TILE_SIZE / 2;
+        double pxTop    = getExactY() - ScrollWorld.TILE_SIZE / 2;
+        double pxBottom = getExactY() + ScrollWorld.TILE_SIZE / 2;
         
         double txLeft   = tile.left();
         double txRight  = tile.right();
@@ -124,7 +135,7 @@ public abstract class Player extends SuperSmoothMover
         // ----- TOP (landing) -----
         if (minOverlap == overlapTop && speedY < 0)
         {
-            setToGround(txTop - getImage().getHeight() / 2);
+            setToGround(txTop - ScrollWorld.TILE_SIZE / 2);
             return;
         }
         

@@ -15,8 +15,8 @@ public class Cube extends Player
     {
         super();
         cube = this;
-        isGrounded = false;
-        speedY = 0;
+        //isGrounded = false;
+        //speedY = 0;
 
         cubeImage();
         jumpSound = new JumpSound(5, 60);
