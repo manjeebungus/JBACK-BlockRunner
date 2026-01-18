@@ -11,28 +11,18 @@ import java.util.List;
 public class Cube extends Player
 {
     public static Cube cube;
-    
-    private static String cubeImageString = "images/Player/cube1.png";
-    
     public Cube()
     {
         super();
-        
         cube = this;
         isGrounded = false;
         speedY = 0;
-        currentMode = Mode.CUBE;
 
         cubeImage();
         jumpSound = new JumpSound(5, 60);
         jumpSound.stop();
     }
     
-    public void act() {
-        super.act();
-        cubeImage();
-    }
-
     protected void move()
     {
         //Makes sure you can't hold space to "fly"
@@ -59,14 +49,9 @@ public class Cube extends Player
     }
 
     private void cubeImage(){
-        image = new GreenfootImage(cubeImageString);
+        image = new GreenfootImage("images/Player/cube1.png");
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         setImage(image);
-    }
-
-    public static String getImageString()
-    {
-        return cubeImageString;
     }
 
     private void spawnJumpParticles()

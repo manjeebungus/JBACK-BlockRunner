@@ -10,12 +10,6 @@ import java.util.List;
  */
 public abstract class Player extends SuperSmoothMover
 {
-    //Enum is a class type for fixed constants that do not allow for other values
-    ///than what is inside it
-    public enum Mode {
-        CUBE, SHIP
-    }
-    
     protected static JumpSound jumpSound;
 
     protected boolean isGrounded = true;
@@ -24,7 +18,6 @@ public abstract class Player extends SuperSmoothMover
     protected double speedY;
     protected GreenfootImage image;
     protected Hitbox hitbox;
-    protected Mode currentMode = Mode.CUBE;
     
     final double TOLERANCE = 6;
     protected double prevX;
@@ -47,40 +40,6 @@ public abstract class Player extends SuperSmoothMover
         prevY = getExactY();
         
         move();
-        
-        switch(currentMode)
-        {
-            case CUBE:
-                //handleCubeMovement();
-                break;
-            case SHIP:
-                //handleShipMovement();
-                break;
-        }
-
-        List<Ship> shipsInWorld = ScrollWorld.getWorld().getObjects(Ship.class);
-        if (Greenfoot.isKeyDown("c"))
-        {
-            setMode(Mode.CUBE);
-
-            if (!shipsInWorld.isEmpty())
-            {
-                ScrollWorld.getWorld().addObject(new Cube(), getX(), getY());
-                ScrollWorld.getWorld().removeObject(this);
-                return;
-            }
-        }
-
-        if (Greenfoot.isKeyDown("s"))
-        {
-            setMode(Mode.SHIP);
-            if (shipsInWorld.isEmpty())
-            {
-                ScrollWorld.getWorld().addObject(new Ship(), getX(), getY());
-                ScrollWorld.getWorld().removeObject(this);
-                return;
-            }
-        }
 
         if (isGrounded) roundToClosestRotation();
 
@@ -88,6 +47,9 @@ public abstract class Player extends SuperSmoothMover
         setLocation(getExactX(), getExactY() - speedY);
         
         checkCollisions();
+        
+        if (getWorld() == null) return;
+        
         spawnGroundDust();
 
     }
@@ -119,6 +81,10 @@ public abstract class Player extends SuperSmoothMover
     
                 case INTERACT:
                     //checkInteraction(other); //uncomment this when added
+                    if (obj instanceof Portal) {
+                        ((Portal)obj).onPortalContact(this);
+                        return;
+                    }
                     break;
             }
         }
@@ -193,7 +159,6 @@ public abstract class Player extends SuperSmoothMover
         }
     }
     
-    
     /**
      * Sets all variables necessary in order to land the cube on a platform  
      * @param yPos the y position of the platform to land on
@@ -204,7 +169,7 @@ public abstract class Player extends SuperSmoothMover
         spacePressed = false;
         setLocation(getExactX(), yPos);
         speedY = 0;
-        if (currentMode == Mode.CUBE) roundToClosestRotation();
+        if (this instanceof Cube) roundToClosestRotation();
     }
     
     /**
@@ -252,23 +217,6 @@ public abstract class Player extends SuperSmoothMover
         isGrounded = false;
         firstJumpMade = true;
     }
-    
-    /**
-     * Sets the current mode for the player
-     * @param newMode the new mode for the cube
-     */
-    protected void setMode(Mode newMode)
-    {
-        currentMode = newMode;
-        speedY = 0;
-
-        //Makes sure cube starts upright after changing modes
-        if (newMode == Mode.CUBE)
-        {
-            setRotation(0);
-        }
-    }
-    
     
     /**
      * @Author Chase Coulter

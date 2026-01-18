@@ -37,10 +37,12 @@ public class Levels
     public static int[][] level1() {
         emptyLevel();
 
+        level[1][15] = 3;
         level[0][20] = 10;
         level[0][21] = 10;
         level[0][25] = 1;
         level[1][25] = 10;
+        level[1][30] = 4;
         level[0][34] = 10;
         level[0][35] = 1;
         level[0][38] = 1;

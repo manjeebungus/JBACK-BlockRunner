@@ -59,6 +59,12 @@ public class ScrollWorld extends World {
                     case 1:
                         worldObject = new TestBlock(r, c);
                         break;
+                    case 3:
+                        worldObject = new ShipPortal(r, c);
+                        break;
+                    case 4:
+                        worldObject = new CubePortal(r, c);
+                        break;
                     // spikes
                     case 10:
                         worldObject = new Spike(r, c);
