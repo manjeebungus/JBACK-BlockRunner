@@ -17,20 +17,9 @@ public class StartScreen extends World
 
         //buttonSound = new ButtonSound(5, 100);
         //buttonSound.stop();
-        //addText();
         addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav",new LevelSelectScreen()),500,370);//play button
         addObject(new ScreenChangeButton("Menu/StartScreen/settingsUnpressed.png","Menu/StartScreen/settingsPressed.png","buttonpress.wav"),800,420);//settings button
         addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", new LevelSelectScreen()),200,420);//blank button
-    }
-    
-    private void addText()
-    {
-        Color textColor = Color.BLACK;
-        Color clear = new Color(0, 0, 0, 0);
-        int fontSize = 100;
-        
-        title = new GreenfootImage("Block Runner", fontSize, textColor, clear);
-        getBackground().drawImage(title, 250, 90);
     }
     
     public void act()
