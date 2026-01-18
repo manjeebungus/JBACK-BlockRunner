@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.Color;
 
 /**
- * Write a description of class Hitbox here.
+ * Write a description of class Hitbox here. 
  * 
  * @author Brian Cheung
  * @version (a version number or a date)
@@ -22,14 +22,6 @@ public class Hitbox
     private HitboxType type;
     
     private static boolean hitboxVisible = true;
-    private Color boxColor = Color.RED; //default color
-    
-    /**
-     *Visuals:
-     *RED for cube and hazards, 
-     *BLUE for inner hitbox and blocks, 
-     *GREEN for interactions (Portals, Orbs, etc)
-     */
     
     //Hitbox constructor, requires size and offsets
     public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY, HitboxType type)
@@ -40,18 +32,6 @@ public class Hitbox
         this.offsetX = offsetX;
         this.offsetY = offsetY;
         this.type = type;
-        
-        //Hitbox color change
-        switch (type)
-        {
-            case SOLID:
-                boxColor = Color.BLUE;
-                break;
-    
-            case INTERACT:
-                boxColor = Color.GREEN;
-                break;
-        }
     }
     
     //Collision (with math)
@@ -62,25 +42,7 @@ public class Hitbox
                getY() - sizeY / 2 < other.getY() + other.sizeY / 2 &&
                getY() + sizeY / 2 > other.getY() - other.sizeY / 2;
     }
-    
-    /**
-     * The following methods are used for debug and testing purposes
-     * Colors can be switched between red and blue (Red is for interactions, blue is for blocks)
-     */
-    
-    
-    public void draw(GreenfootImage canvas)
-    {
-        if (!hitboxVisible || canvas == null) return;
-    
-        canvas.setColor(boxColor);
-    
-        int drawX = owner.getX() + offsetX - sizeX / 2;
-        int drawY = owner.getY() + offsetY - sizeY / 2;
-    
-        canvas.drawRect(drawX, drawY, sizeX, sizeY);
-    }
-    
+
     //This method is meant to be used when hitboxes are invisible by default (not as of now)
     //Static method and variable so it applies to all hitboxes
     public static void setBoxVisible(boolean visible) { hitboxVisible = visible; }

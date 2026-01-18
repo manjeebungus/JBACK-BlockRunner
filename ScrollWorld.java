@@ -91,6 +91,9 @@ public class ScrollWorld extends World {
         int startY = startRow * TILE_SIZE;
         
         //addObject(player, -100, -100); // will be placed correctly by updateScreenPosition
+        
+        // Hitboxes always on top
+        
     }
 
     public void act() {

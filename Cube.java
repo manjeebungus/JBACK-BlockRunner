@@ -54,7 +54,7 @@ public class Cube extends Player
             //Makes sure the cube doesn't turn when initialy falling
             //Using a count variable this if statement runs 40 times for one jump
             //airtime so turn a total of 180 degrees throughout 40 acts(180/40)
-            if (firstJumpMade && tilesTouching.size() == 0) turn(4.5); 
+            if (firstJumpMade && !isGrounded) turn(4.5); 
         }
     }
 

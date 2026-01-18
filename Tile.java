@@ -1,7 +1,7 @@
 import greenfoot.*;
 
 /**
- * Write a description of class TestBlock here.
+ * Write a description of class Tile here.
  * 
  * @author Kelton Kuan
  * @version (a version number or a date)
@@ -24,6 +24,9 @@ public class Tile extends WorldObject {
         img.drawRect(0, 0, ScrollWorld.TILE_SIZE - 1, ScrollWorld.TILE_SIZE - 1);
 
         setImage(img);
+        
+        // Add hitbox
+        hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.SOLID);
     }
     
     public Tile (double row, double col, GreenfootImage image) {
@@ -32,5 +35,8 @@ public class Tile extends WorldObject {
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         
         setImage(image);
+        
+        // Add hitbox
+        hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.SOLID);
     }
 }

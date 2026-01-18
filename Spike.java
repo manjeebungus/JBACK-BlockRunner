@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Spike extends WorldObject
 {
     private static final Color borderColor = new Color(0, 0, 0, 255);
-    private Hitbox hitbox;
     
     public Spike(double row, double col) {
         super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.rows-row-1) * ScrollWorld.TILE_SIZE);

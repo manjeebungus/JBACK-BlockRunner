@@ -23,7 +23,6 @@ public abstract class Player extends SuperSmoothMover
     protected boolean firstJumpMade = false;
     protected double speedY;
     protected GreenfootImage image;
-    protected List<Tile> tilesTouching;
     protected Hitbox hitbox;
     protected Mode currentMode = Mode.CUBE;
     
@@ -35,6 +34,8 @@ public abstract class Player extends SuperSmoothMover
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
         
     }
+    
+    public Hitbox getHitbox() { return hitbox; }
     
     /**
      * Act - do whatever the Player wants to do. This method is called whenever
@@ -88,91 +89,110 @@ public abstract class Player extends SuperSmoothMover
         
         checkCollisions();
         spawnGroundDust();
+
     }
     
     protected abstract void move();
     
     protected void checkCollisions()
     {
-        tilesTouching = getIntersectingObjects(Tile.class);
-        for (Tile tile : getIntersectingObjects(Tile.class)) {
-            double pxLeft   = getExactX() - getImage().getWidth() / 2;
-            double pxRight  = getExactX() + getImage().getWidth() / 2;
-            double pxTop    = getExactY() - getImage().getHeight() / 2;
-            double pxBottom = getExactY() + getImage().getHeight() / 2;
-            
-            double txLeft   = tile.getExactX() - ScrollWorld.TILE_SIZE / 2;
-            double txRight  = tile.getExactX() + ScrollWorld.TILE_SIZE / 2;
-            double txTop    = tile.getExactY() - ScrollWorld.TILE_SIZE / 2;
-            double txBottom = tile.getExactY() + ScrollWorld.TILE_SIZE / 2;
-            
-            double overlapLeft   = pxRight - txLeft;
-            double overlapRight  = txRight - pxLeft;
-            double overlapTop    = pxBottom - txTop;
-            double overlapBottom = txBottom - pxTop;
-            
-            double minOverlap = Math.min(
-                Math.min(overlapLeft, overlapRight),
-                Math.min(overlapTop, overlapBottom)
-            );
-            
-            // ----- TOP (landing) -----
-            if (minOverlap == overlapTop && speedY < 0)
+        // Get all WorldObjects with hitboxes
+        List<WorldObject> objects = getWorld().getObjects(WorldObject.class);
+    
+        boolean touchingSolid = false;
+    
+        for (WorldObject obj : objects)
+        {
+            Hitbox other = obj.getHitbox();
+            if (other == null || !hitbox.intersects(other)) continue;
+    
+            switch (other.getType())
             {
-                setToGround(txTop - getImage().getHeight() / 2);
-                continue;
-            }
-            
-            // ----- BOTTOM (head hit) -----
-            // ----- BOTTOM (ceiling / head hit) -----
-            if (minOverlap == overlapBottom && speedY > 0)
-            {
-                if (overlapBottom > TOLERANCE)
-                {
-                    Greenfoot.stop(); // real head collision
-                }
-                else
-                {
-                    // Small overlap → push player down instead of killing
-                    //setLocation(getExactX(), prevY);
-                    //speedY = 0;
-                }
-                continue;
-            }
-            
-            // ----- LEFT / RIGHT (side hit) -----
-            if (minOverlap == overlapLeft || minOverlap == overlapRight)
-            {
-                if (minOverlap > TOLERANCE)
-                {
-                    Greenfoot.stop();
-                }
-                else
-                {
-                    
-                }
+                case SOLID:
+                    checkSolid(other);
+                    touchingSolid = true;
+                    break;
+    
+                case HAZARD:
+                    Greenfoot.stop(); // death
+                    break;
+    
+                case INTERACT:
+                    //checkInteraction(other); //uncomment this when added
+                    break;
             }
         }
-
+    
         //If the y distance between the ground an the cube is small enough, set the y
         //position to the ground
         if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < getImage().getHeight()/2 + 10)
         {
             setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
-        } else if (tilesTouching.size() == 0){
+        } else if (!touchingSolid){
             isGrounded = false;
         }
+    }
+    
+    protected void checkSolid(Hitbox tile)
+    {
+        double pxLeft   = getExactX() - getImage().getWidth() / 2;
+        double pxRight  = getExactX() + getImage().getWidth() / 2;
+        double pxTop    = getExactY() - getImage().getHeight() / 2;
+        double pxBottom = getExactY() + getImage().getHeight() / 2;
         
-        List<Spike> spikes = getWorld().getObjects(Spike.class);
+        double txLeft   = tile.left();
+        double txRight  = tile.right();
+        double txTop    = tile.top();
+        double txBottom = tile.bottom();
         
-        for (Spike s : spikes)
+        double overlapLeft   = pxRight - txLeft;
+        double overlapRight  = txRight - pxLeft;
+        double overlapTop    = pxBottom - txTop;
+        double overlapBottom = txBottom - pxTop;
+        
+        double minOverlap = Math.min(
+            Math.min(overlapLeft, overlapRight),
+            Math.min(overlapTop, overlapBottom)
+        );
+        
+        // ----- TOP (landing) -----
+        if (minOverlap == overlapTop && speedY < 0)
         {
-            if (hitbox.intersects(s.getHitbox()))
+            setToGround(txTop - getImage().getHeight() / 2);
+            return;
+        }
+        
+        // ----- BOTTOM (head hit) -----
+        // ----- BOTTOM (ceiling / head hit) -----
+        if (minOverlap == overlapBottom && speedY > 0)
+        {
+            if (overlapBottom > TOLERANCE)
             {
-                Greenfoot.stop(); //placeholder for death
+                Greenfoot.stop(); // real head collision
+            }
+            else
+            {
+                // Small overlap → push player down instead of killing
+                //setLocation(getExactX(), prevY);
+                //speedY = 0;
+            }
+            return;
+        }
+        
+        // ----- LEFT / RIGHT (side hit) -----
+        if (minOverlap == overlapLeft || minOverlap == overlapRight)
+        {
+            if (minOverlap > TOLERANCE)
+            {
+                Greenfoot.stop();
+            }
+            else
+            {
+                return;
             }
         }
     }
+    
     
     /**
      * Sets all variables necessary in order to land the cube on a platform  
@@ -248,6 +268,7 @@ public abstract class Player extends SuperSmoothMover
             setRotation(0);
         }
     }
+    
     
     /**
      * @Author Chase Coulter

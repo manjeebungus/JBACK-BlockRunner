@@ -12,6 +12,8 @@ public abstract class WorldObject extends SuperSmoothMover {
     protected double worldX;
     protected double worldY;
     protected int preload;
+    
+    protected Hitbox hitbox;
 
     public WorldObject(double x, double y) {
         this.worldX = x;
@@ -57,6 +59,10 @@ public abstract class WorldObject extends SuperSmoothMover {
 
     public double getWorldY() {
         return worldY;
+    }
+    
+    public Hitbox getHitbox() {
+        return hitbox;
     }
 
 }
