@@ -11,6 +11,8 @@ public class LevelSelectScreen extends Menu
         super(); 
         setBackground("menu/LevelSelectScreen/baseLine.png");
         addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav"),500,200);//play button
+        addObject(new ScreenChangeButton("Menu/LevelSelectScreen/next.png","Menu/LevelSelectScreen/nextPressed.png","buttonpress.wav"),950,350);
+        addObject(new ScreenChangeButton("Menu/LevelSelectScreen/last.png","Menu/LevelSelectScreen/lastPressed.png","buttonpress.wav"),50,350);
     }
     public void act(){
         super.act();
