@@ -5,14 +5,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Chase Coulter
  * @version v1.4
  */
-public class StartScreen extends World
+public class StartScreen extends Menu
 {
     private GreenfootImage title;
     private static ButtonSound buttonSound;
     public StartScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(1000, 600, 1,false); 
+        super(); 
         setBackground(new GreenfootImage("menu/StartScreen/startMenu.png"));
 
         //buttonSound = new ButtonSound(5, 100);
@@ -24,27 +24,8 @@ public class StartScreen extends World
     
     public void act()
     {
-        if (Greenfoot.mouseDragged(null))
-        {
-            spawnParticles();
-        }
-        if (Greenfoot.mouseClicked(null))
-        {
-            spawnParticles();
-        }
+        super.act();
         spawnDust();
-    }
-    private void spawnParticles(){
-        MouseInfo mouse = Greenfoot.getMouseInfo();
-        if (mouse != null)
-        {
-            int x = mouse.getX();
-            int y = mouse.getY();
-
-            for(int i = 0; i<10; i++){
-                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 4, 30 + Greenfoot.getRandomNumber(25), Color.WHITE), x, y);
-            }
-        }
     }
     private void spawnDust(){
         addObject(new Particle(0, 90, 5.0, 10, 30 + Greenfoot.getRandomNumber(25), new Color(150,40,70)), 0, Greenfoot.getRandomNumber(600));
