@@ -40,6 +40,7 @@ public class Levels
         level[1][15] = 3;
         level[0][20] = 10;
         level[0][21] = 10;
+        level[1][23] = 6;
         level[0][25] = 1;
         level[1][25] = 10;
         level[1][30] = 4;

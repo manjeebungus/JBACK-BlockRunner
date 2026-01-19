@@ -1,7 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * 
  * @author Chase Coulter
  * @version v1.4
  */
@@ -33,6 +32,4 @@ public class StartScreen extends Menu
         addObject(new Particle(0, 90, 5.0, 10, 30 + Greenfoot.getRandomNumber(25), new Color(200,140,70)), 0, Greenfoot.getRandomNumber(600));
         addObject(new Particle(180, 90, 5.0, 10, 30 + Greenfoot.getRandomNumber(25), new Color(200,140,70)), 1000, Greenfoot.getRandomNumber(600));
     }
-
-
 }

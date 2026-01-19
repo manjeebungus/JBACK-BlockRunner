@@ -57,17 +57,22 @@ public class ScrollWorld extends World {
                 WorldObject worldObject = null;
                 
                 switch (objects[r][c]) {
-                    // blocks
+                    //Blocks
                     case 1:
                         worldObject = new TestBlock(r, c);
                         break;
+                    //Portals
                     case 3:
                         worldObject = new ShipPortal(r, c);
                         break;
                     case 4:
                         worldObject = new CubePortal(r, c);
                         break;
-                    // spikes
+                    //Orbs
+                    case 6:
+                        worldObject = new JumpOrb(r, c);
+                        break;
+                    //Spikes
                     case 10:
                         worldObject = new Spike(r, c);
                         break;
@@ -85,7 +90,6 @@ public class ScrollWorld extends World {
         
         player = new Cube();
         addObject(player, 200, 300);
-        
         
         GreenfootImage ground = new GreenfootImage(SCREEN_WIDTH, 4);
         ground.setColor(new Color(0,0,0));

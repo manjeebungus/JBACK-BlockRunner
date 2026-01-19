@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Ship here.
+ * A player mode which allows the player to fly in a ship
  * 
  * @author Abithan 
  * @version (a version number or a date)

@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 
 /**
- * Write a description of class Player here.
+ * The player who the user plays the levels with
  * 
  * @author Kelton Kuan and Abithan
  * Hitbox interactions by Brian
@@ -38,7 +38,7 @@ public abstract class Player extends SuperSmoothMover
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()
-    {
+    {   
         // HARD GROUND CLAMP (prevents going through the ground on mode switch)
         if (getExactY() > ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2)
         {
@@ -49,6 +49,9 @@ public abstract class Player extends SuperSmoothMover
         prevY = getExactY();
         
         checkCollisions();
+                
+        //Return from act if the player was removed from collsions or other
+        if (getWorld() == null) return;
         
         move();
 
@@ -57,12 +60,7 @@ public abstract class Player extends SuperSmoothMover
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
         
-        
-        
-        if (getWorld() == null) return;
-        
         spawnGroundDust();
-
     }
     
     protected abstract void move();
@@ -73,7 +71,8 @@ public abstract class Player extends SuperSmoothMover
         List<WorldObject> objects = getWorld().getObjects(WorldObject.class);
     
         boolean touchingSolid = false;
-    
+        
+        //Iterate through world objects and interact differently based on intersecting objects
         for (WorldObject obj : objects)
         {
             Hitbox other = obj.getHitbox();
@@ -81,7 +80,7 @@ public abstract class Player extends SuperSmoothMover
     
             switch (other.getType())
             {
-                case SOLID:
+                case SOLID: 
                     checkSolid(other);
                     touchingSolid = true;
                     break;
@@ -91,11 +90,7 @@ public abstract class Player extends SuperSmoothMover
                     break;
     
                 case INTERACT:
-                    //checkInteraction(other); //uncomment this when added
-                    if (obj instanceof Portal) {
-                        ((Portal)obj).onPortalContact(this);
-                        return;
-                    }
+                    if (checkInteraction(other, obj)) return; //uncomment this when added
                     break;
             }
         }
@@ -108,6 +103,28 @@ public abstract class Player extends SuperSmoothMover
         } else if (!touchingSolid){
             isGrounded = false;
         }
+    }
+    
+    /**
+     * Handles all worldobjects of type INTERACT
+     * @param hit the hitbox of the object intersetcs with the players
+     * @param obj the actual object that the player intersects
+     * @return true or false depending on if the player removed/swapped
+     */
+    protected boolean checkInteraction(Hitbox hit, WorldObject obj)
+    {
+        //Portal Interaction
+        if (obj instanceof Portal) {
+            ((Portal)obj).onPortalContact(this);
+            return true; //Signals the player that it was removed and replaced
+        }
+        
+        if (obj instanceof Orb)
+        {
+            ((Orb)obj).jumpOnClick(this);
+        }
+        
+        return false;
     }
     
     protected void checkSolid(Hitbox tile)

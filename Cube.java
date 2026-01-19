@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 
 /**
- * Write a description of class Cube here.
+ * The base player mode which is a cube that jumps and moves
  * 
  * @author Abithan Paskaranathan
  * Assisted by Kelton Kuan
@@ -11,6 +11,7 @@ import java.util.List;
 public class Cube extends Player
 {
     public static Cube cube;
+    
     public Cube()
     {
         super();
@@ -25,7 +26,7 @@ public class Cube extends Player
     
     protected void move()
     {
-        //Makes sure you can't hold space to "fly"
+        //Only allows for jumps if space wasn't just pressed
         if (Greenfoot.isKeyDown("space") && !spacePressed && isGrounded)
         {
             spacePressed = true;
