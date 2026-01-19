@@ -9,6 +9,7 @@ public class Levels
     // Tile ids for now:
     // 0 blank tile
     // 1 test block
+    // 2 block2
 
     // Spike ids for now:
     // 10 placeholder
@@ -103,6 +104,14 @@ public class Levels
         level[2][104] = 1;
         level[3][104] = 1;
         level[5][104] = 1;
+        
+        return level;
+    }
+    
+    public static int[][] level2() {
+        emptyLevel();
+        
+        level[0][20] = 2;
         
         return level;
     }

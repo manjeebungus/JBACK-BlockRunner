@@ -63,6 +63,8 @@ public class ScrollWorld extends World {
                     case 1:
                         worldObject = new TestBlock(r, c);
                         break;
+                    case 2:
+                        worldObject = new Block2(r, c);
                     case 3:
                         worldObject = new ShipPortal(r, c);
                         break;
