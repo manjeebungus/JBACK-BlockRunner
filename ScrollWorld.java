@@ -6,6 +6,8 @@ import java.util.ArrayList;
  * 
  * @author Kelton Kuan
  * @version (a version number or a date)
+ * 
+ * @assisted Chase Coulter
  */
 public class ScrollWorld extends World {
     private static ScrollWorld world;
