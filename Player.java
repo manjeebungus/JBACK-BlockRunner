@@ -19,7 +19,7 @@ public abstract class Player extends SuperSmoothMover
     protected GreenfootImage image;
     protected Hitbox hitbox;
     
-    final double TOLERANCE = 6;
+    final double TOLERANCE = 10;
     protected double prevX;
     protected double prevY;
     
@@ -99,7 +99,7 @@ public abstract class Player extends SuperSmoothMover
         //position to the ground
         if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < ScrollWorld.TILE_SIZE/2 + 10)
         {
-            setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
+            setToGround(ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE/2);
         } else if (!touchingSolid){
             isGrounded = false;
         }
@@ -157,21 +157,7 @@ public abstract class Player extends SuperSmoothMover
         }
         
         // ----- BOTTOM (head hit) -----
-        // ----- BOTTOM (ceiling / head hit) -----
-        if (minOverlap == overlapBottom && speedY > 0)
-        {
-            if (overlapBottom > TOLERANCE)
-            {
-                Greenfoot.setWorld(new ScrollWorld()); // real head collision
-            }
-            else
-            {
-                // Small overlap → push player down instead of killing
-                //setLocation(getExactX(), prevY);
-                //speedY = 0;
-            }
-            return;
-        }
+        if (bottomHit(txBottom, minOverlap, overlapBottom)) return;
         
         // ----- LEFT / RIGHT (side hit) -----
         if (minOverlap == overlapLeft || minOverlap == overlapRight)
@@ -185,6 +171,26 @@ public abstract class Player extends SuperSmoothMover
                 return;
             }
         }
+    }
+    
+    protected boolean bottomHit(double txBottom, double minOverlap, double overlapBottom) {
+        // ----- BOTTOM (ceiling / head hit) -----
+        if (minOverlap == overlapBottom && speedY > 0)
+        {
+            if (overlapBottom > TOLERANCE)
+            {
+                Greenfoot.setWorld(new ScrollWorld()); // real head collision
+                return true;
+            }
+            else
+            {
+                // Small overlap → push player down instead of killing
+                //setLocation(getExactX(), prevY);
+                //speedY = 0;
+            }
+            
+        }
+        return false;
     }
     
     /**
