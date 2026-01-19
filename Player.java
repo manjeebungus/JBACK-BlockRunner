@@ -48,22 +48,26 @@ public abstract class Player extends SuperSmoothMover
         prevX = getExactX();
         prevY = getExactY();
         
-        checkCollisions();
+        
                 
         //Return from act if the player was removed from collsions or other
         if (getWorld() == null) return;
         
         move();
 
-        if (isGrounded) roundToClosestRotation();
+        
 
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
         
+        if (isGrounded) roundToClosestRotation();
+        
         spawnGroundDust();
+        
+        checkCollisions();
     }
     
-    protected abstract void move();
+    protected abstract void move(); 
     
     protected void checkCollisions()
     {

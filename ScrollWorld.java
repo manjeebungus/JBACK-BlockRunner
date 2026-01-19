@@ -78,7 +78,7 @@ public class ScrollWorld extends World {
                         break;
                     //Spikes
                     case 10:
-                        worldObject = new Spike(r, c);
+                        worldObject = new Spike1(r, c);
                         break;
                     default:
                         //worldObject = new Tile(r, c);
