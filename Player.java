@@ -19,7 +19,7 @@ public abstract class Player extends SuperSmoothMover
     protected GreenfootImage image;
     protected Hitbox hitbox;
     
-    final double TOLERANCE = 6;
+    final double TOLERANCE = 10;
     protected double prevX;
     protected double prevY;
     
@@ -104,7 +104,7 @@ public abstract class Player extends SuperSmoothMover
         //position to the ground
         if (speedY <= 0 && ScrollWorld.GROUND_HEIGHT - getExactY() < ScrollWorld.TILE_SIZE/2 + 10)
         {
-            setToGround(ScrollWorld.GROUND_HEIGHT - getImage().getHeight()/2);
+            setToGround(ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE/2);
         } else if (!touchingSolid){
             isGrounded = false;
         }

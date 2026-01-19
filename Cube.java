@@ -19,7 +19,7 @@ public class Cube extends Player
         //speedY = 0;
 
         cubeImage();
-        jumpSound = new JumpSound(5, 60);
+        jumpSound = new JumpSound(5, 100 * (1/UserData.getSfxVolume()));
         jumpSound.stop();
     }
     
