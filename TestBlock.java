@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class TestBlock extends Tile
 {
-    private static final GreenfootImage image = new GreenfootImage("images/WorldObjects/block1/full.png");
+    private static final GreenfootImage image = new GreenfootImage("images/baseLine/block.png");
     
     public TestBlock(double row, double col) {
         super(row, col, image);
