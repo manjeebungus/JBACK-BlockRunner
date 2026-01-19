@@ -48,4 +48,25 @@ public class Ship extends Player
 
         if (speedY > 0) isGrounded = false;
     }
+    
+    @Override
+    protected boolean bottomHit(double txBottom, double minOverlap, double overlapBottom) {
+        // ----- BOTTOM (ceiling / head hit) -----
+        if (minOverlap == overlapBottom && speedY > 0)
+        {
+            if (overlapBottom > TOLERANCE)
+            {
+                setToGround(txBottom + ScrollWorld.TILE_SIZE / 2);
+                return true;
+            }
+            else
+            {
+                // Small overlap → push player down instead of killing
+                //setLocation(getExactX(), prevY);
+                //speedY = 0;
+            }
+            
+        }
+        return false;
+    }
 }

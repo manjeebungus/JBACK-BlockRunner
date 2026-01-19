@@ -140,21 +140,7 @@ public abstract class Player extends SuperSmoothMover
         }
         
         // ----- BOTTOM (head hit) -----
-        // ----- BOTTOM (ceiling / head hit) -----
-        if (minOverlap == overlapBottom && speedY > 0)
-        {
-            if (overlapBottom > TOLERANCE)
-            {
-                Greenfoot.setWorld(new ScrollWorld()); // real head collision
-            }
-            else
-            {
-                // Small overlap → push player down instead of killing
-                //setLocation(getExactX(), prevY);
-                //speedY = 0;
-            }
-            return;
-        }
+        if (bottomHit(txBottom, minOverlap, overlapBottom)) return;
         
         // ----- LEFT / RIGHT (side hit) -----
         if (minOverlap == overlapLeft || minOverlap == overlapRight)
@@ -168,6 +154,26 @@ public abstract class Player extends SuperSmoothMover
                 return;
             }
         }
+    }
+    
+    protected boolean bottomHit(double txBottom, double minOverlap, double overlapBottom) {
+        // ----- BOTTOM (ceiling / head hit) -----
+        if (minOverlap == overlapBottom && speedY > 0)
+        {
+            if (overlapBottom > TOLERANCE)
+            {
+                Greenfoot.setWorld(new ScrollWorld()); // real head collision
+                return true;
+            }
+            else
+            {
+                // Small overlap → push player down instead of killing
+                //setLocation(getExactX(), prevY);
+                //speedY = 0;
+            }
+            
+        }
+        return false;
     }
     
     /**
