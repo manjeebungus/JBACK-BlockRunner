@@ -33,19 +33,19 @@ public class ScrollWorld extends World {
     
     private Ground ground1,ground2;
 
-    public ScrollWorld() {
+    public ScrollWorld(int[][] level) {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
         addObject(new StaticImage("baseLine/background.png"),500,300);
         ground1 = new Ground("baseLine/foreground.png",0);
         ground2 = new Ground("baseLine/foreground.png",1000);
         addObject(ground1,500,300);
         addObject(ground2,1500,300);
-        addObject(new StaticImage("baseLine/glow.png"),500,328);
+        addObject(new StaticImage("baseLine/glow.png"),500,329);
         world = this;
         
         Greenfoot.setSpeed(52);
         
-        int[][] level = Levels.level2();
+        level = Levels.level1();
         objects = level;
         
         rows = objects.length;
@@ -71,6 +71,10 @@ public class ScrollWorld extends World {
                         break;
                     case 4:
                         worldObject = new CubePortal(r, c);
+                        break;
+                    //Pad
+                    case 5:
+                        worldObject = new Pad(r, c);
                         break;
                     //Orbs
                     case 6:
@@ -159,6 +163,10 @@ public class ScrollWorld extends World {
     public void spawnParticle(int direction,int spread,double speed,int size,int life,Color color,int x, int y)
     {
         addObject(new Particle(direction,spread,speed,size,life,color),x, y);
+    }
+    
+    public void resetWorld() {
+        Greenfoot.setWorld(new ScrollWorld(objects));
     }
     
     public void moveCameraY(double amount) {
