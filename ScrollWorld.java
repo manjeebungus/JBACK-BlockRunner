@@ -45,7 +45,7 @@ public class ScrollWorld extends World {
         
         Greenfoot.setSpeed(52);
         
-        int[][] level = Levels.level2();
+        int[][] level = Levels.level1();
         objects = level;
         
         rows = objects.length;
