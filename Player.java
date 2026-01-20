@@ -149,6 +149,11 @@ public abstract class Player extends SuperSmoothMover
             ((Orb)obj).jumpOnClick(this);
         }
         
+        if (obj instanceof Pad)
+        {
+            this.jump(13);
+        }
+        
         return false;
     }
     

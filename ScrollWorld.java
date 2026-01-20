@@ -40,7 +40,7 @@ public class ScrollWorld extends World {
         ground2 = new Ground("baseLine/foreground.png",1000);
         addObject(ground1,500,300);
         addObject(ground2,1500,300);
-        addObject(new StaticImage("baseLine/glow.png"),500,328);
+        addObject(new StaticImage("baseLine/glow.png"),500,329);
         world = this;
         
         Greenfoot.setSpeed(52);
@@ -70,6 +70,10 @@ public class ScrollWorld extends World {
                         break;
                     case 4:
                         worldObject = new CubePortal(r, c);
+                        break;
+                    //Pad
+                    case 5:
+                        worldObject = new Pad(r, c);
                         break;
                     //Orbs
                     case 6:
