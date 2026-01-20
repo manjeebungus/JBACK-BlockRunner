@@ -105,15 +105,31 @@ public class Levels
         level[2][104] = 1;
         level[3][104] = 1;
         level[5][104] = 1;
-        
+
         return level;
     }
-    
+
     public static int[][] level2() {
         emptyLevel();
+        level[0][15] = 10;
+        level[0][21] = 10;
+        level[0][22] = 10;
+        level[0][30] = 10;
+        level[0][31] = 1;
+        level[0][32] = 10;
+        level[0][33] = 10;
+        level[0][34] = 10;
+        level[0][35] = 1;
+        level[1][35] = 1;
+        level[0][36] = 10;
+        level[0][37] = 10;
+        level[0][38] = 10;
+        level[0][39] = 1;
+        level[1][39] = 1;
+        level[2][39] = 1;
         
-        level[0][20] = 2;
         
+
         return level;
     }
 }
