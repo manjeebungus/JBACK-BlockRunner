@@ -16,6 +16,7 @@ public abstract class Player extends SuperSmoothMover
     protected boolean isGrounded = true;
     protected boolean spacePressed = false;
     protected boolean firstJumpMade = false;
+    protected boolean playerRemoved = false;
     protected static double speedY;
     protected GreenfootImage image;
     protected Hitbox hitbox;
@@ -95,7 +96,8 @@ public abstract class Player extends SuperSmoothMover
                     break;
     
                 case INTERACT:
-                    if (checkInteraction(other, obj)) return; //uncomment this when added
+                    checkInteraction(other, obj);
+                    if (playerRemoved) return; 
                     break;
             }
         }
@@ -136,12 +138,12 @@ public abstract class Player extends SuperSmoothMover
      * @param obj the actual object that the player intersects
      * @return true or false depending on if the player removed/swapped
      */
-    protected boolean checkInteraction(Hitbox hit, WorldObject obj)
+    protected void checkInteraction(Hitbox hit, WorldObject obj)
     {
         //Portal Interaction
         if (obj instanceof Portal) {
             ((Portal)obj).onPortalContact(this);
-            return true; //Signals the player that it was removed and replaced
+            playerRemoved = true; //Signals the player that it was removed and replaced
         }
         
         if (obj instanceof Orb)
@@ -152,9 +154,7 @@ public abstract class Player extends SuperSmoothMover
         if (obj instanceof Pad)
         {
             this.jump(13);
-        }
-        
-        return false;
+        }        
     }
     
     protected void checkSolid(Hitbox tile)
