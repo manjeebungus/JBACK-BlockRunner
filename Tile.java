@@ -39,4 +39,9 @@ public class Tile extends WorldObject {
         // Add hitbox
         hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.SOLID);
     }
+    
+    public void addedToWorld(World world)
+    {
+        world.addObject(new HitboxRenderer(hitbox), getX(), getY());
+    }
 }

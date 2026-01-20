@@ -113,6 +113,7 @@ public class ScrollWorld extends World {
         //addObject(player, -100, -100); // will be placed correctly by updateScreenPosition
         
         // Hitboxes always on top
+        setPaintOrder(HitboxRenderer.class);
         
     }
 

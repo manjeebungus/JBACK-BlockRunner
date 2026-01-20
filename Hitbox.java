@@ -14,13 +14,14 @@ public class Hitbox
     private int offsetX, offsetY;
     
     //These are labels for what the hitbox is expected to work with
-    //Enum explained in Cube class
+    //Enum explained in Player class
     public static enum HitboxType { 
         SOLID, HAZARD, INTERACT, PLAYER 
     }
     
     private HitboxType type;
     
+    //This boolean is used for testing and balancing
     private static boolean hitboxVisible = true;
     
     //Hitbox constructor, requires size and offsets
@@ -48,6 +49,8 @@ public class Hitbox
     public static void setBoxVisible(boolean visible) { hitboxVisible = visible; }
     
     //Accessor/Getter methods
+    public Actor getOwner() { return owner; }
+    
     public int getX() { return owner.getX() + offsetX; }
     public int getY() { return owner.getY() + offsetY; }
     public int getWidth() { return sizeX; }

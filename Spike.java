@@ -35,7 +35,7 @@ public class Spike extends WorldObject
         int[] yInner = {size - margin/2, margin, size - margin/2};
         img.fillPolygon(xInner, yInner, 3);
         
-        hitbox = new Hitbox(this, 16, 26, 0, 8, Hitbox.HitboxType.HAZARD);
+        hitbox = new Hitbox(this, 12, 20, 0, 0, Hitbox.HitboxType.HAZARD);
         
         setImage(img);
     }
@@ -45,10 +45,15 @@ public class Spike extends WorldObject
         
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         
-        hitbox = new Hitbox(this, 16, 26, 0, 8, Hitbox.HitboxType.HAZARD);
+        hitbox = new Hitbox(this, 12, 20, 0, 0, Hitbox.HitboxType.HAZARD);
         
         setImage(image);
     }
     
     public Hitbox getHitbox() { return hitbox; } //for the cube
+    
+    public void addedToWorld(World world)
+    {
+        world.addObject(new HitboxRenderer(hitbox), getX(), getY());
+    }
 }

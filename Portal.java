@@ -38,6 +38,9 @@ public abstract class Portal extends WorldObject
      **/
     protected void calculateNewY(Player oldP, Player newP)
     {
+        // Remove the old player's hitbox renderer
+        oldP.removeRenderer();
+        
         //Get the y position of the bottom of the player
         double bottomY = oldP.getExactY() + (oldP.getImage().getHeight()/2);
         
@@ -51,5 +54,10 @@ public abstract class Portal extends WorldObject
         //Add the new player to the world and remove the old one
         ScrollWorld.getWorld().addObject(newP, oldP.getX(), (int)newCenterY); 
         ScrollWorld.getWorld().removeObject(oldP);
+    }
+    
+    public void addedToWorld(World world)
+    {
+        world.addObject(new HitboxRenderer(hitbox), getX(), getY());
     }
 }

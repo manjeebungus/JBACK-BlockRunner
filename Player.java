@@ -109,6 +109,26 @@ public abstract class Player extends SuperSmoothMover
         }
     }
     
+    //This method allows for hitbox visibility
+    @Override
+    public void addedToWorld(World world)
+    {
+        world.addObject(new HitboxRenderer(hitbox), getX(), getY());
+    }
+    
+    public void removeRenderer() {
+        World world = getWorld();
+        if (world == null) return;
+    
+        List<HitboxRenderer> renderers = world.getObjects(HitboxRenderer.class);
+        for (HitboxRenderer r : renderers) {
+            if (r.getHitbox() != null && r.getHitbox().getOwner() == this) {
+                world.removeObject(r);
+                break;
+            }
+        }
+    }
+    
     /**
      * Handles all worldobjects of type INTERACT
      * @param hit the hitbox of the object intersetcs with the players

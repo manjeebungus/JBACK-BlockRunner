@@ -22,10 +22,15 @@ public abstract class Orb extends WorldObject
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         setImage(image);
         
-        hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE + 3, ScrollWorld.TILE_SIZE + 3, 0, 0, Hitbox.HitboxType.INTERACT);
+        hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE + 10, ScrollWorld.TILE_SIZE + 10, 0, 0, Hitbox.HitboxType.INTERACT);
     }
     
     public Hitbox getHitbox() { return hitbox; }
+    
+    public void addedToWorld(World world)
+    {
+        world.addObject(new HitboxRenderer(hitbox), getX(), getY());
+    }
     
     /**
      * @param p the player which is being lauched by the orb
