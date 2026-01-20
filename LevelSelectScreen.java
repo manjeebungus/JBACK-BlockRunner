@@ -20,12 +20,12 @@ public class LevelSelectScreen extends Menu
             case 1:
                 particleColour = new Color(150,40,70);
                 setBackground("menu/LevelSelectScreen/baseLine.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav"),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav", new ScrollWorld(Levels.level1())),500,200);
                 break;
             case 2:
                 particleColour = new Color(40,150,70);
                 setBackground("menu/LevelSelectScreen/frostByte.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav"),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav", new ScrollWorld(Levels.level2())),500,200);
                 break;
         }
     }
