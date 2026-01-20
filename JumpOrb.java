@@ -19,7 +19,7 @@ public class JumpOrb extends Orb
      */
     protected void jumpOnClick(Player p)
     {
-        if (Greenfoot.isKeyDown("space") && !p.spacePressed)
+        if (Greenfoot.isKeyDown("space"))
         {
             p.jump(9);
         }
