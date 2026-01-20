@@ -43,7 +43,7 @@ public class ScrollWorld extends World {
         addObject(new StaticImage("baseLine/glow.png"),500,328);
         world = this;
         
-        Greenfoot.setSpeed(50);
+        Greenfoot.setSpeed(52);
         
         int[][] level = Levels.level1();
         objects = level;
