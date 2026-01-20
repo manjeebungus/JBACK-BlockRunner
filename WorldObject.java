@@ -4,6 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class WorldObject here.
  * 
  * @author Kelton Kuan
+ * Hitbox interactions and renders by Brian
  * @version (a version number or a date)
  */
 public abstract class WorldObject extends SuperSmoothMover {

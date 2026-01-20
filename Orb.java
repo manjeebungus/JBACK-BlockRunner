@@ -4,6 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * An orb class which affects the player diffently if they jump while touching it
  * 
  * @author Abithan
+ * Contributed to by Brian
  * @version (a version number or a date)
  */
 public abstract class Orb extends WorldObject
