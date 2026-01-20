@@ -1,5 +1,6 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
+import java.util.ArrayList;
 
 /**
  * The player who the user plays the levels with
@@ -72,7 +73,7 @@ public abstract class Player extends SuperSmoothMover
     protected void checkCollisions()
     {
         // Get all WorldObjects with hitboxes
-        List<WorldObject> objects = getWorld().getObjects(WorldObject.class);
+        ArrayList<WorldObject> objects = new ArrayList<>(getWorld().getObjects(WorldObject.class));
     
         boolean touchingSolid = false;
         
@@ -120,7 +121,7 @@ public abstract class Player extends SuperSmoothMover
         World world = getWorld();
         if (world == null) return;
     
-        List<HitboxRenderer> renderers = world.getObjects(HitboxRenderer.class);
+        ArrayList<HitboxRenderer> renderers = new ArrayList<>(getWorld().getObjects(HitboxRenderer.class));
         for (HitboxRenderer r : renderers) {
             if (r.getHitbox() != null && r.getHitbox().getOwner() == this) {
                 world.removeObject(r);
