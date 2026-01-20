@@ -46,7 +46,7 @@ public class Levels
         level[0][35] = 1;
         level[0][38] = 1;
         level[1][38] = 1;
-        level[1][42] = 5;
+        level[0][43] = 5;
         level[1][45] = 1;
         level[2][49] = 1;
         level[3][53] = 1;
