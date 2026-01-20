@@ -15,11 +15,11 @@ public class ScreenChangeButton extends Button
     }
     public ScreenChangeButton(String staticName, String pressedName,String sound){
         super(staticName, pressedName,sound);
-        world = new ScrollWorld();
+        world = new ScrollWorld(Levels.levelTest());
     }
     public ScreenChangeButton(String staticName, String pressedName){
         super(staticName, pressedName);
-        world = new ScrollWorld();
+        world = new ScrollWorld(Levels.levelTest());
     }
     public void act()
     {

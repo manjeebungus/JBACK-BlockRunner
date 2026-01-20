@@ -13,6 +13,7 @@ public class LevelSelectScreen extends Menu
         super(); 
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/next.png","Menu/LevelSelectScreen/nextPressed.png","buttonpress.wav",true),950,350);
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/last.png","Menu/LevelSelectScreen/lastPressed.png","buttonpress.wav",false),50,350);
+        addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
         setScreen(1);
     }
     private void setScreen(int screen){
@@ -20,12 +21,12 @@ public class LevelSelectScreen extends Menu
             case 1:
                 particleColour = new Color(150,40,70);
                 setBackground("menu/LevelSelectScreen/baseLine.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav"),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav", new ScrollWorld(Levels.level1())),500,200);
                 break;
             case 2:
                 particleColour = new Color(40,150,70);
                 setBackground("menu/LevelSelectScreen/frostByte.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav"),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav", new ScrollWorld(Levels.level2())),500,200);
                 break;
         }
     }

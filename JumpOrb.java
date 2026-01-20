@@ -21,7 +21,7 @@ public class JumpOrb extends Orb
     {
         if (Greenfoot.isKeyDown("space"))
         {
-            p.jump(9);
+            p.jump(8);
         }
     }
 }
