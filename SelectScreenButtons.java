@@ -1,5 +1,8 @@
 import greenfoot.*;
-
+/**
+ * @Author Chase Coulter
+ * @Version v1.1
+ */
 public class SelectScreenButtons extends Button
 {
     private boolean right;
@@ -19,7 +22,7 @@ public class SelectScreenButtons extends Button
     protected void behaviour()
     {
         World world = getWorld();
-
+        
         if (world instanceof LevelSelectScreen)
         {
             LevelSelectScreen screen = (LevelSelectScreen) world;
@@ -27,11 +30,14 @@ public class SelectScreenButtons extends Button
             if (right)
             {
                 screen.next();
+                world.addObject(new ScreenWipe(1), -500, 300);
             }
             else
             {
                 screen.last();
+                world.addObject(new ScreenWipe(3), 1500, 300);
             }
         }
+        
     }
 }

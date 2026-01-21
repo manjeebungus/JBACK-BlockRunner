@@ -40,16 +40,16 @@ public class ScreenWipe extends Visual
     public void act() {
         switch(direction) {
             case 0: // Up
-                setLocation(getX(), getY() - 25);
+                setLocation(getX(), getY() - 50);
                 break;
             case 1: // Right
-                move(50);
+                move(100);
                 break;
             case 2: // Down
-                setLocation(getX(), getY() + 25);
+                setLocation(getX(), getY() + 50);
                 break;
             case 3: // Left
-                move(-50);
+                move(-100);
                 break;
             default:
                 // Optional: handle invalid directions

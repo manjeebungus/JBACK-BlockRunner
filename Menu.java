@@ -41,11 +41,14 @@ public class Menu extends World
         {
             int x = mouse.getX();
             int y = mouse.getY();
-
-            for(int i = 0; i<10; i++){
-                //addObject(new CirclePulse(100,2,Color.WHITE), x, y);
-                //addObject(new ScreenFade(1, Color.BLACK), 500,300);
+            for(int i = 0; i<5; i++){
+                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.BLACK  ), x, y);
             }
+            for(int i = 0; i<10; i++){
+                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.GRAY), x, y);
+            }
+            addObject(new CirclePulse(200, 4, new Color(100,100,100)), x, y);
+            addObject(new CirclePulse(400, 8, new Color(100,100,100)), x, y);
         }
     }
 }

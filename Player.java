@@ -300,4 +300,18 @@ public abstract class Player extends SuperSmoothMover
         if (!isGrounded) return;//only run code if grounded
         ScrollWorld.getWorld().spawnParticle(200, 25, 6, 8, 30,new Color(0, 0, 0),getX()-20, getY() + 20);
     }
+    
+    /**
+     * @Author Chase Coulter
+     */
+    private void deathEffect(){
+        for(int i = 0; i<5; i++){
+                getWorld().addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.BLACK  ), getX(), getY());
+            }
+        for(int i = 0; i<10; i++){
+            getWorld().addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.GRAY), getX(), getY());
+        }
+        getWorld().addObject(new CirclePulse(200, 4, new Color(100,100,100)), getX(), getY());
+        getWorld().addObject(new CirclePulse(400, 8, new Color(100,100,100)), getX(), getY());
+    }
 }

@@ -33,7 +33,7 @@ public class CirclePulse extends Visual
         alpha=150;
         updateImage();
         getImage().setTransparency(alpha);
-        bool = true;
+        this.bool = true;
     }
 
     public void act()
@@ -45,9 +45,8 @@ public class CirclePulse extends Visual
         getImage().setTransparency(alpha);
         if(alpha<=0&&getWorld()!=null)getWorld().removeObject(this);
         if(bool){
-            setLocation(getExactX()-5.5,getExactY());
+            move(-5.5);
         }
-        move(-5.5);
     }
 
     void updateImage()
