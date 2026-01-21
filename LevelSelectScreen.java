@@ -49,6 +49,12 @@ public class LevelSelectScreen extends Menu
                 addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav","level2.wav", new ScrollWorld(Levels.level2())),500,200);
                 addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
                 break;
+            case 3:
+                particleColour = new Color(40,150,70);
+                setBackground("menu/LevelSelectScreen/drift.png");
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/driftUnpressed.png","Menu/LevelSelectScreen/driftPressed.png","buttonpress.wav","level2.wav", new ScrollWorld(Levels.level2())),500,200);
+                addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
+                break;
         }
     }
     
@@ -77,8 +83,8 @@ public class LevelSelectScreen extends Menu
     }
     public void next(){
         currentLevel++;
-        if(currentLevel>2){
-            currentLevel = 2;
+        if(currentLevel>3){
+            currentLevel = 3;
         }else{
             clear();
             setScreen(currentLevel);
