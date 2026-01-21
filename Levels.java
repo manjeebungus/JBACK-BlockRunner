@@ -11,14 +11,17 @@ public class Levels
      * 0 blank tile
      * 1 test block
      * 2 block2
-     * 3 ship portal
-     * 4 cube portal
+     * 3 block3
+     * 20 ship portal
+     * 21 cube portal
      * 5 jump pad
      * 6 jump orb
      * 
      *
      * Spike ids for now:
-     * 10 placeholder
+     * 10 baseline
+     * 11 frostbyte
+     * 12 drift
      */
 
     private static int levelRows = 20;
@@ -44,6 +47,13 @@ public class Levels
 
     public static int[][] level1() {
         emptyLevel();
+        ScrollWorld.setEnvironment(
+            "baseLine/background.png",
+            "baseLine/foreground.png",
+            "baseLine/foreground.png",
+            "baseLine/glow.png"
+        );
+        
         level[0][20] = 10;
         level[0][21] = 10;
         level[1][23] = 6;
@@ -113,7 +123,7 @@ public class Levels
         level[1][111] = 1;
         level[1][112] = 1;
         level[1][113] = 1;
-        level[3][113] = 3;
+        level[3][113] = 20;
         level[5][119] = 1;
         level[3][121] = 1;
         level[7][123] = 1;
@@ -141,130 +151,140 @@ public class Levels
         return level;
     }
     public static int[][] level2(){
-        
-        
-        
-        
         emptyLevel();
-        level[0][15] = 10;
-        level[0][21] = 10;
-        level[0][22] = 10;
-        level[0][30] = 10;
-        level[0][31] = 1;
-        level[0][32] = 10;
-        level[0][33] = 10;
-        level[0][34] = 10;
-        level[0][35] = 1;
-        level[1][35] = 1;
-        level[0][36] = 10;
-        level[0][37] = 10;
-        level[0][38] = 10;
-        level[0][39] = 1;
-        level[1][39] = 1;
-        level[2][39] = 1;
+        ScrollWorld.setEnvironment(
+            "frostByte/background.png",
+            "frostByte/foreground.png",
+            "frostByte/foreground.png",
+            "frostByte/glow.png"
+        );
+        
+        level[0][15] = 11;
+        level[0][21] = 11;
+        level[0][22] = 11;
+        level[0][30] = 11;
+        level[0][31] = 2;
+        level[0][32] = 11;
+        level[0][33] = 11;
+        level[0][34] = 11;
+        level[0][35] = 2;
+        level[1][35] = 2;
+        level[0][36] = 11;
+        level[0][37] = 11;
+        level[0][38] = 11;
+        level[0][39] = 2;
+        level[1][39] = 2;
+        level[2][39] = 2;
         for(int i = 50; i <= 76; i++){
-            level[0][i] = 10;
+            level[0][i] = 11;
         }
-        level[1][48] = 1;
-        level[2][52] = 1;
-        level[3][56] = 1;
-        level[4][60] = 1;
-        level[5][64] = 1;
+        level[1][48] = 2;
+        level[2][52] = 2;
+        level[3][56] = 2;
+        level[4][60] = 2;
+        level[5][64] = 2;
         level[5][67] = 6;
-        level[4][72] = 1;
-        level[4][73] = 1;
-        level[3][77] = 1;
-        level[2][79] = 1;
-        level[1][82] = 1;
+        level[4][72] = 2;
+        level[4][73] = 2;
+        level[3][77] = 2;
+        level[2][79] = 2;
+        level[1][82] = 2;
         for(int i = 3 ; i <= 6; i++){
-            level[i][85] = 1;
+            level[i][85] = 2;
         }
-        level[1][85] = 3;
+        level[1][85] = 20;
         for(int i = 85 ; i <= 190; i++){
-            level[7][i] = 1;
+            level[7][i] = 2;
         }
         for(int i = 0; i <= 4; i++){
-            level[i][105] = 1;
+            level[i][105] = 2;
         }
         for(int i = 0; i <= 4; i++){
-            level[i][125] = 1;
+            level[i][125] = 2;
         }
         for(int i = 0; i <= 4; i++){
-            level[i][145] = 1;
+            level[i][145] = 2;
         }
         for(int i = 0; i <= 4; i++){
-            level[i][165] = 1;
+            level[i][165] = 2;
         }
         for(int i = 0; i <= 4; i++){
-            level[i][185] = 1;
+            level[i][185] = 2;
         }
 
         return level;
     }
     public static int[][] level3() {
         emptyLevel();
-        level[0][15] = 10;
-        level[0][21] = 10;
-        level[0][22] = 10;
-        level[0][28] = 10;
-        level[0][29] = 10;
-        level[0][30] = 1;
-        level[0][31] = 1;
-        level[1][31] = 10;
-        level[0][39] = 10;
-        level[0][40] = 1;
-        level[1][40] = 1;
-        level[2][44] = 1;
+        ScrollWorld.setEnvironment(
+            "Drift/background.png",
+            "Drift/foreground.png",
+            "Drift/foreground.png",
+            "Drift/glow.png"
+        );
+        
+        level[0][15] = 12;
+        level[0][21] = 12;
+        level[0][22] = 12;
+        level[0][28] = 12;
+        level[0][29] = 12;
+        level[0][30] = 3;
+        level[0][31] = 3;
+        level[1][31] = 12;
+        level[0][39] = 12;
+        level[0][40] = 3;
+        level[1][40] = 3;
+        level[2][44] = 3;
         for(int i = 44; i <= 54; i++){
-            level[2][i] = 1;
+            level[2][i] = 3;
         }
-        level[3][50] = 10;
-        level[3][54] = 1;
-        level[0][57] = 10;
-        level[0][65] = 1;
-        level[1][69] = 1;
-        level[2][73] = 1;
-        level[3][77] = 1;
+        level[3][50] = 12;
+        level[3][54] = 3;
+        level[0][57] = 12;
+        level[0][65] = 3;
+        level[1][69] = 3;
+        level[2][73] = 3;
+        level[3][77] = 3;
         for(int i = 77; i <= 84; i++){
-            level[3][i] = 1;
+            level[3][i] = 3;
         }
         for(int i = 0; i <= 4; i++){
-            level[i][88] = 1;
+            level[i][88] = 3;
         }
-        level[0][91] = 10;
-        level[0][92] = 10;
-        level[0][100] = 1;
-        level[1][104] = 1;
-        level[2][108] = 1;
-        level[3][112] = 1;
-        level[4][116] = 1;
-        level[5][120] = 1;
+        level[0][91] = 12;
+        level[0][92] = 12;
+        level[0][100] = 3;
+        level[1][104] = 3;
+        level[2][108] = 3;
+        level[3][112] = 3;
+        level[4][116] = 3;
+        level[5][120] = 3;
         for(int i = 102; i <= 118; i++){
-            level[0][i] = 10;
+            level[0][i] = 12;
         }
-        level[7][120] = 3;
+        level[7][120] = 20;
         for(int i = 0; i <= 4; i++){
-            level[i][137] = 1;
+            level[i][137] = 3;
         }
         for(int i = 9; i > 7; i--){
-            level[i][137] = 1;
+            level[i][137] = 3;
         }
         //first pillar
         for(int i = 0; i <= 2; i++){
-            level[i][157] = 1;
+            level[i][157] = 3;
         }
         for(int i = 9; i >= 6; i--){
-            level[i][157] = 1;
+            level[i][157] = 3;
         }
         //second pillar
         for(int i = 0; i <= 3; i++){
-            level[i][177] = 1;
+            level[i][177] = 3;
         }
         for(int i = 9; i >= 7; i--){
-            level[i][177] = 1;
+            level[i][177] = 3;
         }
         for(int i = 0; i <= 3; i++){
-            level[i][190] = 1;
+            level[i][190] = 3;
         }
         return level;
     }
