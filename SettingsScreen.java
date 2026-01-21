@@ -19,6 +19,14 @@ public class SettingsScreen extends Menu
         particleColour = new Color(0,0,0);
         
         addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
+        
+        addObject(new SettingsButton("Menu/minus.png","Menu/minus.png","buttonpress.wav", StartScreen.getScreen(), 0),100,200);
+        addObject(new SettingsButton("Menu/plus.png","Menu/plus.png","buttonpress.wav", StartScreen.getScreen(), 1),200,200);
+        
+        addObject(new SettingsButton("Menu/minus.png","Menu/minus.png","buttonpress.wav", StartScreen.getScreen(), 2),100,300);
+        addObject(new SettingsButton("Menu/plus.png","Menu/plus.png","buttonpress.wav", StartScreen.getScreen(), 3),200,300);
+        
+        setBackground("Menu/LevelSelectScreen/baseLine.png");
     }
     
     public void act() {

@@ -23,15 +23,24 @@ public class SettingsButton extends Button
      */
     public void act()
     {
-        // Add your action code here.
+        super.act();
     }
     
     protected void behaviour() {
         switch (type) {
             case 0:
+                UserData.setMusicVolume(Math.max(UserData.getMusicVolume() - 100, 0));
                 break;
             case 1:
+                UserData.setMusicVolume(Math.min(UserData.getMusicVolume() + 100, 100));
+                break;
+            case 2:
+                UserData.setSfxVolume(Math.max(UserData.getSfxVolume() - 100, 0));
+                break;
+            case 3:
+                UserData.setSfxVolume(Math.min(UserData.getSfxVolume() + 100, 100));
                 break;
         }
+        System.out.println(UserData.getSfxVolume());
     }
 }

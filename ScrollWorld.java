@@ -31,16 +31,26 @@ public class ScrollWorld extends World {
     
     private int[][] objects;
     
-    private Ground ground1,ground2;
+    private static String background, glow;
+    private static String grnd1,grnd2;
+    private static Ground ground1, ground2;
 
     public ScrollWorld(int[][] level) {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
-        addObject(new StaticImage("baseLine/background.png"),500,300);
-        ground1 = new Ground("baseLine/foreground.png",0);
-        ground2 = new Ground("baseLine/foreground.png",1000);
+        setEnvironment(background, grnd1, grnd2, glow);
+        
+        if (background == null) background = "baseLine/background.png";
+        addObject(new StaticImage(background),500,300);
+        
+        if (grnd1 == null) grnd1 = "baseLine/foreground.png";
+        if (grnd2 == null) grnd2 = "baseLine/foreground.png";
+        ground1 = new Ground(grnd1, 0);
+        ground2 = new Ground(grnd2, 1000);
         addObject(ground1,500,300);
         addObject(ground2,1500,300);
-        addObject(new StaticImage("baseLine/glow.png"),500,329);
+        
+        if (glow == null) glow = "baseLine/glow.png";
+        addObject(new StaticImage(glow),500,329);
         world = this;
         
         Greenfoot.setSpeed(52);
@@ -69,11 +79,15 @@ public class ScrollWorld extends World {
                         break;
                     case 2:
                         worldObject = new Block2(r, c);
-                    //Portals
+                        break;
                     case 3:
+                        worldObject = new Block3(r, c);
+                        break;
+                    //Portals
+                    case 20:
                         worldObject = new ShipPortal(r, c);
                         break;
-                    case 4:
+                    case 21:
                         worldObject = new CubePortal(r, c);
                         break;
                     //Pad
@@ -87,6 +101,12 @@ public class ScrollWorld extends World {
                     //Spikes
                     case 10:
                         worldObject = new Spike1(r, c);
+                        break;
+                    case 11:
+                        worldObject = new Spike2(r, c);
+                        break;
+                    case 12:
+                        worldObject = new Spike3(r, c);
                         break;
                     default:
                         //worldObject = new Tile(r, c);
@@ -198,5 +218,12 @@ public class ScrollWorld extends World {
     
     public static ScrollWorld getWorld() {
         return world;
+    }
+    
+    public static void setEnvironment(String bg, String g1, String g2, String g) {
+        background = bg;
+        grnd1 = g1;
+        grnd2 = g2;
+        glow = g;
     }
 }
