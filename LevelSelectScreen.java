@@ -19,16 +19,32 @@ public class LevelSelectScreen extends Menu
     {    
         super(); 
         
-        levelSelectSound = new LevelSelectSound(5, 80);
-        levelSelectSound.stop();
         
-        //Level Sounds
-        level1Sound = new Level1Sound(5, 80);
-        level1Sound.stop();
-        level2Sound = new Level2Sound(5, 80);
-        level2Sound.stop();
-        level3Sound = new Level3Sound(5, 80);
-        level3Sound.stop();
+        int volume = UserData.getSfxVolume();
+        if (volume > 0) {
+            levelSelectSound = new LevelSelectSound(5, 80 /volume);
+            levelSelectSound.stop();
+            
+            //Level Sounds
+            level1Sound = new Level1Sound(5, 80 /volume);
+            level1Sound.stop();
+            level2Sound = new Level2Sound(5, 80 /volume);
+            level2Sound.stop();
+            level3Sound = new Level3Sound(5, 80 /volume);
+            level3Sound.stop();
+        } else {
+            
+            levelSelectSound = new LevelSelectSound(5, 0);
+            levelSelectSound.stop();
+            
+            //Level Sounds
+            level1Sound = new Level1Sound(5, 0);
+            level1Sound.stop();
+            level2Sound = new Level2Sound(5, 0);
+            level2Sound.stop();
+            level3Sound = new Level3Sound(5, 0);
+            level3Sound.stop();
+        }
         
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/next.png","Menu/LevelSelectScreen/nextPressed.png","buttonpress.wav",true),950,350);
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/last.png","Menu/LevelSelectScreen/lastPressed.png","buttonpress.wav",false),50,350);
@@ -64,7 +80,9 @@ public class LevelSelectScreen extends Menu
         spawnDust();
         if (!soundPlayed)
         {
-            levelSelectSound.playLoop();
+            if (UserData.getMusicVolume() != 0) {
+                levelSelectSound.playLoop();
+            }
             soundPlayed = true;
         }
     }
