@@ -135,15 +135,15 @@ public class ScrollWorld extends World {
     public void started()
     {
         if (LevelSelectScreen.currentLevelSound != null) {
-        LevelSelectScreen.currentLevelSound.playLoop();
+            LevelSelectScreen.currentLevelSound.playLoop();
         }
     }
     
     public void stopped()
     {
         if (LevelSelectScreen.currentLevelSound != null) {
-        LevelSelectScreen.currentLevelSound.pause();
-    }
+            LevelSelectScreen.currentLevelSound.pause();
+        }
     }
     
     private void handleSprintKey() {

@@ -14,7 +14,7 @@ public class Ship extends Player
     {
         super();
         shipImage();
-        this.hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
+        this.hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 8, Hitbox.HitboxType.PLAYER);
     }
     
     public void act()
@@ -27,8 +27,8 @@ public class Ship extends Player
 
     private void shipImage()
     {
-        image = new GreenfootImage("images/Player/shipPlayer.png");
-        image.scale((int)(ScrollWorld.TILE_SIZE * 1.5), (int)(ScrollWorld.TILE_SIZE * 1.5));
+        image = new GreenfootImage("images/Player/shipPlayer.png"); 
+        image.scale((int)(ScrollWorld.TILE_SIZE * 1.5), (int)(ScrollWorld.TILE_SIZE * 1.5)); 
         setImage(image);
     }
     

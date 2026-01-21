@@ -21,7 +21,7 @@ public abstract class Player extends SuperSmoothMover
     protected GreenfootImage image;
     protected Hitbox hitbox;
     
-    final double TOLERANCE = 10;
+    final double TOLERANCE = 20;
     protected double prevX;
     protected double prevY;
     
