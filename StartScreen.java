@@ -13,6 +13,8 @@ public class StartScreen extends Menu
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
+        UserData.load();
+        
         startScreen = this;
         
         setBackground(new GreenfootImage("menu/StartScreen/startMenu.png"));

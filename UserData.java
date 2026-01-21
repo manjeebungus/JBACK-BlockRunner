@@ -1,4 +1,11 @@
 import greenfoot.*;
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
+
 
 /**
  * Write a description of class UserData here.
@@ -15,65 +22,46 @@ public class UserData
     private static int sfxVolume = 100; // int 1
     private static int attempts = 0; // int 2
     
-    /**
-     * Loads the user's saved data from the Greenfoot Gallery.
-     * <p>
-     * This method reads values from {@link greenfoot.UserInfo} and applies them
-     * to the static fields in this class. It should be called once when the game
-     * starts (for example, in the main menu or first world).
-     * </p>
-     *
-     * <p>
-     * If the user is not logged in to the Greenfoot Gallery, or if storage is not
-     * available, this method does nothing and default values are used instead.
-     * </p>
-     *
-     * <p>
-     * Note: This method does not create new data. It only reads previously
-     * saved values.
-     * </p>
-     */
+    private static final String fileName = "data.txt";
+    
+    
     public static void load() {
-        if (!UserInfo.isStorageAvailable()) return;
-        
-        UserInfo info = UserInfo.getMyInfo();
-        if (info == null) return;
-        
-        username = info.getUserName();
-        
-        musicVolume = info.getInt(0);
-        sfxVolume = info.getInt(1);
-        attempts = info.getInt(2);
+        try {
+            Scanner scanner = new Scanner(new File(fileName));
+            
+            try {
+                username = scanner.nextLine();
+                musicVolume = Integer.parseInt(scanner.nextLine());
+                sfxVolume = Integer.parseInt(scanner.nextLine());
+                attempts = Integer.parseInt(scanner.nextLine());
+            } catch(NumberFormatException e) {
+                System.out.println("Found non-integer type");
+                System.exit(1);
+            }
+        } catch (FileNotFoundException e) {
+            username = "Random Runner";
+            musicVolume = 100;
+            sfxVolume = 100;
+            attempts = 0;
+        }
     }
     
-    /**
-     * Saves the user's current data to the Greenfoot Gallery.
-     * <p>
-     * This method writes the current values of the static fields in this class
-     * to {@link greenfoot.UserInfo} so they can be restored in future sessions.
-     * </p>
-     *
-     * <p>
-     * Data is only saved if the user is logged in to the Greenfoot Gallery and
-     * storage is available. If either condition is not met, this method does
-     * nothing.
-     * </p>
-     *
-     * <p>
-     * This method should be called when an important change occurs, such as
-     * updating settings, completing a level, or changing progress. It should
-     * not be called every frame.
-     * </p>
-     */
+    
     public static void save() {
-        if (!UserInfo.isStorageAvailable()) return;
-        
-        UserInfo info = UserInfo.getMyInfo();
-        if (info == null) return;
-        
-        info.setInt(0, musicVolume);
-        info.setInt(1, sfxVolume);
-        info.setInt(2, attempts);
+        try {
+            FileWriter fileWriter = new FileWriter(new File(fileName));
+            PrintWriter output = new PrintWriter(fileWriter);
+            
+            output.println(username);
+            output.println(musicVolume);
+            output.println(sfxVolume);
+            output.println(attempts);
+            
+            output.close();
+        } catch (IOException e) {
+            System.out.println("File error");
+            System.exit(1);
+        }
     }
     
     /**
