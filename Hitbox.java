@@ -22,7 +22,7 @@ public class Hitbox
     private HitboxType type;
     
     //This boolean is used for testing and balancing
-    private static boolean hitboxVisible = true;
+    private static boolean hitboxVisible = false;
     
     //Hitbox constructor, requires size and offsets
     public Hitbox(Actor owner, int sizeX, int sizeY, int offsetX, int offsetY, HitboxType type)

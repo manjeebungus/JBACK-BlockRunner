@@ -9,6 +9,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ScreenChangeButton extends Button
 {
     World world;
+    private GreenfootSound soundBg;
+    
+    public ScreenChangeButton(String staticName, String pressedName,String sound,String bgSound, World world){
+        super(staticName, pressedName,sound);
+        this.world = world;
+        soundBg = new GreenfootSound(bgSound);
+    }
     public ScreenChangeButton(String staticName, String pressedName,String sound,World world){
         super(staticName, pressedName,sound);
         this.world = world;
@@ -31,6 +38,14 @@ public class ScreenChangeButton extends Button
             currentWorld.addObject(new ScreenWipe(1), 0, 300);
         }
         Greenfoot.setWorld(world);
+        
+        if (soundBg != null) {
+            LevelSelectScreen.currentLevelSound = soundBg;
+            soundBg.playLoop();
+        }
+    
+        if (LevelSelectScreen.levelSelectSound != null) {
+            LevelSelectScreen.levelSelectSound.stop();
+        }
     }
-
 }

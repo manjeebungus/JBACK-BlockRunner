@@ -45,7 +45,7 @@ public class ScrollWorld extends World {
         
         Greenfoot.setSpeed(52);
         
-        level = Levels.level1();
+        //level = Levels.level1();
         objects = level;
         
         rows = objects.length;
@@ -127,6 +127,20 @@ public class ScrollWorld extends World {
         updateWorldObjects();
     }
     
+    public void started()
+    {
+        if (LevelSelectScreen.currentLevelSound != null) {
+        LevelSelectScreen.currentLevelSound.playLoop();
+        }
+    }
+    
+    public void stopped()
+    {
+        if (LevelSelectScreen.currentLevelSound != null) {
+        LevelSelectScreen.currentLevelSound.pause();
+    }
+    }
+    
     private void handleSprintKey() {
         if (Greenfoot.isKeyDown("shift")) {
             scrollMultiplier = SPRINT_SPEED;
@@ -134,7 +148,7 @@ public class ScrollWorld extends World {
             scrollMultiplier = 1.00;
         }
     }
-
+    
     private void autoScroll() {
         camX += SCROLL_SPEED * scrollMultiplier;
     
