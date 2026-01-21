@@ -27,6 +27,10 @@ Credits:
 	Kelton Kuan:
 		
 	Abithan Paskaranathan:
+			Created classes Player (Help from Kelton), Cube, Ship, Orb, JumpOrb, Portal, Cube portal, Ship portal. 
+			Portals have a hitbox type of INTERACT ,which is dealt with by my checkInteraction method in the player
+			Added and implemented sounds found by Josh Ye. Ex. Sound for Level 1,2,3, level complete, and level select screen.
+			Code for the level select screen sound to work was added to the Screen change button, scrollworld and player.tem
 		
 	Josh Ye:
 All level creations, sound effects, all sound classes, class diagram
@@ -39,5 +43,9 @@ cubecrashing.wav credit to robtop
 homescreen.mp3 credit to electric by alina baraz and khalid
 levelcompleted.wav credit to mixkit
 	Brian Cheung:
-		
+		-Hitbox class, which handles collisions as well as 				adjustable x/y values and offsets
+		-Assisted in the creation of portals and orbs
+		-Created jump pads
+		-Person who looks for and edits level errors
+		-Hitbox renderer, which is essential for testing and 			balancing
       
