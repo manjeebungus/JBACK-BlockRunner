@@ -1,10 +1,11 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.GreenfootSound;
 
 /**
- * Write a description of class lvlCompleteSound here.
+ * Write a description of class ButtonSound here.
  * 
- * @author (your name) 
+ * @author Josh Ye 
  * @version (a version number or a date)
+ * Jump sound effect credit to Zapsplat
  */
 public class LevelCompleteSound extends Sound
 {

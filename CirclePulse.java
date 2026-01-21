@@ -1,18 +1,61 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
  * @Author Chase Coulter
  * @Version v1.0
- * 
- * CirclePulse is a circle object of a definable color that starts extremely small, grows in size, and fades out
  */
 public class CirclePulse extends Visual
 {
-    public CirclePulse(int size, Color color, int Speed){
-        
+    int alpha;
+    int maxDiameter;
+    double diameter;
+    double growthSpeed;
+    Color color;
+    Boolean bool = false;
+
+    public CirclePulse(int maxSize,int Speed,Color color)
+    {
+        maxDiameter=maxSize;
+        growthSpeed=Speed;
+        this.color=color;
+        diameter=0;
+        alpha=150;
+        updateImage();
+        getImage().setTransparency(alpha);
     }
+    
+    public CirclePulse(int maxSize,int Speed,Color color,Boolean bool)
+    {
+        maxDiameter=maxSize;
+        growthSpeed=Speed;
+        this.color=color;
+        diameter=0;
+        alpha=150;
+        updateImage();
+        getImage().setTransparency(alpha);
+        bool = true;
+    }
+
     public void act()
     {
-        // Add your action code here.
+        if(diameter<maxDiameter)diameter+=growthSpeed;
+        alpha -=5;
+        if(alpha<0)alpha=0;
+        updateImage();
+        getImage().setTransparency(alpha);
+        if(alpha<=0&&getWorld()!=null)getWorld().removeObject(this);
+        if(bool){
+            setLocation(getExactX()-5.5,getExactY());
+        }
+        move(-5.5);
+    }
+
+    void updateImage()
+    {
+        int d = Math.max(1,(int)diameter);
+        GreenfootImage img=new GreenfootImage(d, d);
+        img.setColor(color);
+        img.fillOval(0, 0 , d-1, d-1);
+        setImage(img);
     }
 }
