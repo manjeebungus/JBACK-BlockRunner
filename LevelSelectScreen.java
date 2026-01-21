@@ -10,7 +10,8 @@ public class LevelSelectScreen extends Menu
     protected static Level1Sound level1Sound;
     protected static Level2Sound level2Sound;
     protected static Level3Sound level3Sound;
-    public static GreenfootSound currentLevelSound;
+    protected static GreenfootSound currentLevelSound;
+    
     private boolean soundPlayed = false;
     private int currentLevel = 1;
     private Color particleColour;
@@ -52,7 +53,7 @@ public class LevelSelectScreen extends Menu
             case 3:
                 particleColour = new Color(40,150,70);
                 setBackground("menu/LevelSelectScreen/drift.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/driftUnpressed.png","Menu/LevelSelectScreen/driftPressed.png","buttonpress.wav","level2.wav", new ScrollWorld(Levels.level2())),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/driftUnpressed.png","Menu/LevelSelectScreen/driftPressed.png","buttonpress.wav","level2.wav", new ScrollWorld(Levels.level3())),500,200);
                 addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
                 break;
         }

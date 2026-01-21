@@ -49,15 +49,11 @@ public abstract class Player extends SuperSmoothMover
         
         prevX = getExactX();
         prevY = getExactY();
-        
-        
                 
         //Return from act if the player was removed from collsions or other
         if (getWorld() == null) return;
         
         move();
-
-        
 
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
@@ -93,6 +89,8 @@ public abstract class Player extends SuperSmoothMover
     
                 case HAZARD:
                     ScrollWorld.getWorld().resetWorld(); //Respawns
+                    LevelSelectScreen.currentLevelSound.stop();
+                    LevelSelectScreen.currentLevelSound.play();
                     break;
     
                 case INTERACT:
@@ -203,6 +201,8 @@ public abstract class Player extends SuperSmoothMover
             if (minOverlap > TOLERANCE)
             {
                 ScrollWorld.getWorld().resetWorld();
+                LevelSelectScreen.currentLevelSound.stop();
+                LevelSelectScreen.currentLevelSound.play();
             }
             else
             {
@@ -218,6 +218,8 @@ public abstract class Player extends SuperSmoothMover
             if (overlapBottom > TOLERANCE)
             {
                 ScrollWorld.getWorld().resetWorld(); // real head collision
+                LevelSelectScreen.currentLevelSound.stop();
+                LevelSelectScreen.currentLevelSound.play();
                 return true;
             }
             else
