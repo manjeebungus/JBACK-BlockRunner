@@ -30,4 +30,11 @@ public class Pad extends WorldObject
     {
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());
     }
+    
+    /**
+     * @Author Chase Coulter
+     */
+    public void act(){
+        getWorld().addObject(new Particle(270, 90, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 4, 20 + Greenfoot.getRandomNumber(5), new Color(255,255,100),true), getX(), getY()+20);
+    }
 }

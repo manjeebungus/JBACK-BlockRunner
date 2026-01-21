@@ -151,10 +151,18 @@ public abstract class Player extends SuperSmoothMover
             ((Orb)obj).jumpOnClick(this);
         }
         
-        if (obj instanceof Pad)
-        {
+        if (obj instanceof Pad) {
             this.jump(13);
-        }        
+        
+            // Cast the object to Pad so we can get its coordinates
+            Pad pad = (Pad) obj;
+            int padX = pad.getX();
+            int padY = pad.getY();
+        
+            getWorld().addObject(new CirclePulse(200, 4, new Color(255, 255, 100), true), padX, padY+20);
+            getWorld().addObject(new CirclePulse(400, 8, new Color(255, 255, 100), true), padX, padY+20);
+        }
+      
     }
     
     protected void checkSolid(Hitbox tile)
