@@ -31,10 +31,10 @@ public class Cube extends Player
     
     protected void move()
     {
-        //Only allows for jumps if space wasn't just pressed
+        //Only allows for jumps only if the first jump has finished meaning the player is grounded
         if (Greenfoot.isKeyDown("space") && !spacePressed && isGrounded)
         {
-            spacePressed = true;
+            spacePressed = true; //Prevents the holding of space(flying)
             jumpSound.play();
             jump(9);
             for(int i = 0; i<10;i++){

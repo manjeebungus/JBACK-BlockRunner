@@ -83,18 +83,11 @@ public class ScrollWorld extends World {
                     case 3:
                         worldObject = new Block3(r, c);
                         break;
-                    //Portals
-                    case 20:
-                        worldObject = new ShipPortal(r, c);
-                        break;
-                    case 21:
-                        worldObject = new CubePortal(r, c);
-                        break;
                     //Pad
                     case 5:
                         worldObject = new Pad(r, c);
                         break;
-                    //Orbs
+                    //Orb
                     case 6:
                         worldObject = new JumpOrb(r, c);
                         break;
@@ -103,10 +96,41 @@ public class ScrollWorld extends World {
                         worldObject = new Spike1(r, c);
                         break;
                     case 11:
-                        worldObject = new Spike2(r, c);
+                        worldObject = new Spike1(r, c);
+                        
+                        //Create new flipped image of the spike
+                        GreenfootImage flipped1 = new GreenfootImage(worldObject.getImage());
+                        flipped1.mirrorVertically();
+                        worldObject.setImage(flipped1);
                         break;
                     case 12:
+                        worldObject = new Spike2(r, c);
+                        break;
+                    case 13:
+                        worldObject = new Spike2(r, c);
+                        
+                        //Create new flipped image of the spike
+                        GreenfootImage flipped2 = new GreenfootImage(worldObject.getImage());
+                        flipped2.mirrorVertically();
+                        worldObject.setImage(flipped2);
+                        break;
+                    case 14:
                         worldObject = new Spike3(r, c);
+                        break;
+                    case 15:
+                        worldObject = new Spike3(r, c);
+                        
+                        //Create new flipped image of the spike
+                        GreenfootImage flipped3 = new GreenfootImage(worldObject.getImage());
+                        flipped3.mirrorVertically();
+                        worldObject.setImage(flipped3);
+                        break;
+                    //Portals
+                    case 20:
+                        worldObject = new ShipPortal(r, c);
+                        break;
+                    case 21:
+                        worldObject = new CubePortal(r, c);
                         break;
                     default:
                         //worldObject = new Tile(r, c);

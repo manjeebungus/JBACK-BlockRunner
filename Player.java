@@ -30,7 +30,6 @@ public abstract class Player extends SuperSmoothMover
         speedY = 0;
         
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
-        
     }
     
     public Hitbox getHitbox() { return hitbox; }
@@ -82,21 +81,22 @@ public abstract class Player extends SuperSmoothMover
     
             switch (other.getType())
             {
-                case SOLID: 
+                case SOLID: //Solid objects such as blocks
                     checkSolid(other);
                     touchingSolid = true;
                     break;
     
-                case HAZARD:
+                case HAZARD: //Deadly objects
                     deathEffect();
-                    ScrollWorld.getWorld().resetWorld(); //Respawns                    
+                    ScrollWorld.getWorld().resetWorld(); //Respawns  
+                    //Replay sound
                     LevelSelectScreen.currentLevelSound.stop();
                     LevelSelectScreen.currentLevelSound.play();
                     break;
     
-                case INTERACT:
+                case INTERACT: //Special obstacles such as portal and orb
                     checkInteraction(other, obj);
-                    if (playerRemoved) return; 
+                    if (playerRemoved) return; //Some interactions remove player and swaps it out
                     break;
             }
         }
@@ -145,11 +145,13 @@ public abstract class Player extends SuperSmoothMover
             playerRemoved = true; //Signals the player that it was removed and replaced
         }
         
+        //Orb Interaction
         if (obj instanceof Orb)
         {
             ((Orb)obj).jumpOnClick(this);
         }
         
+        //Pad Interaction
         if (obj instanceof Pad) {
             this.jump(13);
         

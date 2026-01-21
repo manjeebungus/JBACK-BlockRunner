@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Pad here.
+ * A pad class which auto jumps the player when it's on it
  * 
  * @author Abithan and Brian
  * @version (a version number or a date)

@@ -44,11 +44,13 @@ public class ScreenChangeButton extends Button
         Greenfoot.setWorld(world);
         
         //@author Abithan
+        //Only plays the background sound if it was set for each level
         if (soundBg != null) {
             LevelSelectScreen.currentLevelSound = soundBg;
             soundBg.playLoop();
         }
-    
+        
+        //Make sure the sound was initialized before stopping it
         if (LevelSelectScreen.levelSelectSound != null) {
             LevelSelectScreen.levelSelectSound.stop();
         }

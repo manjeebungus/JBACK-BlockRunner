@@ -42,7 +42,8 @@ public class Ship extends Player
         {
             speedY -= 0.35;
         }
-
+        
+        //Makes sure the speed doesn't get too high or too low
         if (speedY > 6) speedY = 6;
         if (speedY < -6) speedY = -6;
 

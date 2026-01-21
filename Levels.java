@@ -20,8 +20,11 @@ public class Levels
      *
      * Spike ids for now:
      * 10 baseline
-     * 11 frostbyte
-     * 12 drift
+     * 11 baseline vertically flipped
+     * 12 frostbyte
+     * 13 frostbyte vertically flipped
+     * 14 drift
+     * 15 drift vertically flipped
      */
 
     private static int levelRows = 20;
@@ -147,7 +150,24 @@ public class Levels
         level[0][162] = 1;
         level[1][165] = 1;
         level[5][168] = 1;
+        level[1][169] = 21;
         level[8][171] = 1;
+        level[2][172] = 1;
+        level[3][172] = 10;
+        level[2][173] = 1;
+        level[3][173] = 10;
+        level[2][174] = 1;
+        level[3][174] = 10;
+        level[0][176] = 5;
+        level[4][176] = 11;
+        level[5][176] = 1;
+        level[2][179] = 1;
+        level[3][179] = 10;
+        level[2][180] = 1;
+        level[2][181] = 1;
+        level[2][182] = 1;
+        level[2][183] = 1;
+        
         return level;
     }
     public static int[][] level2(){
@@ -159,24 +179,24 @@ public class Levels
             "frostByte/glow.png"
         );
         
-        level[0][15] = 11;
-        level[0][21] = 11;
-        level[0][22] = 11;
-        level[0][30] = 11;
+        level[0][15] = 12;
+        level[0][21] = 12;
+        level[0][22] = 12;
+        level[0][30] = 12;
         level[0][31] = 2;
-        level[0][32] = 11;
-        level[0][33] = 11;
-        level[0][34] = 11;
+        level[0][32] = 12;
+        level[0][33] = 12;
+        level[0][34] = 12;
         level[0][35] = 2;
         level[1][35] = 2;
-        level[0][36] = 11;
-        level[0][37] = 11;
-        level[0][38] = 11;
+        level[0][36] = 12;
+        level[0][37] = 12;
+        level[0][38] = 12;
         level[0][39] = 2;
         level[1][39] = 2;
         level[2][39] = 2;
         for(int i = 50; i <= 76; i++){
-            level[0][i] = 11;
+            level[0][i] = 12;
         }
         level[1][48] = 2;
         level[2][52] = 2;
@@ -196,6 +216,10 @@ public class Levels
         for(int i = 85 ; i <= 190; i++){
             level[7][i] = 2;
         }
+        
+        level[4][88] = 1;//do spike on top then bottom then top
+        
+        //Ship Pillars
         for(int i = 0; i <= 4; i++){
             level[i][105] = 2;
         }
@@ -223,24 +247,24 @@ public class Levels
             "Drift/glow.png"
         );
         
-        level[0][15] = 12;
-        level[0][21] = 12;
-        level[0][22] = 12;
-        level[0][28] = 12;
-        level[0][29] = 12;
+        level[0][15] = 14;
+        level[0][21] = 14;
+        level[0][22] = 14;
+        level[0][28] = 14;
+        level[0][29] = 14;
         level[0][30] = 3;
         level[0][31] = 3;
-        level[1][31] = 12;
-        level[0][39] = 12;
+        level[1][31] = 14;
+        level[0][39] = 14;
         level[0][40] = 3;
         level[1][40] = 3;
         level[2][44] = 3;
         for(int i = 44; i <= 54; i++){
             level[2][i] = 3;
         }
-        level[3][50] = 12;
+        level[3][50] = 14;
         level[3][54] = 3;
-        level[0][57] = 12;
+        level[0][57] = 14;
         level[0][65] = 3;
         level[1][69] = 3;
         level[2][73] = 3;
@@ -251,16 +275,16 @@ public class Levels
         for(int i = 0; i <= 4; i++){
             level[i][88] = 3;
         }
-        level[0][91] = 12;
-        level[0][92] = 12;
+        level[0][91] = 14;
+        level[0][92] = 14;
         level[0][100] = 3;
         level[1][104] = 3;
         level[2][108] = 3;
         level[3][112] = 3;
         level[4][116] = 3;
         level[5][120] = 3;
-        for(int i = 102; i <= 118; i++){
-            level[0][i] = 12;
+        for(int i = 102; i <= 128; i++){
+            level[0][i] = 14;
         }
         level[7][120] = 20;
         for(int i = 0; i <= 4; i++){
