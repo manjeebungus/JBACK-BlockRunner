@@ -11,11 +11,15 @@ public class ScreenChangeButton extends Button
     World world;
     private GreenfootSound soundBg;
     
+    /**
+     * @author Abithan
+     */
     public ScreenChangeButton(String staticName, String pressedName,String sound,String bgSound, World world){
         super(staticName, pressedName,sound);
         this.world = world;
         soundBg = new GreenfootSound(bgSound);
     }
+    
     public ScreenChangeButton(String staticName, String pressedName,String sound,World world){
         super(staticName, pressedName,sound);
         this.world = world;

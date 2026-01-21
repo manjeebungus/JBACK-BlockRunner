@@ -88,7 +88,8 @@ public abstract class Player extends SuperSmoothMover
                     break;
     
                 case HAZARD:
-                    ScrollWorld.getWorld().resetWorld(); //Respawns
+                    deathEffect();
+                    ScrollWorld.getWorld().resetWorld(); //Respawns                    
                     LevelSelectScreen.currentLevelSound.stop();
                     LevelSelectScreen.currentLevelSound.play();
                     break;
@@ -200,6 +201,7 @@ public abstract class Player extends SuperSmoothMover
         {
             if (minOverlap > TOLERANCE)
             {
+                deathEffect();
                 ScrollWorld.getWorld().resetWorld();
                 LevelSelectScreen.currentLevelSound.stop();
                 LevelSelectScreen.currentLevelSound.play();
@@ -217,6 +219,7 @@ public abstract class Player extends SuperSmoothMover
         {
             if (overlapBottom > TOLERANCE)
             {
+                deathEffect();
                 ScrollWorld.getWorld().resetWorld(); // real head collision
                 LevelSelectScreen.currentLevelSound.stop();
                 LevelSelectScreen.currentLevelSound.play();
