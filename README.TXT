@@ -13,10 +13,16 @@ Title:                      Block Runner
 Authors:                    Chase Coulter, Kelton Kuan, Abithan Paskaranathan, Josh Ye, Brian Cheung
 Date of Writing:            2026/01/20
 Purpose of Project:         This is a 2d sidescrolling platformer based off the popular game, "Geometry Dash"
-			    The levels are based in square grids, contained in a 2d array, as the project requires
+			    The levels are based on square grids, contained in a 2d array, as the project requires
 How to start this Project:  Open Project.Greenfoot File with the Greenfoot Game Engine, press the 
                             "run" button on the lower margin
-User Instructions:          Click The Center Button to enter level select, select a level and begin playing
+User Instructions:          Click the Center Button to enter level select, select a level and begin playing
+Block Comment:				The player can jump using space, which can also be used to activate the orb, launching 
+							you the same height as a player jump. Other objects, such as pads, will launch you without
+							the need of any keys any and portals will change your modes to either cube or ship. The ship
+							can fly by holding or tapping space. All player modes are affected by gravity and will get 
+							"pulled" back down. Our grid was used for our actual levels, which lay out all of our 
+							obstacles/objects for that level. SAVE/LOAD HERE. 
 
 Credits:
 	Chase Coulter:
