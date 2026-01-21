@@ -14,7 +14,7 @@ public class CubePortal extends Portal
      **/
     public CubePortal(double row, double col)
     {
-        super(row, col, "images/Player/sPortal.png");
+        super(row, col, "images/cubePortal.png");
     }
     
     /**

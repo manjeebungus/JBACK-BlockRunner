@@ -14,7 +14,7 @@ public class ShipPortal extends Portal
      **/
     public ShipPortal(double row, double col)
     {
-        super(row, col, "images/Player/sPortal.png");
+        super(row, col, "images/shipPortal.png");
     }
     
     /**

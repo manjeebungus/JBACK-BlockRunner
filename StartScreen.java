@@ -19,9 +19,9 @@ public class StartScreen extends Menu
 
         //buttonSound = new ButtonSound(5, 100);
         //buttonSound.stop();
-        addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav",new LevelSelectScreen()),500,370);//play button
+        //addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav",new LevelSelectScreen()),500,370);//play button
         addObject(new ScreenChangeButton("Menu/StartScreen/settingsUnpressed.png","Menu/StartScreen/settingsPressed.png","buttonpress.wav", new SettingsScreen()),800,420);//settings button
-        addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", new LevelSelectScreen()),200,420);//blank button
+        addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav", new LevelSelectScreen()),500,370);//blank button
     }
     
     public void act()

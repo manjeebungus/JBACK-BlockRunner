@@ -95,7 +95,6 @@ public abstract class Player extends SuperSmoothMover
     
                 case HAZARD: //Deadly objects
                     deathEffect();
-                    //Respawns
                     destroy();
                     LevelSelectScreen.currentLevelSound.stop();
                     LevelSelectScreen.currentLevelSound.play();
