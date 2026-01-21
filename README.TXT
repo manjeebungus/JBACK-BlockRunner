@@ -29,7 +29,15 @@ Credits:
 	Abithan Paskaranathan:
 		
 	Josh Ye:
-
+All level creations, sound effects, all sound classes, class diagram
+Credits for sounds:
+level1.mp3 credit to genesis by grimes
+level2.mp3 credit to feel good by syn cole
+level.mp3 credit to ocean drive by duke dumont
+buttonpress.wav credit to from zapsplat(used in Binding of Issac)
+cubecrashing.wav credit to robtop
+homescreen.mp3 credit to electric by alina baraz and khalid
+levelcompleted.wav credit to mixkit
 	Brian Cheung:
 		
       
