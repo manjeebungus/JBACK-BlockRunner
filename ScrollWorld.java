@@ -119,6 +119,7 @@ public class ScrollWorld extends World {
         // Hitboxes always on top
         setPaintOrder(HitboxRenderer.class);
         
+        addObject(new ScreenFadeIn(5, Color.BLACK), 500, 300);
     }
 
     public void act() {

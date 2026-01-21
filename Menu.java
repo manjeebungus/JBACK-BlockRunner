@@ -9,16 +9,17 @@ public class Menu extends World
     public Menu()
     {    
         super(1000, 600, 1,false);//all menus 1k x 600
-        
     }
     public void act(){
         if (Greenfoot.mouseDragged(null))
         {
             spawnParticles();
+            spawnPulse();
         }
         if (Greenfoot.mouseClicked(null))
         {
             spawnParticles();
+            spawnPulse();
         }
     }
     protected void spawnParticles(){
@@ -30,6 +31,20 @@ public class Menu extends World
 
             for(int i = 0; i<10; i++){
                 addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 4, 30 + Greenfoot.getRandomNumber(25), Color.WHITE), x, y);
+            }
+        }
+    }
+    //this is a test
+    protected void spawnPulse(){
+        MouseInfo mouse = Greenfoot.getMouseInfo();
+        if (mouse != null)
+        {
+            int x = mouse.getX();
+            int y = mouse.getY();
+
+            for(int i = 0; i<10; i++){
+                //addObject(new CirclePulse(100,2,Color.WHITE), x, y);
+                //addObject(new ScreenFade(1, Color.BLACK), 500,300);
             }
         }
     }

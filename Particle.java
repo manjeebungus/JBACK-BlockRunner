@@ -19,6 +19,10 @@ public class Particle extends Visual
     protected Color color;
     protected boolean fadeOut = true;
     protected double speedDecay;
+    Boolean moving = false;
+    protected int finalRotation = 0;
+    double exactX;
+    double exactY;
 
     /**
      * @Param int direction, initial direction of particles movement
@@ -52,6 +56,27 @@ public class Particle extends Visual
 
         updateImage();
     }
+    
+    public Particle(int direction, int spread, double speed, int size, int life, Color color,Boolean bool){
+        initialDirection = direction;
+        this.spread = spread;
+        this.speed = speed; 
+        this.size = size;
+        this.color = color;
+
+        int variation = Math.max(1, life / 10);
+        lifeSpan = life + Greenfoot.getRandomNumber(variation * 2 + 1) - variation;
+        maxLife = lifeSpan;
+
+        int finalDirection = direction + Greenfoot.getRandomNumber(spread * 2) - spread;
+        setRotation(finalDirection);
+
+        speedDecay = speed / maxLife;
+
+        updateImage();
+        moving = true;
+        finalRotation = finalDirection;
+    }
 
     private void updateImage()
     {
@@ -80,6 +105,12 @@ public class Particle extends Visual
 
         if(lifeSpan <= 0 && getWorld() != null){
             getWorld().removeObject(this);
+        }
+        
+        if(moving){
+            setRotation(0);
+            move(-5.5);
+            setRotation(finalRotation);
         }
     }
 }
