@@ -48,7 +48,7 @@ public class ScrollWorld extends World {
 
         //level = Levels.level1();
 
-        level = Levels.level2();
+        //level = Levels.level2();
  
         objects = level;
         
