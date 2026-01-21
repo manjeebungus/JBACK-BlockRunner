@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Level2Sound extends Sound
 {
     private static GreenfootSound[] sounds; // hold copies of the sound
-    private static final String soundFile = "level2.wav";
+    private static final String soundFile = "level2.mp3";
     
     public Level2Sound(int count, int volume) {
         sounds = new GreenfootSound[count];
