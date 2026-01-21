@@ -126,6 +126,11 @@ public abstract class Player extends SuperSmoothMover
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());
     }
     
+    /**
+     * removeRenderer is primarily used when visible hitboxes are activated (in Hitbox class)
+     * This is because of how portals work, they remove the actor and add another one,
+     * so when I assign a hitbox render to it, the actor gets removed and causes an exception
+     */
     public void removeRenderer() {
         World world = getWorld();
         if (world == null) return;

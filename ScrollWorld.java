@@ -37,6 +37,8 @@ public class ScrollWorld extends World {
     
     private static boolean isPaused;
     private static int pauseActs;
+    
+    private boolean hPreviouslyDown = false; //Meant for hitbox visibility toggle
 
     public ScrollWorld(int[][] level) {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
@@ -163,6 +165,8 @@ public class ScrollWorld extends World {
         }
         
         pauseActs--;
+        
+        handleHitboxToggle();
     }
     
     public void started()
@@ -199,6 +203,19 @@ public class ScrollWorld extends World {
         }
         ground1.updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
         ground2.updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
+    }
+    
+    //Press h to toggle visible hitboxes, used for testing and serious players
+    private void handleHitboxToggle()
+    {
+        boolean hDown = Greenfoot.isKeyDown("h");
+    
+        if (hDown && !hPreviouslyDown)
+        {
+            Hitbox.setBoxVisible(!Hitbox.isBoxVisible());
+        }
+    
+        hPreviouslyDown = hDown;
     }
     
     /**

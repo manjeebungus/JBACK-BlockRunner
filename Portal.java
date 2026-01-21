@@ -4,6 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * A portal class which changes the mode of the player(Ex. Ship, Cube)
  * 
  * @author Abithan
+ * Contributed to by Brian
  * @version (a version number or a date)
  */
 public abstract class Portal extends WorldObject
