@@ -133,8 +133,11 @@ public class Levels
         level[8][171] = 1;
         return level;
     }
-
-    public static int[][] level2() {
+    public static int[][] level2(){
+        
+        
+        
+        
         emptyLevel();
         level[0][15] = 10;
         level[0][21] = 10;
@@ -152,9 +155,109 @@ public class Levels
         level[0][39] = 1;
         level[1][39] = 1;
         level[2][39] = 1;
-        
-        
+        for(int i = 50; i <= 76; i++){
+            level[0][i] = 10;
+        }
+        level[1][48] = 1;
+        level[2][52] = 1;
+        level[3][56] = 1;
+        level[4][60] = 1;
+        level[5][64] = 1;
+        level[6][67] = 1;
+        level[5][70] = 1;
+        level[4][73] = 1;
+        level[3][77] = 1;
+        level[2][79] = 1;
+        level[1][82] = 1;
+        level[0][85] = 1;
+        level[2][85] = 1;
+        level[1][85] = 3;
+        for(int i = 85 ; i <= 190; i++){
+            level[7][i] = 1;
+        }
+        for(int i = 0; i <= 4; i++){
+            level[i][105] = 1;
+        }
+        for(int i = 0; i <= 4; i++){
+            level[i][125] = 1;
+        }
+        for(int i = 0; i <= 4; i++){
+            level[i][145] = 1;
+        }
+        for(int i = 0; i <= 4; i++){
+            level[i][165] = 1;
+        }
+        for(int i = 0; i <= 4; i++){
+            level[i][185] = 1;
+        }
 
+        return level;
+    }
+    public static int[][] level3() {
+        emptyLevel();
+        level[0][15] = 10;
+        level[0][21] = 10;
+        level[0][22] = 10;
+        level[0][28] = 10;
+        level[0][29] = 10;
+        level[0][30] = 1;
+        level[0][31] = 1;
+        level[1][31] = 10;
+        level[0][39] = 10;
+        level[0][40] = 1;
+        level[1][40] = 1;
+        level[2][44] = 1;
+        for(int i = 44; i <= 54; i++){
+            level[2][i] = 1;
+        }
+        level[3][50] = 10;
+        level[3][54] = 1;
+        level[0][57] = 10;
+        level[0][65] = 1;
+        level[1][69] = 1;
+        level[2][73] = 1;
+        level[3][77] = 1;
+        for(int i = 77; i <= 84; i++){
+            level[3][i] = 1;
+        }
+        for(int i = 0; i <= 4; i++){
+            level[i][88] = 1;
+        }
+        level[0][91] = 10;
+        level[0][92] = 10;
+        level[0][100] = 1;
+        level[1][104] = 1;
+        level[2][108] = 1;
+        level[3][112] = 1;
+        level[4][116] = 1;
+        level[5][120] = 1;
+        for(int i = 102; i <= 118; i++){
+            level[0][i] = 10;
+        }
+        level[7][120] = 3;
+        for(int i = 0; i <= 4; i++){
+            level[i][137] = 1;
+        }
+        for(int i = 9; i > 7; i--){
+            level[i][137] = 1;
+        }
+        //first pillar
+        for(int i = 0; i <= 2; i++){
+            level[i][157] = 1;
+        }
+        for(int i = 9; i >= 6; i--){
+            level[i][157] = 1;
+        }
+        //second pillar
+        for(int i = 0; i <= 3; i++){
+            level[i][177] = 1;
+        }
+        for(int i = 9; i >= 7; i--){
+            level[i][177] = 1;
+        }
+        for(int i = 0; i <= 3; i++){
+            level[i][190] = 1;
+        }
         return level;
     }
 }
