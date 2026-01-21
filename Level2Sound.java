@@ -5,6 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author Abithan
  * Sounds found by Josh Ye
+ * Song: Feel good by Syn Cole (NCS)
  * @version (a version number or a date)
  */
 public class Level2Sound extends Sound

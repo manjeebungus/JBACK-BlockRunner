@@ -5,7 +5,7 @@ import greenfoot.GreenfootSound;
  * 
  * @author Josh Ye 
  * @version (a version number or a date)
- * Jump sound effect credit to Zapsplat
+ * Level complete sound effect credit to Mixkit
  */
 public class LevelCompleteSound extends Sound
 {

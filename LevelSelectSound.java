@@ -5,12 +5,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author Abithan
  * Sounds found by Josh Ye
+ * Song: Electric by Alina Baraz and Khalid
  * @version (a version number or a date)
  */
 public class LevelSelectSound extends Sound
 {
     private static GreenfootSound[] sounds; // hold copies of the sound
-    private static final String soundFile = "levelchoosing.wav";
+    private static final String soundFile = "homescreenmusic.mp3";
     
     public LevelSelectSound(int count, int volume) {
         sounds = new GreenfootSound[count];
