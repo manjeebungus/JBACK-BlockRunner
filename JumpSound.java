@@ -1,7 +1,7 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class ButtonSound here.
+ * 
  * 
  * @author Josh Ye 
  * @version (a version number or a date)
