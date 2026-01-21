@@ -2,7 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import greenfoot.Color;
 
 /**
- * Write a description of class HitboxRenderer here.
+ * If you wish to use this class, please change the hitboxVisible boolean in Hitbox
  * 
  * @author Brian Cheung
  * @version (a version number or a date)

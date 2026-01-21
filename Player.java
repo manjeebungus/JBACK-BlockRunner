@@ -25,9 +25,12 @@ public abstract class Player extends SuperSmoothMover
     protected double prevX;
     protected double prevY;
     
+    protected boolean isDead;
+    
     public Player() {
         isGrounded = true;
         speedY = 0;
+        isDead = false;
         
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
     }
@@ -40,6 +43,10 @@ public abstract class Player extends SuperSmoothMover
      */
     public void act()
     {   
+        if (ScrollWorld.getPause()) return;
+        
+        if (isDead) ScrollWorld.getWorld().resetWorld();
+        
         // HARD GROUND CLAMP (prevents going through the ground on mode switch)
         if (getExactY() > ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2)
         {
@@ -88,13 +95,13 @@ public abstract class Player extends SuperSmoothMover
     
                 case HAZARD: //Deadly objects
                     deathEffect();
-                    ScrollWorld.getWorld().resetWorld(); //Respawns  
-                    //Replay sound
+                    //Respawns
+                    destroy();
                     LevelSelectScreen.currentLevelSound.stop();
                     LevelSelectScreen.currentLevelSound.play();
                     break;
-    
-                case INTERACT: //Special obstacles such as portal and orb
+                
+                case INTERACT:
                     checkInteraction(other, obj);
                     if (playerRemoved) return; //Some interactions remove player and swaps it out
                     break;
@@ -118,6 +125,11 @@ public abstract class Player extends SuperSmoothMover
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());
     }
     
+    /**
+     * removeRenderer is primarily used when visible hitboxes are activated (in Hitbox class)
+     * This is because of how portals work, they remove the actor and add another one,
+     * so when I assign a hitbox render to it, the actor gets removed and causes an exception
+     */
     public void removeRenderer() {
         World world = getWorld();
         if (world == null) return;
@@ -205,6 +217,7 @@ public abstract class Player extends SuperSmoothMover
             {
                 deathEffect();
                 ScrollWorld.getWorld().resetWorld();
+                destroy();
                 LevelSelectScreen.currentLevelSound.stop();
                 LevelSelectScreen.currentLevelSound.play();
             }
@@ -223,6 +236,7 @@ public abstract class Player extends SuperSmoothMover
             {
                 deathEffect();
                 ScrollWorld.getWorld().resetWorld(); // real head collision
+                destroy(); // real head collision
                 LevelSelectScreen.currentLevelSound.stop();
                 LevelSelectScreen.currentLevelSound.play();
                 return true;
@@ -249,6 +263,13 @@ public abstract class Player extends SuperSmoothMover
         setLocation(getExactX(), yPos);
         speedY = 0;
         if (this instanceof Cube) roundToClosestRotation();
+    }
+    
+    public void destroy() {
+        isDead = true;
+        getImage().setTransparency(0);
+        
+        ScrollWorld.setPause(60);
     }
     
     /**

@@ -34,9 +34,17 @@ public class ScrollWorld extends World {
     private static String background, glow;
     private static String grnd1,grnd2;
     private static Ground ground1, ground2;
+    
+    private static boolean isPaused;
+    private static int pauseActs;
+    
+    private boolean hPreviouslyDown = false; //Meant for hitbox visibility toggle
 
     public ScrollWorld(int[][] level) {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
+        isPaused = false;
+        pauseActs = 0;
+        
         setEnvironment(background, grnd1, grnd2, glow);
         
         if (background == null) background = "baseLine/background.png";
@@ -54,7 +62,7 @@ public class ScrollWorld extends World {
         world = this;
         
         Greenfoot.setSpeed(52);
-        
+        scrollMultiplier = 1.00;
 
         //level = Levels.level1();
 
@@ -169,11 +177,20 @@ public class ScrollWorld extends World {
         
         addObject(new ScreenFadeIn(5, Color.BLACK), 500, 300);
     }
-
+    
     public void act() {
-        handleSprintKey();
-        autoScroll(); // horizontal scrolling
-        updateWorldObjects();
+        if (pauseActs <= 0) {
+            isPaused = false;
+        }
+        
+        if (!isPaused) {
+            autoScroll(); // horizontal scrolling
+            updateWorldObjects();
+        }
+        
+        pauseActs--;
+        
+        handleHitboxToggle();
     }
     
     public void started()
@@ -187,14 +204,6 @@ public class ScrollWorld extends World {
     {
         if (LevelSelectScreen.currentLevelSound != null) {
             LevelSelectScreen.currentLevelSound.pause();
-        }
-    }
-    
-    private void handleSprintKey() {
-        if (Greenfoot.isKeyDown("shift")) {
-            scrollMultiplier = SPRINT_SPEED;
-        } else {
-            scrollMultiplier = 1.00;
         }
     }
     
@@ -220,6 +229,19 @@ public class ScrollWorld extends World {
         ground2.updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     
+    //Press h to toggle visible hitboxes, used for testing and serious players
+    private void handleHitboxToggle()
+    {
+        boolean hDown = Greenfoot.isKeyDown("h");
+    
+        if (hDown && !hPreviouslyDown)
+        {
+            Hitbox.setBoxVisible(!Hitbox.isBoxVisible());
+        }
+    
+        hPreviouslyDown = hDown;
+    }
+    
     /**
      * @Author Chase Coulter
      */
@@ -242,6 +264,15 @@ public class ScrollWorld extends World {
     
     public static ScrollWorld getWorld() {
         return world;
+    }
+    
+    public static boolean getPause() {
+        return isPaused;
+    }
+    
+    public static void setPause(int acts) {
+        isPaused = true;
+        pauseActs = acts;
     }
     
     public static void setEnvironment(String bg, String g1, String g2, String g) {

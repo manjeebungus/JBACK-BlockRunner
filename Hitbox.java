@@ -21,7 +21,7 @@ public class Hitbox
     
     private HitboxType type;
     
-    //This boolean is used for testing and balancing
+    //This boolean is used for testing and balancing, off by default
     private static boolean hitboxVisible = false;
     
     //Hitbox constructor, requires size and offsets
@@ -44,7 +44,7 @@ public class Hitbox
                getY() + sizeY / 2 > other.getY() - other.sizeY / 2;
     }
 
-    //This method is meant to be used when hitboxes are invisible by default (not as of now)
+    //This method is meant to be used when hitboxes are invisible by default 
     //Static method and variable so it applies to all hitboxes
     public static void setBoxVisible(boolean visible) { hitboxVisible = visible; }
     
