@@ -25,9 +25,12 @@ public abstract class Player extends SuperSmoothMover
     protected double prevX;
     protected double prevY;
     
+    protected boolean isDead;
+    
     public Player() {
         isGrounded = true;
         speedY = 0;
+        isDead = false;
         
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
         
@@ -41,6 +44,10 @@ public abstract class Player extends SuperSmoothMover
      */
     public void act()
     {   
+        if (ScrollWorld.getPause()) return;
+        
+        if (isDead) ScrollWorld.getWorld().resetWorld();
+        
         // HARD GROUND CLAMP (prevents going through the ground on mode switch)
         if (getExactY() > ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2)
         {
@@ -89,11 +96,12 @@ public abstract class Player extends SuperSmoothMover
     
                 case HAZARD:
                     deathEffect();
-                    ScrollWorld.getWorld().resetWorld(); //Respawns                    
+                    //Respawns
+                    destroy();
                     LevelSelectScreen.currentLevelSound.stop();
                     LevelSelectScreen.currentLevelSound.play();
                     break;
-    
+                
                 case INTERACT:
                     checkInteraction(other, obj);
                     if (playerRemoved) return; 
@@ -203,6 +211,7 @@ public abstract class Player extends SuperSmoothMover
             {
                 deathEffect();
                 ScrollWorld.getWorld().resetWorld();
+                destroy();
                 LevelSelectScreen.currentLevelSound.stop();
                 LevelSelectScreen.currentLevelSound.play();
             }
@@ -221,6 +230,7 @@ public abstract class Player extends SuperSmoothMover
             {
                 deathEffect();
                 ScrollWorld.getWorld().resetWorld(); // real head collision
+                destroy(); // real head collision
                 LevelSelectScreen.currentLevelSound.stop();
                 LevelSelectScreen.currentLevelSound.play();
                 return true;
@@ -247,6 +257,13 @@ public abstract class Player extends SuperSmoothMover
         setLocation(getExactX(), yPos);
         speedY = 0;
         if (this instanceof Cube) roundToClosestRotation();
+    }
+    
+    public void destroy() {
+        isDead = true;
+        getImage().setTransparency(0);
+        
+        ScrollWorld.setPause(60);
     }
     
     /**
