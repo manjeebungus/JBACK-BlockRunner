@@ -6,13 +6,20 @@
  */
 public class Levels  
 {
-    // Tile ids for now:
-    // 0 blank tile
-    // 1 test block
-    // 2 block2
-
-    // Spike ids for now:
-    // 10 placeholder
+    /**
+     * Tile ids for now:
+     * 0 blank tile
+     * 1 test block
+     * 2 block2
+     * 3 ship portal
+     * 4 cube portal
+     * 5 jump pad
+     * 6 jump orb
+     * 
+     *
+     * Spike ids for now:
+     * 10 placeholder
+     */
 
     private static int levelRows = 20;
     private static int levelCols = 200;
@@ -163,14 +170,15 @@ public class Levels
         level[3][56] = 1;
         level[4][60] = 1;
         level[5][64] = 1;
-        level[6][67] = 1;
-        level[5][70] = 1;
+        level[5][67] = 6;
+        level[4][72] = 1;
         level[4][73] = 1;
         level[3][77] = 1;
         level[2][79] = 1;
         level[1][82] = 1;
-        level[0][85] = 1;
-        level[2][85] = 1;
+        for(int i = 3 ; i <= 6; i++){
+            level[i][85] = 1;
+        }
         level[1][85] = 3;
         for(int i = 85 ; i <= 190; i++){
             level[7][i] = 1;
