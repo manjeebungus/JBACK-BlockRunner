@@ -22,6 +22,7 @@ public class LevelSelectScreen extends Menu
         
         int volume = UserData.getSfxVolume();
         if (volume > 0) {
+            //Background sound when selecting levels
             levelSelectSound = new LevelSelectSound(5, 80 /volume);
             levelSelectSound.stop();
             
@@ -33,7 +34,7 @@ public class LevelSelectScreen extends Menu
             level3Sound = new Level3Sound(5, 80 /volume);
             level3Sound.stop();
         } else {
-            
+            //Background sound when selecting levels
             levelSelectSound = new LevelSelectSound(5, 0);
             levelSelectSound.stop();
             
