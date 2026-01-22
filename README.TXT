@@ -42,10 +42,12 @@ Credits:
 			
 		
 	Abithan Paskaranathan:
-			Created classes Player (Help from Kelton), Cube, Ship, Orb, JumpOrb, Portal, Cube portal, Ship portal. 
+			Created classes Player (with assistance from Kelton. Added help methods, added to case INTERACT AND HAZARD, 
+			constuctor and some act code), Cube, Ship, Orb, JumpOrb, Portal, Cube portal, Ship portal. 
 			Portals have a hitbox type of INTERACT, which is dealt with by my checkInteraction method in the player
-			Added and implemented sounds found by Josh Ye. Ex. Sound for Level 1,2,3, level complete, and level select screen.
-			Code for the level select screen sound to work was added to the Screen Change button, ScrollWorld, and Player.
+			Added and implemented sounds found by Josh Ye. Ex. Sound for Level 1,2,3, level complete, cube crash, homeScreen 
+			and level select screen. Code for the level select screen sound to work was added to the Screen Change button, 
+			ScrollWorld, and Player.
 			Added additional obstacles to the levels
 		
 	Josh Ye:
