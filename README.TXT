@@ -24,7 +24,9 @@ Block Comment:				The player can jump using space, which can also be used to act
 							"pulled" back down. Our grid was used for our actual levels, which lay out all of our 
 							obstacles/objects for that level. When in the settings menu, the user can adjust the volumes
 							of the music and of the sound effects with the plus and minus buttons. These volumes are stored
-							in a text file "data.txt" including the player name and number of attempts.
+							in a text file "data.txt", including the player name and number of attempts. Hitboxes can be 
+							visually seen using "h". For bugs,some of our background music for start screen and level select
+							screen was not playing.
 
 Credits:
 	Chase Coulter:
