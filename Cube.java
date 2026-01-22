@@ -2,16 +2,27 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.List;
 
 /**
- * The base player mode which is a cube that jumps and moves
- * 
+ * The default player mode represented as a cube.
+ * The cube can jump, rotate while airborne, and is
+ * affected by gravity.
+ *
+ * This class defines the standard movement behavior
+ * used in most levels.
+ *
  * @author Abithan Paskaranathan
- * Assisted by Kelton Kuan
- * @version (a version number or a date)
+ * @author Kelton Kuan (assistance)
+ * @version 1.0
  */
 public class Cube extends Player
 {
+    /** Static reference to the active Cube instance */
     public static Cube cube;
     
+    /**
+     * Constructs a Cube player.
+     * Initializes the cube image, jump sound,
+     * and sets this instance as the active cube.
+     */
     public Cube()
     {
         super();
@@ -25,6 +36,11 @@ public class Cube extends Player
         jumpSound.stop();
     }
     
+    /**
+     * Handles cube-specific movement logic.
+     * Allows jumping when grounded and applies
+     * gravity and rotation while airborne.
+     */
     protected void move()
     {
         //Only allows for jumps only if the first jump has finished meaning the player is grounded
@@ -49,13 +65,22 @@ public class Cube extends Player
             if (firstJumpMade && !isGrounded) turn(4.5); 
         }
     }
-
+    
+    /**
+     * Loads, scales, and applies the cube image
+     * to the player.
+     */
     private void cubeImage(){
         image = new GreenfootImage("images/Player/cube1.png");
         image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE);
         setImage(image);
     }
-
+    
+    /**
+     * Spawns particle effects when the cube jumps.
+     * Particles originate from the bottom of the cube
+     * to simulate a jump impulse.
+     */
     private void spawnJumpParticles()
     {
         if (isGrounded) return;

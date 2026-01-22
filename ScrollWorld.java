@@ -2,11 +2,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
- * Write a description of class TestBlock here.
- * 
+ * A horizontally scrolling Greenfoot world that renders a tile-based level,
+ * manages camera movement, and controls world objects, background layers,
+ * and pause behavior.
+ *
  * @author Kelton Kuan
- * @version (a version number or a date)
- * 
+ * @version 1.0
+ *
  * @assisted Chase Coulter
  */
 public class ScrollWorld extends World {
@@ -42,7 +44,14 @@ public class ScrollWorld extends World {
     private static int pauseActs;
     
     private boolean hPreviouslyDown = false; //Meant for hitbox visibility toggle
-
+    
+    /**
+     * Constructs a new scrolling world using a 2D level layout.
+     * Initializes background layers, ground, world objects,
+     * player, camera position, and visual effects.
+     *
+     * @param level a 2D integer array representing the level layout
+     */
     public ScrollWorld(int[][] level) {
         super(SCREEN_WIDTH, SCREEN_HEIGHT, 1, false);
         isPaused = false;
@@ -181,6 +190,12 @@ public class ScrollWorld extends World {
         addObject(new ScreenFadeIn(5, Color.BLACK), 500, 300);
     }
     
+    
+    /**
+     * Called every frame.
+     * Handles pausing, camera scrolling, world updates,
+     * and hitbox toggling.
+     */
     public void act() {
         if (pauseActs <= 0) {
             isPaused = false;
@@ -198,6 +213,10 @@ public class ScrollWorld extends World {
         checkFade();
     }
     
+    /**
+     * Called when the world starts running.
+     * Begins looping the level's background music.
+     */
     public void started()
     {
         if (LevelSelectScreen.currentLevelSound != null) {
@@ -205,6 +224,10 @@ public class ScrollWorld extends World {
         }
     }
     
+    /**
+     * Called when the world stops running.
+     * Pauses the level's background music.
+     */
     public void stopped()
     {
         if (LevelSelectScreen.currentLevelSound != null) {
@@ -212,6 +235,10 @@ public class ScrollWorld extends World {
         }
     }
     
+    /**
+     * Automatically scrolls the camera horizontally
+     * and clamps it to the bounds of the level.
+     */
     private void autoScroll() {
         camX += SCROLL_SPEED * scrollMultiplier;
     
@@ -222,6 +249,10 @@ public class ScrollWorld extends World {
         //camY = groundWorldY - (SCREEN_HEIGHT - GROUND_OFFSET);
     }
     
+    /**
+     * Updates the on-screen position of all world objects
+     * based on the camera position.
+     */
     private void updateWorldObjects() {
         for (int r = 0; r < rows; r++) {
             for (int c = 0; c < cols; c++) {
@@ -234,7 +265,10 @@ public class ScrollWorld extends World {
         ground2.updateScreenPosition(camX, camY, SCREEN_WIDTH, SCREEN_HEIGHT);
     }
     
-    //Press h to toggle visible hitboxes, used for testing and serious players
+    /**
+     * Toggles hitbox visibility when the 'H' key is pressed.
+     * Prevents repeated toggling while the key is held down.
+     */
     private void handleHitboxToggle()
     {
         boolean hDown = Greenfoot.isKeyDown("h");
@@ -248,40 +282,87 @@ public class ScrollWorld extends World {
     }
     
     /**
-     * @Author Chase Coulter
+     * Spawns a particle effect at a given position.
+     *
+     * @param direction initial movement direction
+     * @param spread directional randomness
+     * @param speed particle speed
+     * @param size particle size
+     * @param life lifespan in acts
+     * @param color particle color
+     * @param x x-coordinate
+     * @param y y-coordinate
+     *
+     * @author Chase Coulter
      */
     public void spawnParticle(int direction,int spread,double speed,int size,int life,Color color,int x, int y)
     {
         addObject(new Particle(direction,spread,speed,size,life,color),x, y);
     }
     
+    /**
+     * Resets the world by recreating it
+     * using the same level data.
+     */
     public void resetWorld() {
         Greenfoot.setWorld(new ScrollWorld(objects));
     }
     
+    /**
+     * Moves the camera vertically by a specified amount.
+     *
+     * @param amount amount to move the camera
+     */
     public void moveCameraY(double amount) {
         camY += amount;
     }
     
+    /**
+     * Returns the current vertical camera position.
+     *
+     * @return the camera Y position
+     */
     public double getCameraY() {
         return camY;
     }
     
+    /**
+     * Returns the current active ScrollWorld instance.
+     *
+     * @return the current world
+     */
     public static ScrollWorld getWorld() {
         return world;
     }
     
+    /**
+     * Returns whether the world is currently paused.
+     *
+     * @return true if paused
+     */
     public static boolean getPause() {
         return isPaused;
     }
     
+    /**
+     * Pauses the world for a specified number of acts.
+     *
+     * @param acts number of frames to pause
+     */
     public static void setPause(int acts) {
         isPaused = true;
         pauseActs = acts;
     }
     
     /**
-     * @Author Kelton Kuan
+     * Sets environment image paths for the world.
+     *
+     * @param bg background image path
+     * @param g1 first ground image path
+     * @param g2 second ground image path
+     * @param g glow overlay image path
+     *
+     * @author Kelton Kuan
      */
     public static void setEnvironment(String bg, String g1, String g2, String g) {
         background = bg;
