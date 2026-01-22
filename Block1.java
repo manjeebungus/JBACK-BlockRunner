@@ -6,11 +6,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Kelton Kuan
  * @version (a version number or a date)
  */
-public class TestBlock extends Tile
+public class Block1 extends Tile
 {
     private static final GreenfootImage image = new GreenfootImage("images/baseLine/block.png");
     
-    public TestBlock(double row, double col) {
+    public Block1(double row, double col) {
         super(row, col, image);
     }
 }
