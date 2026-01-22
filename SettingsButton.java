@@ -29,17 +29,22 @@ public class SettingsButton extends Button
     protected void behaviour() {
         switch (type) {
             case 0:
-                UserData.setMusicVolume(Math.max(UserData.getMusicVolume() - 100, 0));
+                UserData.setMusicVolume(Math.max(UserData.getMusicVolume() - 10, 0));
+                SettingsScreen.getScreen().updateMusicBar();
                 break;
             case 1:
-                UserData.setMusicVolume(Math.min(UserData.getMusicVolume() + 100, 100));
+                UserData.setMusicVolume(Math.min(UserData.getMusicVolume() + 10, 100));
+                SettingsScreen.getScreen().updateMusicBar();
                 break;
             case 2:
-                UserData.setSfxVolume(Math.max(UserData.getSfxVolume() - 100, 0));
+                UserData.setSfxVolume(Math.max(UserData.getSfxVolume() - 10, 0));
+                SettingsScreen.getScreen().updateSfxBar();
                 break;
             case 3:
-                UserData.setSfxVolume(Math.min(UserData.getSfxVolume() + 100, 100));
+                UserData.setSfxVolume(Math.min(UserData.getSfxVolume() + 10, 100));
+                SettingsScreen.getScreen().updateSfxBar();
                 break;
         }
+        
     }
 }

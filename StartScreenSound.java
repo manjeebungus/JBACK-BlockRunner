@@ -52,14 +52,14 @@ public class StartScreenSound extends Sound
     
     public void setSoundVolume() {
         for (GreenfootSound sound : sounds) {
-            sound.setVolume(sfxVolume * soundVolume/100);
+            sound.setVolume(musicVolume * soundVolume/100);
         }
     }
     
     public void setSoundVolume(int volume) {
-        sfxVolume = volume;
+        musicVolume = volume;
         for (GreenfootSound sound : sounds) {
-            sound.setVolume(sfxVolume * soundVolume/100);
+            sound.setVolume(musicVolume * soundVolume/100);
         }
     }
 }

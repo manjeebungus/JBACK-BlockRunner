@@ -38,7 +38,8 @@ Credits:
 			Cube (Assisted with jumping logic), WorldObject (All except hitbox interactions), Ground (Assisted with logic),
 			Spike (All except hitboxes), Spike1 (All except image), Spike2(All except image), Spike3 (All except image),
 			Tile (All except hitbox renderer), Block1 (All except image), Block2 (All except image), Block3 (All except image),
-			Levels (Implemented id system and created the template to create levels, did not actually make the levels), UserData
+			Levels (Implemented id system and created the template to create levels, did not actually make the levels), UserData,
+			RedBar, GreenBar
 			
 		
 	Abithan Paskaranathan:
