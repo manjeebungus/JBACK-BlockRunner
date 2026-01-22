@@ -42,7 +42,7 @@ public abstract class Player extends SuperSmoothMover
     protected Hitbox hitbox;
 
     /** Tolerance used to distinguish lethal vs. non-lethal collisions */
-    final double TOLERANCE = 20;
+    final double TOLERANCE = 10;
 
     /** Previous X position (used for collision resolution) */
     protected double prevX;
