@@ -163,6 +163,7 @@ public class Levels
         level[5][176] = 1;
         level[2][179] = 1;
         level[3][179] = 10;
+        level[3][180] = 10;
         level[2][180] = 1;
         level[2][181] = 1;
         level[2][182] = 1;
@@ -356,6 +357,7 @@ public class Levels
         level[0][60] = 14;
         level[0][61] = 14;
         level[1][63] = 6; // Low orb jump
+        level[1][67] = 3;
         level[1][68] = 3;
         level[2][73] = 3;
         
