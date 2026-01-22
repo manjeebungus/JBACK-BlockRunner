@@ -83,7 +83,7 @@ public class ScrollWorld extends World {
                 switch (objects[r][c]) {
                     //Blocks
                     case 1:
-                        worldObject = new TestBlock(r, c);
+                        worldObject = new Block1(r, c);
                         break;
                     case 2:
                         worldObject = new Block2(r, c);
@@ -275,6 +275,9 @@ public class ScrollWorld extends World {
         pauseActs = acts;
     }
     
+    /**
+     * @Author Kelton Kuan
+     */
     public static void setEnvironment(String bg, String g1, String g2, String g) {
         background = bg;
         grnd1 = g1;
