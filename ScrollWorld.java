@@ -192,6 +192,8 @@ public class ScrollWorld extends World {
         
         //addObject(player, -100, -100); // will be placed correctly by updateScreenPosition
         
+        addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
+        
         // Hitboxes always on top
         setPaintOrder(HitboxRenderer.class);
         
