@@ -20,12 +20,8 @@ public class Cube extends Player
         //speedY = 0;
 
         cubeImage();
-        int volume = UserData.getSfxVolume();
-        if (volume > 0) {
-            jumpSound = new JumpSound(5, 100 / volume);
-        } else {
-            jumpSound = new JumpSound(5, 0);
-        }
+        
+        jumpSound = new JumpSound(5, 100);
         jumpSound.stop();
     }
     

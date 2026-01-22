@@ -119,7 +119,7 @@ public abstract class Player extends SuperSmoothMover
     
     //This method allows for hitbox visibility
     @Override
-    public void addedToWorld(World world)
+    protected void addedToWorld(World world)
     {
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());
     }

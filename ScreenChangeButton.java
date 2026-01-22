@@ -9,15 +9,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ScreenChangeButton extends Button
 {
     World world;
-    private GreenfootSound soundBg;
+    private Sound soundBg;
     
     /**
      * @author Abithan
      */
-    public ScreenChangeButton(String staticName, String pressedName,String sound,String bgSound, World world){
+    public ScreenChangeButton(String staticName, String pressedName,String sound,Sound bgSound, World world){
         super(staticName, pressedName,sound);
         this.world = world;
-        soundBg = new GreenfootSound(bgSound);
+        soundBg = bgSound;
     }
     
     public ScreenChangeButton(String staticName, String pressedName,String sound,World world){

@@ -6,6 +6,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Menu extends World
 {
+    protected static Menu menu;
+    
     public Menu()
     {    
         super(1000, 600, 1,false);//all menus 1k x 600
@@ -49,5 +51,9 @@ public class Menu extends World
             addObject(new CirclePulse(50, 4, Color.WHITE), x, y);
             addObject(new CirclePulse(100, 8, Color.WHITE), x, y);
         }
+    }
+    
+    protected static Menu getMenu() {
+        return menu;
     }
 }

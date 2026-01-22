@@ -128,6 +128,8 @@ public class UserData
      */
     public static void setMusicVolume(int volume) {
         musicVolume = Math.max(0, Math.min(100, volume));
+        Sound.setMusicVolume(musicVolume);
+        
         save();
     }
     
@@ -141,6 +143,8 @@ public class UserData
      */
     public static void setSfxVolume(int volume) {
         sfxVolume = Math.max(0, Math.min(100, volume));
+        Sound.setSfxVolume(sfxVolume);
+        
         save();
     }
     

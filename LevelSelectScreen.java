@@ -10,7 +10,7 @@ public class LevelSelectScreen extends Menu
     protected static Level1Sound level1Sound;
     protected static Level2Sound level2Sound;
     protected static Level3Sound level3Sound;
-    protected static GreenfootSound currentLevelSound;
+    protected static Sound currentLevelSound;
     
     private boolean soundPlayed = false;
     private int currentLevel = 1;
@@ -18,34 +18,19 @@ public class LevelSelectScreen extends Menu
     public LevelSelectScreen()
     {    
         super(); 
+        menu = this;
         
+        //Background sound when selecting levels
+        levelSelectSound = new LevelSelectSound(5, 80);
+        levelSelectSound.stop();
         
-        int volume = UserData.getSfxVolume();
-        if (volume > 0) {
-            //Background sound when selecting levels
-            levelSelectSound = new LevelSelectSound(5, 80 /volume);
-            levelSelectSound.stop();
-            
-            //Level Sounds
-            level1Sound = new Level1Sound(5, 80 /volume);
-            level1Sound.stop();
-            level2Sound = new Level2Sound(5, 80 /volume);
-            level2Sound.stop();
-            level3Sound = new Level3Sound(5, 80 /volume);
-            level3Sound.stop();
-        } else {
-            //Background sound when selecting levels
-            levelSelectSound = new LevelSelectSound(5, 0);
-            levelSelectSound.stop();
-            
-            //Level Sounds
-            level1Sound = new Level1Sound(5, 0);
-            level1Sound.stop();
-            level2Sound = new Level2Sound(5, 0);
-            level2Sound.stop();
-            level3Sound = new Level3Sound(5, 0);
-            level3Sound.stop();
-        }
+        //Level Sounds
+        level1Sound = new Level1Sound(5, 80);
+        level1Sound.stop();
+        level2Sound = new Level2Sound(5, 80);
+        level2Sound.stop();
+        level3Sound = new Level3Sound(5, 80);
+        level3Sound.stop();
         
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/next.png","Menu/LevelSelectScreen/nextPressed.png","buttonpress.wav",true),950,350);
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/last.png","Menu/LevelSelectScreen/lastPressed.png","buttonpress.wav",false),50,350);
@@ -58,19 +43,19 @@ public class LevelSelectScreen extends Menu
             case 1:
                 particleColour = new Color(150,40,70);
                 setBackground("menu/LevelSelectScreen/baseLine.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav","level1.mp3", new ScrollWorld(Levels.level1())),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/baseLineUnpressed.png","Menu/LevelSelectScreen/baseLinePressed.png","buttonpress.wav",new Level1Sound(1, 100), new ScrollWorld(Levels.level1())),500,200);
                 addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
                 break;
             case 2:
                 particleColour = new Color(40,150,70);
                 setBackground("menu/LevelSelectScreen/frostByte.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav","level2.wav", new ScrollWorld(Levels.level2())),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/frostByteUnpressed.png","Menu/LevelSelectScreen/frostBytePressed.png","buttonpress.wav",new Level2Sound(1, 100), new ScrollWorld(Levels.level2())),500,200);
                 addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
                 break;
             case 3:
                 particleColour = new Color(40,150,70);
                 setBackground("menu/LevelSelectScreen/drift.png");
-                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/driftUnpressed.png","Menu/LevelSelectScreen/driftPressed.png","buttonpress.wav","level2.wav", new ScrollWorld(Levels.level3())),500,200);
+                addObject(new ScreenChangeButton("Menu/LevelSelectScreen/driftUnpressed.png","Menu/LevelSelectScreen/driftPressed.png","buttonpress.wav",new Level3Sound(1, 100), new ScrollWorld(Levels.level3())),500,200);
                 addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
                 break;
         }
