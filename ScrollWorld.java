@@ -10,6 +10,9 @@ import java.util.ArrayList;
  * @assisted Chase Coulter
  */
 public class ScrollWorld extends World {
+    private int timer = 0;
+    private boolean faded = false;
+
     private static ScrollWorld world;
     private Player player;
     
@@ -191,6 +194,8 @@ public class ScrollWorld extends World {
         pauseActs--;
         
         handleHitboxToggle();
+        
+        checkFade();
     }
     
     public void started()
@@ -284,4 +289,23 @@ public class ScrollWorld extends World {
         grnd2 = g2;
         glow = g;
     }
+    
+    /**
+     * @Author Chase Coulter
+     */
+    private void checkFade() {
+        timer++;
+        System.out.println(timer); // optional, for debugging
+    
+        if(timer > 1550 && timer < 1800) {
+            if(!faded){
+                getWorld().addObject(new ScreenFade(5, Color.BLACK), 500, 300);
+                faded = true;
+            }
+        } else if(timer > 1800) {
+            Greenfoot.setWorld(new StartScreen());
+        }
+    }
+    
+
 }
