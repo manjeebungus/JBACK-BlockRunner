@@ -4,6 +4,11 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @Author Chase Coulter
  * @Version v1.1
  */
+
+/*
+ * Level selection menu.
+ * Handles background sounds, navigation buttons, and particle effects.
+ */
 public class LevelSelectScreen extends Menu
 {
     protected static LevelSelectSound levelSelectSound;
@@ -15,16 +20,17 @@ public class LevelSelectScreen extends Menu
     private boolean soundPlayed = false;
     private int currentLevel = 1;
     private Color particleColour;
+
     public LevelSelectScreen()
     {    
         super(); 
         menu = this;
         
-        //Background sound when selecting levels
+        // Background sound when selecting levels
         levelSelectSound = new LevelSelectSound(5, 80);
         levelSelectSound.stop();
         
-        //Level Sounds
+        // Level sounds
         level1Sound = new Level1Sound(5, 80);
         level1Sound.stop();
         level2Sound = new Level2Sound(5, 80);
@@ -35,7 +41,7 @@ public class LevelSelectScreen extends Menu
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/next.png","Menu/LevelSelectScreen/nextPressed.png","buttonpress.wav",true),950,350);
         addObject(new SelectScreenButtons("Menu/LevelSelectScreen/last.png","Menu/LevelSelectScreen/lastPressed.png","buttonpress.wav",false),50,350);
         addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);
-        setScreen(1);
+        setScreen(1); // start at first level
     }
     
     private void setScreen(int screen){
@@ -63,11 +69,11 @@ public class LevelSelectScreen extends Menu
     
     public void act(){
         super.act();
-        spawnDust();
+        spawnDust(); // add particles
         if (!soundPlayed)
         {
             if (UserData.getMusicVolume() != 0) {
-                levelSelectSound.playLoop();
+                levelSelectSound.playLoop(); // start music
             }
             soundPlayed = true;
         }
@@ -86,6 +92,7 @@ public class LevelSelectScreen extends Menu
     private void spawnDust(){
         addObject(new Particle(0, 270, 8.0, 10, 30 + Greenfoot.getRandomNumber(25), particleColour), Greenfoot.getRandomNumber(1000), 600);
     }
+
     public void next(){
         currentLevel++;
         if(currentLevel>3){
@@ -95,6 +102,7 @@ public class LevelSelectScreen extends Menu
             setScreen(currentLevel);
         }
     }
+
     public void last(){
         currentLevel--;
         if(currentLevel<1){
@@ -104,9 +112,10 @@ public class LevelSelectScreen extends Menu
             setScreen(currentLevel);
         }
     }
+
     private void clear(){
         for(ScreenChangeButton s : getObjects(ScreenChangeButton.class)){
-            removeObject(s);
+            removeObject(s); // remove old buttons
         }
     }
 }

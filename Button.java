@@ -7,6 +7,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Button is an abstract superclass, meant to supply the basic framework
  * for the behaviour of any button
  * 
+ * Handles mouse input, image swapping,
+ * and triggers button behaviour.
  */
 public abstract class Button extends SuperSmoothMover
 {
@@ -48,9 +50,6 @@ public abstract class Button extends SuperSmoothMover
         sound = new GreenfootSound("buttonpress.wav");
     }
 
-    /**
-     * check if clicked and change images accordingly
-     */
     public void act()
     {
         if (Greenfoot.mousePressed(this))
@@ -74,8 +73,5 @@ public abstract class Button extends SuperSmoothMover
         }
     }
 
-    /**
-     * behaviour is to be defined by subclasses
-     */
     protected abstract void behaviour();
 }

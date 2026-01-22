@@ -26,7 +26,7 @@ public abstract class Player extends SuperSmoothMover
     protected double prevY;
     
     protected boolean isDead;
-    
+    //private int timer = 0;
     public Player() {
         isGrounded = true;
         speedY = 0;
@@ -60,9 +60,11 @@ public abstract class Player extends SuperSmoothMover
         if (getWorld() == null) return;
         
         move();
-
+    
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
+        
+        //checkFade();
         
         if (isGrounded) roundToClosestRotation();
         
@@ -70,6 +72,7 @@ public abstract class Player extends SuperSmoothMover
         
         checkCollisions();
     }
+
     
     protected abstract void move(); 
     
@@ -339,4 +342,7 @@ public abstract class Player extends SuperSmoothMover
         getWorld().addObject(new CirclePulse(200, 4, new Color(100,100,100)), getX(), getY());
         getWorld().addObject(new CirclePulse(400, 8, new Color(100,100,100)), getX(), getY());
     }
+
+
+
 }

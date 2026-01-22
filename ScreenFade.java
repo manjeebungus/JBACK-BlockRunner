@@ -1,7 +1,11 @@
 import greenfoot.*;
+
 /**
  * @Author Chase Coulter
  * @Version v1.0
+ *
+ * Full-screen fade effect.
+ * Increases transparency over time until opaque.
  */
 public class ScreenFade extends Visual
 {
@@ -21,12 +25,13 @@ public class ScreenFade extends Visual
         setImage(img);
         getImage().setTransparency(alpha);
     }
+
     public void act()
     {
         if(alpha < 255)
         {
             beta += speed;
-            alpha = (int)(beta/3);//3 times as slow
+            alpha = (int)(beta/3);
             if(alpha > 255) alpha = 255;
             getImage().setTransparency(alpha);
         }
