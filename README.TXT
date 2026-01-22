@@ -47,8 +47,7 @@ Credits:
 			Portals have a hitbox type of INTERACT, which is dealt with by my checkInteraction method in the player
 			Added and implemented sounds found by Josh Ye. Ex. Sound for Level 1,2,3, level complete, cube crash, homeScreen 
 			and level select screen. Code for the level select screen sound to work was added to the Screen Change button, 
-			ScrollWorld, and Player.
-			Added additional obstacles to the levels
+			ScrollWorld and Player. Added additional obstacles to levels 1 and 2, and redid and improved level 3 a lot.
 		
 	Josh Ye:
 All level creations, sound effects, all sound classes, class diagram
