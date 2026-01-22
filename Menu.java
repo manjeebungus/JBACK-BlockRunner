@@ -14,7 +14,6 @@ public class Menu extends World
         if (Greenfoot.mouseDragged(null))
         {
             spawnParticles();
-            spawnPulse();
         }
         if (Greenfoot.mouseClicked(null))
         {
@@ -32,6 +31,12 @@ public class Menu extends World
             for(int i = 0; i<10; i++){
                 addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 4, 30 + Greenfoot.getRandomNumber(25), Color.WHITE), x, y);
             }
+            for(int i = 0; i<5; i++){
+                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 2.0 + Greenfoot.getRandomNumber(20) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.WHITE  ), x, y);
+            }
+            for(int i = 0; i<10; i++){
+                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 2.0 + Greenfoot.getRandomNumber(20) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.WHITE), x, y);
+            }
         }
     }
     //this is a test
@@ -41,14 +46,8 @@ public class Menu extends World
         {
             int x = mouse.getX();
             int y = mouse.getY();
-            for(int i = 0; i<5; i++){
-                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.BLACK  ), x, y);
-            }
-            for(int i = 0; i<10; i++){
-                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.GRAY), x, y);
-            }
-            addObject(new CirclePulse(200, 4, new Color(100,100,100)), x, y);
-            addObject(new CirclePulse(400, 8, new Color(100,100,100)), x, y);
+            addObject(new CirclePulse(50, 4, Color.WHITE), x, y);
+            addObject(new CirclePulse(100, 8, Color.WHITE), x, y);
         }
     }
 }
