@@ -55,5 +55,9 @@ public class ScreenChangeButton extends Button
         if (LevelSelectScreen.levelSelectSound != null) {
             LevelSelectScreen.levelSelectSound.stop();
         }
+        
+        if (LevelSelectScreen.currentLevelSound != null) {
+            LevelSelectScreen.currentLevelSound.stop();
+        }
     }
 }
