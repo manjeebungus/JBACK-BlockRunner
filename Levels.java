@@ -163,7 +163,6 @@ public class Levels
         level[5][176] = 1;
         level[2][179] = 1;
         level[3][179] = 10;
-        level[3][180] = 10;
         level[2][180] = 1;
         level[2][181] = 1;
         level[2][182] = 1;
@@ -329,160 +328,99 @@ public class Levels
             "Drift/glow.png"
         );
         
-        // --- INTRO: Rhythmic Spikes ---
         level[0][15] = 14;
-        level[0][21] = 14;
         level[0][22] = 14;
+        level[0][23] = 14;
         
-        // --- SECTION 1: The Staircase & Orb Timing ---
         level[0][30] = 3;
-        level[2][33] = 3; // Elevated platform
-        level[3][33] = 5; // Jump pad on top of stairs
+        level[2][33] = 3;
+        level[3][33] = 5; 
         
-        // Launch player over a pit of spikes
         for(int i = 35; i <= 45; i++) 
         {
             level[0][i] = 14; 
         }
         
-        // Mid-air Orb Chain (Player is launched by pad at 34, hits orbs at 38 and 42)
         level[5][38] = 6; 
         level[6][42] = 6;
         
-        // Landing platform
-        for(int i = 46; i <= 54; i++) level[3][i] = 3;
-        level[4][50] = 14; // Spike on the platform to jump over
+        for(int i = 46; i <= 54; i++)
+        {
+            level[3][i] = 3;
+        }
         
-        // --- SECTION 2: Tight Jumps ---
+        level[4][50] = 14;
+
         level[0][60] = 14;
         level[0][61] = 14;
-        level[1][63] = 6; // Low orb jump
+        level[1][63] = 6; 
         level[1][67] = 3;
         level[1][68] = 3;
         level[2][73] = 3;
         
-        // Long flat stretch with "Triple Spikes" (Classic difficulty)
-        for(int i = 77; i <= 100; i++) level[3][i] = 3;
-        level[4][85] = 14;
-        level[4][86] = 14;
-        level[4][87] = 14; // Triple spike jump
+        for(int i = 77; i <= 100; i++) 
+        {
+            level[3][i] = 3;
+        }
         
-        // --- SECTION 3: The Ship Portal Transition ---
-        level[4][102] = 5; // Pad to launch into portal
-        level[8][105] = 20; // Ship Portal high up
+        for(int i = 77; i <= 99; i++) 
+        {
+            level[8][i] = 3;
+            level[7][i] = 15;
+        }
         
-        // --- SECTION 4: Hard Ship Flying (The Gauntlet) ---
-        // Floor and Ceiling for the ship section
-        for(int i = 105; i <= 195; i++) {
-            level[0][i] = 3;    // Floor
-            level[10][i] = 3;   // Ceiling
-            if(i % 5 == 0) {
-                level[1][i] = 14;  // Ground spikes
-                level[9][i] = 15;  // Ceiling spikes (flipped)
+        level[4][80] = 5;
+        level[4][86] = 5;
+        level[4][92] = 5;
+        
+        level[4][100] = 5; 
+        level[6][105] = 20;
+        
+        for(int i = 105; i <= 195; i++) 
+        {
+            level[0][i] = 3;   
+            level[9][i] = 3;  
+            if(i % 5 == 0) 
+            {
+                level[1][i] = 14; 
+                level[8][i] = 15;  
             }
         }
         
-        // Obstacle Pillars (Tight Corridors)
-        // Pillar 1: High Gap
-        for(int i = 1; i <= 6; i++) level[i][120] = 3;
+        for(int i = 1; i <= 4; i++) 
+        {
+            level[i][120] = 3;
+        }
         
-        // Pillar 2: Low Gap
-        for(int i = 4; i <= 9; i++) level[i][135] = 3;
+        for(int i = 4; i <= 9; i++)
+        {
+            level[i][135] = 3;
+        }
         
-        // Pillar 3: Narrow Middle Gap
-        for(int i = 1; i <= 3; i++) level[i][150] = 3;
-        for(int i = 7; i <= 9; i++) level[i][150] = 3;
+        for(int i = 1; i <= 3; i++)
+        {
+            level[i][150] = 3;
+        }
+        for(int i = 7; i <= 9; i++)
+        {
+            level[i][150] = 3;
+        }
         
-        // The "Zig-Zag" Spikes
         level[3][165] = 14;
+        level[2][165] = 3;
+        level[1][165] = 3;
         level[7][170] = 15;
+        level[8][170] = 3;
+        level[9][170] = 3;
         level[3][175] = 14;
+        level[2][175] = 3;
+        level[1][175] = 3;
         
-        // --- SECTION 5: Final Cube Transition ---
-        level[5][185] = 21; // Cube portal to finish
-        
-        // Final triple spike challenge
-        for(int i = 185; i <= 199; i++) level[0][i] = 3;
-        level[1][192] = 14;
-        level[1][193] = 14;
-        level[1][194] = 14;
+        for(int i = 185; i <= 199; i++) 
+        {
+            level[0][i] = 3;
+        }
     
         return level;
     }
-
-    /*
-    public static int[][] level3() {
-        emptyLevel();
-        ScrollWorld.setEnvironment(
-            "Drift/background.png",
-            "Drift/foreground.png",
-            "Drift/foreground.png",
-            "Drift/glow.png"
-        );
-        
-        level[0][15] = 14;
-        level[0][21] = 14;
-        level[0][22] = 14;
-        level[0][28] = 14;
-        level[0][29] = 14;
-        level[0][30] = 3;
-        level[0][31] = 3;
-        level[1][31] = 14;
-        level[0][39] = 14;
-        level[0][40] = 3;
-        level[1][40] = 3;
-        level[2][44] = 3;
-        for(int i = 44; i <= 54; i++){
-            level[2][i] = 3;
-        }
-        level[3][50] = 14;
-        level[3][54] = 3;
-        level[0][57] = 14;
-        level[0][65] = 3;
-        level[1][69] = 3;
-        level[2][73] = 3;
-        level[3][77] = 3;
-        for(int i = 77; i <= 84; i++){
-            level[3][i] = 3;
-        }
-        for(int i = 0; i <= 4; i++){
-            level[i][88] = 3;
-        }
-        level[0][91] = 14;
-        level[0][92] = 14;
-        level[0][100] = 3;
-        level[1][104] = 3;
-        level[2][108] = 3;
-        level[3][112] = 3;
-        level[4][116] = 3;
-        level[5][120] = 3;
-        for(int i = 102; i <= 128; i++){
-            level[0][i] = 14;
-        }
-        level[7][120] = 20;
-        for(int i = 0; i <= 4; i++){
-            level[i][137] = 3;
-        }
-        for(int i = 9; i > 7; i--){
-            level[i][137] = 3;
-        }
-        //first pillar
-        for(int i = 0; i <= 2; i++){
-            level[i][157] = 3;
-        }
-        for(int i = 9; i >= 6; i--){
-            level[i][157] = 3;
-        }
-        //second pillar
-        for(int i = 0; i <= 3; i++){
-            level[i][177] = 3;
-        }
-        for(int i = 9; i >= 7; i--){
-            level[i][177] = 3;
-        }
-        for(int i = 0; i <= 3; i++){
-            level[i][190] = 3;
-        }
-        return level;
-    }*/
 }

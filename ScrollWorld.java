@@ -58,6 +58,9 @@ public class ScrollWorld extends World {
         isPaused = false;
         pauseActs = 0;
         
+        levelCompleteSound = new LevelCompleteSound(5, 100);
+        levelCompleteSound.stop();
+        
         setEnvironment(background, grnd1, grnd2, glow);
         
         if (background == null) background = "baseLine/background.png";
@@ -197,7 +200,7 @@ public class ScrollWorld extends World {
      * Handles pausing, camera scrolling, world updates,
      * and hitbox toggling.
      */
-    public void act() {
+    public void act() {        
         if (pauseActs <= 0) {
             isPaused = false;
         }
@@ -210,7 +213,7 @@ public class ScrollWorld extends World {
         pauseActs--;
         
         handleHitboxToggle();
-        
+
         checkFade();
     }
     
@@ -223,6 +226,8 @@ public class ScrollWorld extends World {
         if (LevelSelectScreen.currentLevelSound != null) {
             LevelSelectScreen.currentLevelSound.playLoop();
         }
+        
+        levelCompleteSound.play();
     }
     
     /**
@@ -234,6 +239,8 @@ public class ScrollWorld extends World {
         if (LevelSelectScreen.currentLevelSound != null) {
             LevelSelectScreen.currentLevelSound.pause();
         }
+        
+        levelCompleteSound.pause();
     }
     
     /**
@@ -381,13 +388,15 @@ public class ScrollWorld extends World {
     
         if(timer > 1550 && timer < 1800) {
             if(!faded){
+                levelCompleteSound.play();
                 getWorld().addObject(new ScreenFade(5, Color.BLACK), 500, 300);
                 faded = true;
             }
         } else if(timer > 1800) {
+            if (LevelSelectScreen.currentLevelSound != null) {
+                LevelSelectScreen.currentLevelSound.stop();
+            }
             Greenfoot.setWorld(new StartScreen());
         }
     }
-    
-
 }
