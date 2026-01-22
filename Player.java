@@ -12,11 +12,13 @@ import java.util.ArrayList;
 public abstract class Player extends SuperSmoothMover
 {
     protected static JumpSound jumpSound;
+    protected static CubeCrashingSound cubeCrashingSound;
 
     protected boolean isGrounded = true;
     protected boolean spacePressed = false;
     protected boolean firstJumpMade = false;
     protected boolean playerRemoved = false;
+    protected boolean deathSoundPlayed = false;
     protected static double speedY;
     protected GreenfootImage image;
     protected Hitbox hitbox;
@@ -32,6 +34,9 @@ public abstract class Player extends SuperSmoothMover
         speedY = 0;
         isDead = false;
         
+        cubeCrashingSound = new CubeCrashingSound(5, 100);
+        cubeCrashingSound.stop();
+        
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
     }
     
@@ -45,7 +50,12 @@ public abstract class Player extends SuperSmoothMover
     {   
         if (ScrollWorld.getPause()) return;
         
-        if (isDead) ScrollWorld.getWorld().resetWorld();
+        if (isDead) 
+        {
+            LevelSelectScreen.currentLevelSound.play();
+            ScrollWorld.getWorld().resetWorld();
+            return;
+        }
         
         // HARD GROUND CLAMP (prevents going through the ground on mode switch)
         if (getExactY() > ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2)
@@ -94,10 +104,13 @@ public abstract class Player extends SuperSmoothMover
                     break;
     
                 case HAZARD: //Deadly objects
-                    deathEffect();
-                    destroy();
-                    LevelSelectScreen.currentLevelSound.stop();
-                    LevelSelectScreen.currentLevelSound.play();
+                    if (!isDead)
+                    {
+                        cubeCrashingSound.play();
+                        deathEffect();
+                        destroy();
+                        LevelSelectScreen.currentLevelSound.stop();
+                    }
                     break;
                 
                 case INTERACT:
@@ -214,11 +227,13 @@ public abstract class Player extends SuperSmoothMover
         {
             if (minOverlap > TOLERANCE)
             {
-                deathEffect();
-                ScrollWorld.getWorld().resetWorld();
-                destroy();
-                LevelSelectScreen.currentLevelSound.stop();
-                LevelSelectScreen.currentLevelSound.play();
+                if (!isDead)
+                {
+                    cubeCrashingSound.play();
+                    deathEffect();
+                    destroy();
+                    LevelSelectScreen.currentLevelSound.stop();
+                }
             }
             else
             {
@@ -233,11 +248,14 @@ public abstract class Player extends SuperSmoothMover
         {
             if (overlapBottom > TOLERANCE)
             {
-                deathEffect();
-                ScrollWorld.getWorld().resetWorld(); // real head collision
-                destroy(); // real head collision
-                LevelSelectScreen.currentLevelSound.stop();
-                LevelSelectScreen.currentLevelSound.play();
+                if (!isDead)
+                {
+                    cubeCrashingSound.play();
+                    deathEffect();
+                    destroy(); 
+                    LevelSelectScreen.currentLevelSound.stop();
+                }
+
                 return true;
             }
             else
