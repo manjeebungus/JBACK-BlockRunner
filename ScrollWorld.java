@@ -2,6 +2,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.ArrayList;
 
 /**
+ * Block code is in the README.txt file
+ */
+
+/**
  * A horizontally scrolling Greenfoot world that renders a tile-based level,
  * manages camera movement, and controls world objects, background layers,
  * and pause behavior.

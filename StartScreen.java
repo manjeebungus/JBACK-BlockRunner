@@ -1,6 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
+ * Block code is in the README.txt file
+ */
+
+/**
  * @author Chase Coulter
  * @version v1.4
  */
