@@ -376,7 +376,7 @@ public class ScrollWorld extends World {
      */
     private void checkFade() {
         timer++;
-        System.out.println(timer); // optional, for debugging
+        //System.out.println(timer); // optional, for debugging
     
         if(timer > 1550 && timer < 1800) {
             if(!faded){
