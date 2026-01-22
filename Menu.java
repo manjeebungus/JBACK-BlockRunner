@@ -21,7 +21,7 @@ public class Menu extends World
         if (Greenfoot.mouseClicked(null))
         {
             spawnParticles();
-            spawnPulse();
+            //spawnPulse();
         }
     }
     protected void spawnParticles(){
@@ -33,12 +33,6 @@ public class Menu extends World
 
             for(int i = 0; i<10; i++){
                 addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 4.0 + Greenfoot.getRandomNumber(40) / 10.0, 4, 30 + Greenfoot.getRandomNumber(25), Color.WHITE), x, y);
-            }
-            for(int i = 0; i<5; i++){
-                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 2.0 + Greenfoot.getRandomNumber(20) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.WHITE  ), x, y);
-            }
-            for(int i = 0; i<10; i++){
-                addObject(new Particle(Greenfoot.getRandomNumber(360), 180, 2.0 + Greenfoot.getRandomNumber(20) / 10.0, 10, 30 + Greenfoot.getRandomNumber(25), Color.WHITE), x, y);
             }
         }
     }
