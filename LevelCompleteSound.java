@@ -16,10 +16,12 @@ public class LevelCompleteSound extends Sound
         sounds = new GreenfootSound[count];
         for (int i = 0; i < count; i++) {
             sounds[i] = new GreenfootSound(soundFile);
-            sounds[i].setVolume(volume);
         }
+        setSoundVolume(volume);
         
         index = 0;
+        
+        registerMusic(this);
     }
     
     public void play() {
@@ -30,9 +32,33 @@ public class LevelCompleteSound extends Sound
         incrementIndex(sounds.length);
     }
     
+    public void pause()
+    {
+        for (GreenfootSound s : sounds) {
+            s.pause();
+        }
+    }
+    
     public void stop() {
         for (GreenfootSound s : sounds) {
             s.stop();
+        }
+    }
+    
+    public void playLoop() {
+        sounds[0].playLoop();
+    }
+    
+    public void setSoundVolume() {
+        for (GreenfootSound sound : sounds) {
+            sound.setVolume(musicVolume * soundVolume/100);
+        }
+    }
+    
+    public void setSoundVolume(int volume) {
+        musicVolume = volume;
+        for (GreenfootSound sound : sounds) {
+            sound.setVolume(musicVolume * soundVolume/100);
         }
     }
 }

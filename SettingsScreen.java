@@ -16,6 +16,8 @@ public class SettingsScreen extends Menu
     public SettingsScreen()
     {
         super();
+        menu = this;
+        
         particleColour = new Color(0,0,0);
         
         addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", StartScreen.getScreen()),100,520);

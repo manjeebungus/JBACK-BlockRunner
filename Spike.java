@@ -1,15 +1,28 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Spike here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * A hazard world object that kills the player on contact.
+ * Spikes are rendered as triangular shapes and use
+ * a hazard-type hitbox for collision detection.
+ *
+ * Spikes can be created using either a procedurally
+ * drawn image or a provided image.
+ *
+ * @author Kelton Kuan
+ * @version 1.0
  */
 public class Spike extends WorldObject
 {
+    /** Border color used for spike rendering */
     private static final Color borderColor = new Color(0, 0, 0, 255);
     
+    /**
+     * Constructs a Spike using a procedurally drawn
+     * triangular image.
+     *
+     * @param row the row index in the level grid
+     * @param col the column index in the level grid
+     */
     public Spike(double row, double col) {
         super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.rows-row-1) * ScrollWorld.TILE_SIZE);
         
@@ -40,6 +53,14 @@ public class Spike extends WorldObject
         setImage(img);
     }
     
+    /**
+     * Constructs a Spike using a provided image.
+     * The image is automatically scaled to tile size.
+     *
+     * @param row the row index in the level grid
+     * @param col the column index in the level grid
+     * @param image the image used to render the spike
+     */
     public Spike(double row, double col, GreenfootImage image) {
         super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.rows-row-1) * ScrollWorld.TILE_SIZE);
         
@@ -50,8 +71,19 @@ public class Spike extends WorldObject
         setImage(image);
     }
     
+    /**
+     * Returns the hitbox associated with this spike.
+     *
+     * @return the spike's Hitbox
+     */
     public Hitbox getHitbox() { return hitbox; } //for the cube
     
+    /**
+     * Called when the spike is added to the world.
+     * Adds a HitboxRenderer for visualization/debugging.
+     *
+     * @param world the world the spike was added to
+     */
     public void addedToWorld(World world)
     {
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());

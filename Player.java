@@ -3,49 +3,93 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * The player who the user plays the levels with
- * 
+ * Abstract base class representing the player character.
+ * Handles movement, gravity, collisions, interactions,
+ * hitbox behavior, and death/reset logic.
+ *
+ * Concrete subclasses (e.g., Cube, Ship) define movement behavior.
+ *
  * @author Kelton Kuan and Abithan
- * Hitbox interactions by Brian
- * @version (a version number or a date)
+ * @author Brian (Hitbox interactions)
+ * @version 1.0
  */
 public abstract class Player extends SuperSmoothMover
 {
+    /** Jump sound shared by all player instances */
     protected static JumpSound jumpSound;
+    protected static CubeCrashingSound cubeCrashingSound;
 
+    /** Whether the player is currently touching the ground */
     protected boolean isGrounded = true;
+
+    /** Tracks whether the jump key is currently pressed */
     protected boolean spacePressed = false;
+
+    /** Whether the first jump has been made */
     protected boolean firstJumpMade = false;
+
+    /** True if the player was removed or swapped (e.g., via portal) */
     protected boolean playerRemoved = false;
+    protected boolean deathSoundPlayed = false;
+
+    /** Vertical speed of the player */
     protected static double speedY;
+
+    /** Player image reference */
     protected GreenfootImage image;
+
+    /** Player hitbox used for collision detection */
     protected Hitbox hitbox;
-    
+
+    /** Tolerance used to distinguish lethal vs. non-lethal collisions */
     final double TOLERANCE = 20;
+
+    /** Previous X position (used for collision resolution) */
     protected double prevX;
+
+    /** Previous Y position (used for collision resolution) */
     protected double prevY;
-    
+
+    /** Whether the player is dead */
     protected boolean isDead;
     
+    /**
+     * Constructs a Player object and initializes
+     * movement variables and the hitbox.
+     */
     public Player() {
         isGrounded = true;
         speedY = 0;
         isDead = false;
         
+        cubeCrashingSound = new CubeCrashingSound(5, 100);
+        cubeCrashingSound.stop();
+        
         hitbox = new Hitbox (this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.PLAYER);
     }
     
+    /**
+     * Returns the player's hitbox.
+     *
+     * @return the player's Hitbox
+     */
     public Hitbox getHitbox() { return hitbox; }
     
     /**
-     * Act - do whatever the Player wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Called every frame.
+     * Handles pausing, gravity, movement,
+     * collision detection, and death logic.
      */
     public void act()
     {   
         if (ScrollWorld.getPause()) return;
         
-        if (isDead) ScrollWorld.getWorld().resetWorld();
+        if (isDead) 
+        {
+            LevelSelectScreen.currentLevelSound.play();
+            ScrollWorld.getWorld().resetWorld();
+            return;
+        }
         
         // HARD GROUND CLAMP (prevents going through the ground on mode switch)
         if (getExactY() > ScrollWorld.GROUND_HEIGHT - ScrollWorld.TILE_SIZE / 2)
@@ -60,9 +104,11 @@ public abstract class Player extends SuperSmoothMover
         if (getWorld() == null) return;
         
         move();
-
+    
         //If speed is positive, cube goes up (y-5) and if its negative cube goes down(y-(-5))
         setLocation(getExactX(), getExactY() - speedY);
+        
+        //checkFade();
         
         if (isGrounded) roundToClosestRotation();
         
@@ -70,9 +116,18 @@ public abstract class Player extends SuperSmoothMover
         
         checkCollisions();
     }
+
     
+    /**
+     * Defines how the player moves.
+     * Implemented differently by each player mode.
+     */
     protected abstract void move(); 
     
+    /**
+     * Checks collisions between the player and all world objects
+     * and handles solid, hazard, and interactable behavior.
+     */
     protected void checkCollisions()
     {
         // Get all WorldObjects with hitboxes
@@ -94,11 +149,13 @@ public abstract class Player extends SuperSmoothMover
                     break;
     
                 case HAZARD: //Deadly objects
-                    deathEffect();
-                    //Respawns
-                    destroy();
-                    LevelSelectScreen.currentLevelSound.stop();
-                    LevelSelectScreen.currentLevelSound.play();
+                    if (!isDead)
+                    {
+                        cubeCrashingSound.play();
+                        deathEffect();
+                        destroy();
+                        LevelSelectScreen.currentLevelSound.stop();
+                    }
                     break;
                 
                 case INTERACT:
@@ -118,9 +175,14 @@ public abstract class Player extends SuperSmoothMover
         }
     }
     
-    //This method allows for hitbox visibility
+    /**
+     * Called automatically when the player is added to the world.
+     * Attaches a HitboxRenderer for debugging/visualization.
+     *
+     * @param world the world the player was added to
+     */
     @Override
-    public void addedToWorld(World world)
+    protected void addedToWorld(World world)
     {
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());
     }
@@ -144,10 +206,11 @@ public abstract class Player extends SuperSmoothMover
     }
     
     /**
-     * Handles all worldobjects of type INTERACT
-     * @param hit the hitbox of the object intersetcs with the players
-     * @param obj the actual object that the player intersects
-     * @return true or false depending on if the player removed/swapped
+     * Handles interactions with INTERACT-type objects
+     * such as portals, orbs, and pads.
+     *
+     * @param hit the hitbox intersecting the player
+     * @param obj the world object being interacted with
      */
     protected void checkInteraction(Hitbox hit, WorldObject obj)
     {
@@ -178,6 +241,12 @@ public abstract class Player extends SuperSmoothMover
       
     }
     
+    /**
+     * Handles collision logic with solid tiles,
+     * resolving top, bottom, and side collisions.
+     *
+     * @param tile the hitbox of the solid object
+     */
     protected void checkSolid(Hitbox tile)
     {
         double pxLeft   = getExactX() - ScrollWorld.TILE_SIZE / 2;
@@ -215,11 +284,13 @@ public abstract class Player extends SuperSmoothMover
         {
             if (minOverlap > TOLERANCE)
             {
-                deathEffect();
-                ScrollWorld.getWorld().resetWorld();
-                destroy();
-                LevelSelectScreen.currentLevelSound.stop();
-                LevelSelectScreen.currentLevelSound.play();
+                if (!isDead)
+                {
+                    cubeCrashingSound.play();
+                    deathEffect();
+                    destroy();
+                    LevelSelectScreen.currentLevelSound.stop();
+                }
             }
             else
             {
@@ -228,17 +299,28 @@ public abstract class Player extends SuperSmoothMover
         }
     }
     
+    /**
+     * Handles bottom (ceiling) collisions.
+     *
+     * @param txBottom bottom Y of the tile
+     * @param minOverlap smallest overlap value
+     * @param overlapBottom overlap from bottom
+     * @return true if a fatal collision occurred
+     */
     protected boolean bottomHit(double txBottom, double minOverlap, double overlapBottom) {
         // ----- BOTTOM (ceiling / head hit) -----
         if (minOverlap == overlapBottom && speedY > 0)
         {
             if (overlapBottom > TOLERANCE)
             {
-                deathEffect();
-                ScrollWorld.getWorld().resetWorld(); // real head collision
-                destroy(); // real head collision
-                LevelSelectScreen.currentLevelSound.stop();
-                LevelSelectScreen.currentLevelSound.play();
+                if (!isDead)
+                {
+                    cubeCrashingSound.play();
+                    deathEffect();
+                    destroy(); 
+                    LevelSelectScreen.currentLevelSound.stop();
+                }
+
                 return true;
             }
             else
@@ -253,8 +335,10 @@ public abstract class Player extends SuperSmoothMover
     }
     
     /**
-     * Sets all variables necessary in order to land the cube on a platform  
-     * @param yPos the y position of the platform to land on
+     * Snaps the player to a ground surface and
+     * resets vertical movement variables.
+     *
+     * @param yPos the Y-position of the ground surface
      */
     public void setToGround(double yPos)
     {
@@ -265,6 +349,10 @@ public abstract class Player extends SuperSmoothMover
         if (this instanceof Cube) roundToClosestRotation();
     }
     
+    /**
+     * Marks the player as dead, hides the sprite,
+     * and pauses the world briefly.
+     */
     public void destroy() {
         isDead = true;
         getImage().setTransparency(0);
@@ -273,8 +361,8 @@ public abstract class Player extends SuperSmoothMover
     }
     
     /**
-     * This method rounds to the closest degree rotation to make sure the cube does not 
-     * land on a wrong angle(makes sure its flat on the ground)
+     * Rounds the player's rotation to the nearest
+     * right angle to ensure flat landings.
      */
     protected void roundToClosestRotation()
     {
@@ -308,8 +396,10 @@ public abstract class Player extends SuperSmoothMover
     }
     
     /**
-     * Sets variables nessesary in order to jump properly
-     * @param speed the jump speed/height
+     * Initiates a jump by setting vertical speed
+     * and updating grounded state.
+     *
+     * @param speed jump strength
      */
     protected void jump(double speed)
     {        
@@ -319,7 +409,10 @@ public abstract class Player extends SuperSmoothMover
     }
     
     /**
-     * @Author Chase Coulter
+     * Spawns dust particles when the player
+     * is grounded and moving.
+     *
+     * @author Chase Coulter
      */
     protected void spawnGroundDust()
     {
@@ -328,7 +421,10 @@ public abstract class Player extends SuperSmoothMover
     }
     
     /**
-     * @Author Chase Coulter
+     * Creates particle and pulse effects
+     * when the player dies.
+     *
+     * @author Chase Coulter
      */
     private void deathEffect(){
         for(int i = 0; i<5; i++){
@@ -340,4 +436,7 @@ public abstract class Player extends SuperSmoothMover
         getWorld().addObject(new CirclePulse(200, 4, new Color(100,100,100)), getX(), getY());
         getWorld().addObject(new CirclePulse(400, 8, new Color(100,100,100)), getX(), getY());
     }
+
+
+
 }

@@ -36,11 +36,11 @@ public class Ship extends Player
     {
         if (Greenfoot.isKeyDown("space"))
         {
-            speedY += 0.5;
+            speedY += 0.45;
         }
         else
         {
-            speedY -= 0.35;
+            speedY -= 0.45;
         }
         
         //Makes sure the speed doesn't get too high or too low

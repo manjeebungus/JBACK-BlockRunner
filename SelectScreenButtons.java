@@ -3,6 +3,11 @@ import greenfoot.*;
  * @Author Chase Coulter
  * @Version v1.1
  */
+
+/*
+ * Navigation buttons for the level select screen.
+ * Moves forward or backward depending on direction.
+ */
 public class SelectScreenButtons extends Button
 {
     private boolean right;
@@ -38,6 +43,5 @@ public class SelectScreenButtons extends Button
                 world.addObject(new ScreenWipe(3), 1500, 300);
             }
         }
-        
     }
 }

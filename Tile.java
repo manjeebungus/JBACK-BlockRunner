@@ -1,14 +1,25 @@
 import greenfoot.*;
 
 /**
- * Write a description of class Tile here.
+ * A solid tile object that the player can stand on.
+ * Tiles are rendered as square blocks and have a solid-type hitbox
+ * to prevent the player from falling through.
+ * 
+ * Tiles can be created with a procedurally drawn image or a custom image.
  * 
  * @author Kelton Kuan
- * @version (a version number or a date)
+ * @version 1.0
  */
 public class Tile extends WorldObject {
+    /** Border color for procedurally drawn tiles */
     private static final Color borderColor = new Color(30, 30, 30, 30);
     
+    /**
+     * Constructs a Tile with a procedurally drawn image.
+     *
+     * @param row the row index in the level grid
+     * @param col the column index in the level grid
+     */
     public Tile(double row, double col) {
         super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.rows-row-1) * ScrollWorld.TILE_SIZE);
         
@@ -29,6 +40,14 @@ public class Tile extends WorldObject {
         hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.SOLID);
     }
     
+    /**
+     * Constructs a Tile using a provided image.
+     * The image is automatically scaled to tile size.
+     *
+     * @param row the row index in the level grid
+     * @param col the column index in the level grid
+     * @param image the image used to render the tile
+     */
     public Tile (double row, double col, GreenfootImage image) {
         super(col * ScrollWorld.TILE_SIZE, (ScrollWorld.rows-row-1) * ScrollWorld.TILE_SIZE);
         
@@ -40,6 +59,12 @@ public class Tile extends WorldObject {
         hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE, 0, 0, Hitbox.HitboxType.SOLID);
     }
     
+    /**
+     * Called when the tile is added to the world.
+     * Adds a HitboxRenderer for visualization/debugging.
+     *
+     * @param world the world the tile was added to
+     */
     public void addedToWorld(World world)
     {
         world.addObject(new HitboxRenderer(hitbox), getX(), getY());

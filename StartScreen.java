@@ -13,6 +13,8 @@ public class StartScreen extends Menu
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super();
+        menu = this;
+        
         UserData.load();
         
         startScreen = this;
@@ -21,9 +23,10 @@ public class StartScreen extends Menu
 
         //buttonSound = new ButtonSound(5, 100);
         //buttonSound.stop();
-        addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav",new LevelSelectScreen()),500,370);//play button
+        //addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav",new LevelSelectScreen()),500,370);//play button
         addObject(new ScreenChangeButton("Menu/StartScreen/settingsUnpressed.png","Menu/StartScreen/settingsPressed.png","buttonpress.wav", new SettingsScreen()),800,420);//settings button
-        addObject(new ScreenChangeButton("Menu/StartScreen/blankUnpressed.png","Menu/StartScreen/blankPressed.png","buttonpress.wav", new LevelSelectScreen()),200,420);//blank button
+        addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav", new LevelSelectScreen()),500,370);//blank button
+        addObject(new ScreenFadeIn(5, Color.BLACK), 500, 300);//to fade in from a level
     }
     
     public void act()

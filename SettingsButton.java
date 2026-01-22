@@ -41,6 +41,5 @@ public class SettingsButton extends Button
                 UserData.setSfxVolume(Math.min(UserData.getSfxVolume() + 100, 100));
                 break;
         }
-        System.out.println(UserData.getSfxVolume());
     }
 }

@@ -4,20 +4,21 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @Author Chase Coulter
  * @Version v1.0
  * 
- * ScreenChangeButton is an extension of Button, its behaviour is setting world to ScrollWorld
+ * Button that switches the current world.
+ * Optionally handles background music.
  */
 public class ScreenChangeButton extends Button
 {
     World world;
-    private GreenfootSound soundBg;
+    private Sound soundBg;
     
     /**
      * @author Abithan
      */
-    public ScreenChangeButton(String staticName, String pressedName,String sound,String bgSound, World world){
+    public ScreenChangeButton(String staticName, String pressedName,String sound,Sound bgSound, World world){
         super(staticName, pressedName,sound);
         this.world = world;
-        soundBg = new GreenfootSound(bgSound);
+        soundBg = bgSound;
     }
     
     public ScreenChangeButton(String staticName, String pressedName,String sound,World world){

@@ -6,165 +6,117 @@ import java.io.PrintWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-
 /**
- * Write a description of class UserData here.
+ * Handles persistent user data for Random Runner, including username,
+ * music and SFX volume, and total attempts.
  * 
- * @author Kelton Kuan
- * @version (a version number or a date)
+ * Data is stored in a local text file (data.txt) and automatically
+ * loaded and saved when settings change.
+ * 
+ * @author Kelton
+ * @version 1.1
  */
-public class UserData  
-{
+public class UserData {
     private static String username = "Random Runner";
     
-    // Game values
-    private static int musicVolume = 100; // int 0
-    private static int sfxVolume = 100; // int 1
-    private static int attempts = 0; // int 2
-    
+    // Game settings
+    private static int musicVolume = 100; // 0-100
+    private static int sfxVolume = 100;   // 0-100
+    private static int attempts = 0;      // number of times player has played
+
     private static final String fileName = "data.txt";
-    
-    
+
+    /**
+     * Loads the user data from the file.
+     * If the file doesn't exist or contains invalid data, defaults are used.
+     */
     public static void load() {
-        try {
-            Scanner scanner = new Scanner(new File(fileName));
-            
-            try {
-                username = scanner.nextLine();
-                musicVolume = Integer.parseInt(scanner.nextLine());
-                sfxVolume = Integer.parseInt(scanner.nextLine());
-                attempts = Integer.parseInt(scanner.nextLine());
-            } catch(NumberFormatException e) {
-                System.out.println("Found non-integer type");
-                System.exit(1);
-            }
+        try (Scanner scanner = new Scanner(new File(fileName))) {
+            username = scanner.nextLine();
+            musicVolume = Integer.parseInt(scanner.nextLine());
+            sfxVolume = Integer.parseInt(scanner.nextLine());
+            attempts = Integer.parseInt(scanner.nextLine());
+            scanner.close();
         } catch (FileNotFoundException e) {
+            System.out.println("Data file not found. Using default settings.");
+        } catch (NumberFormatException e) {
+            System.out.println("Data file contains invalid values. Using defaults.");
             username = "Random Runner";
             musicVolume = 100;
             sfxVolume = 100;
             attempts = 0;
         }
     }
-    
-    
+
+    /**
+     * Saves the current user data to the file.
+     */
     public static void save() {
-        try {
-            FileWriter fileWriter = new FileWriter(new File(fileName));
-            PrintWriter output = new PrintWriter(fileWriter);
-            
+        try (PrintWriter output = new PrintWriter(new FileWriter(fileName))) {
             output.println(username);
             output.println(musicVolume);
             output.println(sfxVolume);
             output.println(attempts);
-            
             output.close();
         } catch (IOException e) {
-            System.out.println("File error");
-            System.exit(1);
+            System.out.println("Error saving user data.");
         }
     }
-    
-    /**
-     * Returns the user's music volume setting.
-     *
-     * @return the music volume level, typically in the range 0–100
-     */
+
+    /** Returns the user's music volume (0-100). */
     public static int getMusicVolume() {
         return musicVolume;
     }
-    
-    /**
-     * Returns the user's sound effect (SFX) volume setting.
-     *
-     * @return the sound effect volume level, typically in the range 0–100
-     */
+
+    /** Returns the user's SFX volume (0-100). */
     public static int getSfxVolume() {
         return sfxVolume;
     }
-    
-    /**
-     * Returns the total number of attempts the user has made.
-     * <p>
-     * An attempt is usually counted each time the player starts or restarts
-     * a level.
-     * </p>
-     *
-     * @return the number of attempts made by the user
-     */
+
+    /** Returns the total number of attempts made by the player. */
     public static int getAttempts() {
         return attempts;
     }
-    
-    /**
-     * Determines whether this is the user's first time playing the game.
-     * <p>
-     * This method considers the user to be a first-time player if they have
-     * not made any attempts yet.
-     * </p>
-     *
-     * @return {@code true} if the user has made zero attempts; {@code false} otherwise
-     */
+
+    /** Returns true if the player has never played before. */
     public static boolean isFirstTime() {
         return attempts == 0;
     }
-    
-    /**
-     * Returns the Greenfoot Gallery username of the current player.
-     *
-     * @return the user's Gallery username if logged in, or "Guest" if the user
-     *         is not logged in or user information is unavailable
-     */
+
+    /** Returns the user's username. */
     public static String getUsername() {
         return username;
     }
-    
+
     /**
-     * Sets the user's music volume.
-     * <p>
-     * The value is clamped to the range 0–100 to prevent invalid volume levels.
-     * </p>
-     *
-     * @param volume the new music volume level
+     * Sets the music volume and updates all music objects.
+     * Clamped to 0-100.
      */
     public static void setMusicVolume(int volume) {
         musicVolume = Math.max(0, Math.min(100, volume));
+        Sound.setMusicVolume(musicVolume);
         save();
     }
-    
+
     /**
-     * Sets the user's sound effect (SFX) volume.
-     * <p>
-     * The value is clamped to the range 0–100 to prevent invalid volume levels.
-     * </p>
-     *
-     * @param volume the new sound effect volume level
+     * Sets the SFX volume and updates all SFX objects.
+     * Clamped to 0-100.
      */
     public static void setSfxVolume(int volume) {
         sfxVolume = Math.max(0, Math.min(100, volume));
+        Sound.setSfxVolume(sfxVolume);
         save();
     }
-    
+
     /**
-     * Sets the total number of attempts made by the user.
-     * <p>
-     * This value should normally only increase as the player restarts or
-     * retries levels.
-     * </p>
-     *
-     * @param value the new attempt count
+     * Sets the total attempts. Ensures non-negative value.
      */
     public static void setAttempts(int value) {
         attempts = Math.max(0, value);
         save();
     }
-    
-    /**
-     * Increments the user's attempt count by one.
-     * <p>
-     * This method should be called whenever the player starts or restarts
-     * a level.
-     * </p>
-     */
+
+    /** Increments the attempt count by one and saves the data. */
     public static void incrementAttempts() {
         attempts++;
         save();

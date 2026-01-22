@@ -22,7 +22,9 @@ Block Comment:				The player can jump using space, which can also be used to act
 							the need of any keys any and portals will change your modes to either cube or ship. The ship
 							can fly by holding or tapping space. All player modes are affected by gravity and will get 
 							"pulled" back down. Our grid was used for our actual levels, which lay out all of our 
-							obstacles/objects for that level. SAVE/LOAD HERE. 
+							obstacles/objects for that level. When in the settings menu, the user can adjust the volumes
+							of the music and of the sound effects with the plus and minus buttons. These volumes are stored
+							in a text file "data.txt" including the player name and number of attempts.
 
 Credits:
 	Chase Coulter:
@@ -31,12 +33,21 @@ Credits:
 			StartScreen, Button, Ground,Util, (Assisted)Cube, (Assisted)ScrollWorld, ReadMe File
 		
 	Kelton Kuan:
+			ScrollWorld (All except visuals and hitbox code), SettingsScreen, Sound (All code and template for subclass),SettingsButton,
+			Player (Tile and ground collision code including checkSolid method, Player death and reset code, assisted with player movement),
+			Cube (Assisted with jumping logic), WorldObject (All except hitbox interactions), Ground (Assisted with logic),
+			Spike (All except hitboxes), Spike1 (All except image), Spike2(All except image), Spike3 (All except image),
+			Tile (All except hitbox renderer), Block1 (All except image), Block2 (All except image), Block3 (All except image),
+			Levels (Implemented id system and created the template to create levels, did not actually make the levels), UserData
+			
 		
 	Abithan Paskaranathan:
-			Created classes Player (Help from Kelton), Cube, Ship, Orb, JumpOrb, Portal, Cube portal, Ship portal. 
+			Created classes Player (with assistance from Kelton. Added help methods, added to case INTERACT AND HAZARD, 
+			constuctor and some act code), Cube, Ship, Orb, JumpOrb, Portal, Cube portal, Ship portal. 
 			Portals have a hitbox type of INTERACT, which is dealt with by my checkInteraction method in the player
-			Added and implemented sounds found by Josh Ye. Ex. Sound for Level 1,2,3, level complete, and level select screen.
-			Code for the level select screen sound to work was added to the Screen Change button, ScrollWorld, and Player.
+			Added and implemented sounds found by Josh Ye. Ex. Sound for Level 1,2,3, level complete, cube crash, homeScreen 
+			and level select screen. Code for the level select screen sound to work was added to the Screen Change button, 
+			ScrollWorld, and Player.
 			Added additional obstacles to the levels
 		
 	Josh Ye:

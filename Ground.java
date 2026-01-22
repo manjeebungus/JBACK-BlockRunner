@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * @Author Chase Coulter
+ * Assisted by Kelton Kuan
  * @Version v1.0
  */
 public class Ground extends WorldObject

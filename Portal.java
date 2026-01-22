@@ -20,7 +20,7 @@ public abstract class Portal extends WorldObject
         
         //Set the image for the type of portal image given
         GreenfootImage image = new GreenfootImage(imageString);
-        image.scale(ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE * 2);
+        image.scale(ScrollWorld.TILE_SIZE * 2, ScrollWorld.TILE_SIZE * 2);
         setImage(image);
         
         hitbox = new Hitbox(this, ScrollWorld.TILE_SIZE, ScrollWorld.TILE_SIZE * 2, 0, 0, Hitbox.HitboxType.INTERACT);

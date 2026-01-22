@@ -57,6 +57,7 @@ public class Particle extends Visual
         updateImage();
     }
     
+    //@Param Boolean bool is a flag to scroll with world, add either true or false at the end to scroll
     public Particle(int direction, int spread, double speed, int size, int life, Color color,Boolean bool){
         initialDirection = direction;
         this.spread = spread;
@@ -88,6 +89,10 @@ public class Particle extends Visual
         setImage(img);
     }
 
+    /*
+     * Handles movement, speed decay, fading,
+     * and removes the particle when its life ends.
+     */
     public void act()
     {
         move(speed);

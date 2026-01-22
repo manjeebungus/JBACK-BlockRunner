@@ -1,14 +1,16 @@
 #BlueJ class context
 comment0.target=Cube
-comment0.text=\r\n\ The\ base\ player\ mode\ which\ is\ a\ cube\ that\ jumps\ and\ moves\r\n\ \r\n\ @author\ Abithan\ Paskaranathan\r\n\ Assisted\ by\ Kelton\ Kuan\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ default\ player\ mode\ represented\ as\ a\ cube.\r\n\ The\ cube\ can\ jump,\ rotate\ while\ airborne,\ and\ is\r\n\ affected\ by\ gravity.\r\n\r\n\ This\ class\ defines\ the\ standard\ movement\ behavior\r\n\ used\ in\ most\ levels.\r\n\r\n\ @author\ Abithan\ Paskaranathan\r\n\ @author\ Kelton\ Kuan\ (assistance)\r\n\ @version\ 1.0\r\n
 comment1.params=
 comment1.target=Cube()
+comment1.text=\r\n\ Constructs\ a\ Cube\ player.\r\n\ Initializes\ the\ cube\ image,\ jump\ sound,\r\n\ and\ sets\ this\ instance\ as\ the\ active\ cube.\r\n
 comment2.params=
-comment2.target=void\ addedToWorld()
+comment2.target=void\ move()
+comment2.text=\r\n\ Handles\ cube-specific\ movement\ logic.\r\n\ Allows\ jumping\ when\ grounded\ and\ applies\r\n\ gravity\ and\ rotation\ while\ airborne.\r\n
 comment3.params=
-comment3.target=void\ move()
+comment3.target=void\ cubeImage()
+comment3.text=\r\n\ Loads,\ scales,\ and\ applies\ the\ cube\ image\r\n\ to\ the\ player.\r\n
 comment4.params=
-comment4.target=void\ cubeImage()
-comment5.params=
-comment5.target=void\ spawnJumpParticles()
-numComments=6
+comment4.target=void\ spawnJumpParticles()
+comment4.text=\r\n\ Spawns\ particle\ effects\ when\ the\ cube\ jumps.\r\n\ Particles\ originate\ from\ the\ bottom\ of\ the\ cube\r\n\ to\ simulate\ a\ jump\ impulse.\r\n
+numComments=5
