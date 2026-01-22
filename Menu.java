@@ -7,6 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Menu extends World
 {
     protected static Menu menu;
+    protected boolean soundPlayed = false;
     
     public Menu()
     {    

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class ScrollWorld extends World {
     private int timer = 0;
     private boolean faded = false;
+    private static LevelCompleteSound levelCompleteSound;
 
     private static ScrollWorld world;
     private Player player;

@@ -17,7 +17,6 @@ public class LevelSelectScreen extends Menu
     protected static Level3Sound level3Sound;
     protected static Sound currentLevelSound;
     
-    private boolean soundPlayed = false;
     private int currentLevel = 1;
     private Color particleColour;
 
