@@ -207,6 +207,7 @@ public class Levels
         level[4][72] = 2;
         level[4][73] = 2;
         level[3][77] = 2;
+        level[0][77] = 5;
         level[2][79] = 2;
         level[1][82] = 2;
         for(int i = 3 ; i <= 6; i++){
@@ -217,21 +218,99 @@ public class Levels
             level[7][i] = 2;
         }
         
-        level[4][88] = 1;//do spike on top then bottom then top
+        level[5][92] = 2;
+        level[4][92] = 13;
+        level[5][93] = 2;
+        level[4][93] = 13;
+        level[5][94] = 2;
+        level[4][94] = 13;
+        
+        level[0][98] = 2;
+        level[1][98] = 12;
+        level[0][99] = 2;
+        level[1][99] = 12;
+        level[0][100] = 2;
+        level[1][100] = 12; 
         
         //Ship Pillars
         for(int i = 0; i <= 4; i++){
             level[i][105] = 2;
         }
+        
+        level[0][112] = 2;
+        level[1][112] = 12;
+        level[0][113] = 2;
+        level[1][113] = 12;
+        level[0][114] = 2;
+        level[1][114] = 12; 
+        
+        level[5][116] = 2;
+        level[4][116] = 13;
+        level[5][117] = 2;
+        level[4][117] = 13;
+        level[5][118] = 2;
+        level[4][118] = 13;
+        
         for(int i = 0; i <= 4; i++){
             level[i][125] = 2;
         }
+        
+        //Below spike and blocks
+        level[0][134] = 2;
+        level[1][134] = 12;
+        level[0][135] = 2;
+        level[1][135] = 12;
+        level[0][136] = 2;
+        level[1][136] = 12; 
+        level[0][137] = 2;
+        level[1][137] = 12;
+        
+        //Above spike and blocks
+        level[6][134] = 2;
+        level[5][134] = 13;
+        level[6][135] = 2;
+        level[5][135] = 13;
+        level[6][136] = 2;
+        level[5][136] = 13; 
+        level[6][137] = 2;
+        level[5][137] = 13;
+    
         for(int i = 0; i <= 4; i++){
             level[i][145] = 2;
         }
+        
+        level[5][152] = 2;
+        level[4][152] = 13;
+        level[5][153] = 2;
+        level[4][153] = 13;
+        level[5][154] = 2;
+        level[4][154] = 13;
+        
+        level[0][158] = 2;
+        level[1][158] = 12;
+        level[0][159] = 2;
+        level[1][159] = 12;
+        level[0][160] = 2;
+        level[1][160] = 12; 
+        
         for(int i = 0; i <= 4; i++){
             level[i][165] = 2;
         }
+        
+        level[0][172] = 2;
+        level[1][172] = 12;
+        level[0][173] = 2;
+        level[1][173] = 12;
+        level[0][174] = 2;
+        level[1][174] = 12; 
+        
+        level[5][178] = 2;
+        level[4][178] = 13;
+        level[5][179] = 2;
+        level[4][179] = 13;
+        level[5][180] = 2;
+        level[4][180] = 13;
+        
         for(int i = 0; i <= 4; i++){
             level[i][185] = 2;
         }
