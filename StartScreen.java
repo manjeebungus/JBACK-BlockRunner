@@ -32,24 +32,17 @@ public class StartScreen extends Menu
         addObject(new ScreenChangeButton("Menu/StartScreen/settingsUnpressed.png","Menu/StartScreen/settingsPressed.png","buttonpress.wav", new SettingsScreen()),800,420);//settings button
         addObject(new ScreenChangeButton("Menu/StartScreen/playUnpressed.png","Menu/StartScreen/playPressed.png","buttonpress.wav", new LevelSelectScreen()),500,370);//blank button
         addObject(new ScreenFadeIn(5, Color.BLACK), 500, 300);//to fade in from a level
-    }
-    
+    }    
     public void act()
     {
         super.act();
         spawnDust();
-        if (!soundPlayed)
-        {
-            if (UserData.getMusicVolume() != 0) {
-                startScreenSound.playLoop(); // start music
-            }
-            soundPlayed = true;
-        }
+        
     }
     
     public void started()
     {
-        startScreenSound.play();        
+        startScreenSound.playLoop();        
     }
     
     public void stopped()

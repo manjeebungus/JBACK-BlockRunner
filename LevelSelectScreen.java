@@ -24,6 +24,7 @@ public class LevelSelectScreen extends Menu
     {    
         super(); 
         menu = this;
+        soundPlayed = false;
         
         // Background sound when selecting levels
         levelSelectSound = new LevelSelectSound(5, 80);
